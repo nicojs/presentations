@@ -1,0 +1,15 @@
+{
+  "name": "opensource-within-infosupport-fall2018",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "kc-serve --theme black --highlight darkula"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@infosupport/kc-cli": "^2.3.6"
+  }
+}
