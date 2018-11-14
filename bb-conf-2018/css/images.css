@@ -1,0 +1,21 @@
+.reveal section img.logo {
+    vertical-align: middle;
+}
+
+img.logo {
+    max-width: 200px;
+}
+
+.reveal section img.logo-bullet {
+    width: 150px;
+    margin-right: 20px;
+}
+
+.reveal section img.logo-wide {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+.reveal section img.emblem {
+    vertical-align: middle;
+}
