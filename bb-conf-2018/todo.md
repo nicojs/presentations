@@ -3,7 +3,7 @@
 - [x] Use Professor X in the example on the slide
 - [x] Title
 - [] Score a Spotlight 
-- [] Disadvantages: Can be difficult to configure
+- [x] Disadvantages: Can be difficult to configure
 - [] Timeline fix ui
 - [] Add ING to timeline
 - [] Stryker4s & Stryker.NET

@@ -1,4 +1,5 @@
 ## Disadvantages
 
 1. Mutation testing is slow
-2. Not supported for every language
+2. Can be difficult to configure
+3. Not supported for every project
