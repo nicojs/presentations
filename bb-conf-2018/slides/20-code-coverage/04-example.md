@@ -9,7 +9,7 @@ function isAllowedToBuyAlcohol(customer) {
 
 ```javascript
 // Test
-var customer = { name: 'Mark', age: 24 };
+var customer = { name: 'Professor X', age: 96 };
 expect(isAllowedToBuyAlcohol(customer)).to.equal(true);
 ```
 
