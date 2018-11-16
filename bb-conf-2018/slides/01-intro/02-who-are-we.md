@@ -6,13 +6,15 @@
       <ul class="no-list">
         <li>DevOps engineer</li>
         <li>Open source fanatic</li>
+        <li><small><em>Info Support</em></small></li>
       </ul>
     </div>
     <div class="col">
-      <img class="img-responsive-50 img-circle" style="margin-top: 250px" src="/img/nico.png">
+      <img class="img-responsive-50 img-circle" style="margin-top: 100px" src="/img/nico.png">
       <ul class="no-list">
         <li>Full stack developer</li>
         <li>Automatic testing evangelist</li>
+        <li><small><em>Info Support</em></small></li>
       </ul>
     </div>
 </div>

@@ -1,7 +1,7 @@
-- [] Scalable front page
+- [x] Scalable front page
 - [] Techorama BE image replacement (begin and end!)
-- [] Title
 - [x] Use Professor X in the example on the slide
+- [x] Title
 - [] Score a Spotlight 
 - [] Disadvantages: Can be difficult to configure
 - [] Timeline fix ui

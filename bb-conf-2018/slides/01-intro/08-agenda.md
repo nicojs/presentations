@@ -1,6 +1,5 @@
-## Kill the mutants!
-
-Improve test quality with Mutation Testing
+## Improve Test Quality 
+### with Mutation Testing
 
 <div class="flex">
     <div class="col">
