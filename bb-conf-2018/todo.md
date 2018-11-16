@@ -1,11 +1,11 @@
 - [] Scalable front page
 - [] Techorama BE image replacement (begin and end!)
 - [] Title
-- [] Use Professor X in the example on the slide
+- [x] Use Professor X in the example on the slide
 - [] Score a Spotlight 
 - [] Disadvantages: Can be difficult to configure
 - [] Timeline fix ui
 - [] Add ING to timeline
 - [] Stryker4s & Stryker.NET
-- [] Stryker strengths: extendable to all projects
-- [] Recap
+- [x] Stryker strengths: extendable to all projects
+- [x] Recap
