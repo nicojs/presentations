@@ -40,7 +40,7 @@
   </div>  
   <div class="container right">
     <div class="content">
-      <h3>~Summer-2018</h3>
+      <h3>2019</h3>
       <p>Release of 1.0.0</p>
     </div>
   </div>  
