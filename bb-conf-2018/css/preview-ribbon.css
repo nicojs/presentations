@@ -1,0 +1,17 @@
+.preview-ribbon::after {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    background: #007bff;
+    border-radius: 5px;
+    color: #fff;
+    content: "Preview";
+    font-size: .7em;
+    font-weight: 700;
+    margin-left: 10px;
+    padding: 4px 20px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 30px;
+    transform: rotate(45deg);
+    z-index: 10;
+}

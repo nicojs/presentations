@@ -1,9 +1,9 @@
 ## Frameworks
 Language            | Framework   
 ------------------|:-------
-JavaScript | Stryker Mutator  
-TypeScript | Stryker Mutator    
-Scala | Stryker4S    
+JavaScript | Stryker  
+TypeScript | Stryker
+Scala | Stryker4s    
 C# | Stryker.NET  
 Java    | PITest   
 PHP | InfectionPHP   

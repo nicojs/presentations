@@ -3,22 +3,15 @@ Please stand up for a moment
 
 ---
 
-## Who tests software?
+## Do you test your software?
 
 ---
 
-## Who maintains automated tests?
-
-...in any way, shape or form?
+## Do you have unit tests?
 
 ---
 
-## Who has unit tests?
-
----
-
-
-## Who uses code coverage?
+## Do you use code coverage?
 
 ---
 

@@ -4,8 +4,8 @@
 - [x] Title
 - [] Score a Spotlight 
 - [x] Disadvantages: Can be difficult to configure
-- [] Timeline fix ui
-- [] Add ING to timeline
+- [x] Timeline fix ui
+- [x] Add ING to timeline
 - [] Stryker4s & Stryker.NET
 - [x] Stryker strengths: extendable to all projects
 - [x] Recap
