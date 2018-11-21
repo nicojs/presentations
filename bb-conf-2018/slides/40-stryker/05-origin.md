@@ -4,7 +4,7 @@
   <div class="container left">
     <div class="content">
       <h3>Beginning 2015</h3>
-      <p>BazINGa! ~ origin story</p>
+      <p><img src="../../img/bazinga.png" alt="bazinga" class="img-rounded"></p>
     </div>
   </div>
   <div class="container right">
