@@ -15,4 +15,4 @@ expect(isAllowedToBuyAlcohol(customer)).to.equal(true);
 
 What is the code coverage here?
 
-100% :( <!-- .element class="fragment" data-fragment-index="0" -->
+😞 100% 😞 <!-- .element class="fragment" data-fragment-index="0" -->
