@@ -19,3 +19,7 @@ img.logo {
 .reveal section img.emblem {
     vertical-align: middle;
 }
+
+.img-rounded {
+    border-radius: 10px;
+}
