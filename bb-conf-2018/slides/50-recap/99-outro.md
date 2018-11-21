@@ -5,7 +5,7 @@
       <ol style="margin-top: 75px">
         <li><a href="https://stryker-mutator.io">stryker-mutator.io</a></li>
         <li><a href="https://stryker-mutator.io/example">stryker-mutator.io/example</a></li>
-        <li><a href="https://github.com/nicojs/presentation">github.com/nicojs/presentation</a></li>
+        <li><a href="https://github.com/nicojs/presentations">github.com/nicojs/presentations</a></li>
       </ul>
     </div>
     <div class="col">
