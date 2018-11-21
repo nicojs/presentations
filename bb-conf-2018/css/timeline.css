@@ -1,3 +1,4 @@
+
 /* The actual timeline (the vertical ruler) */
 
 .timeline {
@@ -46,7 +47,7 @@
 /* Place the container to the left */
 
 .timeline .left {
-    left: -81;
+    left: -81px;
 }
 
 /* Place the container to the right */
@@ -98,15 +99,6 @@
     background-color: #2D2D2D;
     position: relative;
     border-radius: 6px;
-}
-
-.reveal section img.logo, .reveal section .logo img {
-    margin: 15px 0px;
-    background: none;
-    border: none;
-    box-shadow: none;
-    height: 140px;
-    vertical-align: middle;
 }
 
 .reveal section .timeline img {
