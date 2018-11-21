@@ -10,6 +10,6 @@
       </ul>
     </div>
     <div class="col">
-      <img class="img-responsive-250" src="/img/booth.jpg">
+      <img class="img-responsive-250" src="/img/figurine.png">
     </div>
 </div>
