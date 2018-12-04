@@ -1,0 +1,19 @@
+section .welcome-slide h1 {
+    color: #fff;
+    vertical-align: top;
+    top: 0;
+}
+
+.reveal small {
+    font-size: 0.4em;
+    line-height: 0.8em;
+}
+
+.reveal td, .reveal th {
+    color: #fff;
+    font-size: 80%;
+}
+
+.reveal h1.red, .reveal h2.red, .reveal h3.red {
+    color: #b74934;
+}
