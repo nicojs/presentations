@@ -4,3 +4,4 @@
 * Mutation testing measures *effectiveness*
 * Use Stryker for JavaScript/TypeScript
 * Try out Stryker Scala and C#
+* Open source is awesome!
