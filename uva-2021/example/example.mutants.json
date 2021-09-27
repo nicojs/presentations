@@ -1,0 +1,66 @@
+[
+  {
+    "fileName": "example.js",
+    "id": "0",
+    "location": {
+      "start": {
+        "column": 22,
+        "line": 0
+      },
+      "end": {
+        "column": 1,
+        "line": 4
+      }
+    },
+    "mutatorName": "BlockStatement",
+    "replacement": "{}"
+  },
+  {
+    "fileName": "example.js",
+    "id": "1",
+    "location": {
+      "start": {
+        "column": 5,
+        "line": 1
+      },
+      "end": {
+        "column": 10,
+        "line": 1
+      }
+    },
+    "mutatorName": "ConditionalExpression",
+    "replacement": "true"
+  },
+  {
+    "fileName": "example.js",
+    "id": "2",
+    "location": {
+      "start": {
+        "column": 5,
+        "line": 1
+      },
+      "end": {
+        "column": 10,
+        "line": 1
+      }
+    },
+    "mutatorName": "ConditionalExpression",
+    "replacement": "false"
+  },
+  {
+    "fileName": "example.js",
+    "id": "3",
+    "location": {
+      "start": {
+        "column": 12,
+        "line": 1
+      },
+      "end": {
+        "column": 3,
+        "line": 3
+      }
+    },
+    "mutatorName": "BlockStatement",
+    "replacement": "{}"
+  }
+]
