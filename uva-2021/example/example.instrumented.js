@@ -60,19 +60,4 @@ function stryMutAct_9fa48(id) {
   return isActive(id);
 }
 
-function print(value) {
-  if (stryMutAct_9fa48("0")) {
-    {}
-  } else {
-    stryCov_9fa48("0");
-
-    if (stryMutAct_9fa48("2") ? false : stryMutAct_9fa48("1") ? true : (stryCov_9fa48("1", "2"), value)) {
-      if (stryMutAct_9fa48("3")) {
-        {}
-      } else {
-        stryCov_9fa48("3");
-        console.log(value);
-      }
-    }
-  }
-}
+console.log(stryMutAct_9fa48("0") ? person.address.street : (stryCov_9fa48("0"), person?.address.street));

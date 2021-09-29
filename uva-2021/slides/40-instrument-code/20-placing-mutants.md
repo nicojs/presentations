@@ -69,10 +69,7 @@ function add(a, b) {
     }
   } else {
     stryCov_9fa48("0");
-    return stryMutAct_9fa48("1") ? 
-        a - b : (stryCov_9fa48("1"), 
-          a + b
-        );
+    return stryMutAct_9fa48("1") ? a - b : (stryCov_9fa48("1"), a + b);
   }
 }
 ```
@@ -125,26 +122,442 @@ function stryCov_9fa48(mutant) {
 
 ### Algorithm simple example
 
+<stryker-instrumenter-explainer>
+
+<div class="code" style="display: none">
+
 ```js
 function add (a, b) {
   return a + b
 }
 ```
 
----
+</div>
 
-### Algorithm simple example
+<div class="mutants"  style="display: none">
 
-<!-- .slide: data-auto-animate data-auto-animate-duration="0" -->
-
-```js
-function add(a, b) {
-  return stryMutAct_9fa48("1") ? 
-      a - b : (stryCov_9fa48("1"), 
-        a + b
-      );
-}
+```json
+[
+  {
+    "fileName": "example.js",
+    "id": "0",
+    "location": {
+      "start": {
+        "column": 20,
+        "line": 1
+      },
+      "end": {
+        "column": 1,
+        "line": 3
+      }
+    },
+    "mutatorName": "BlockStatement",
+    "replacement": "{}"
+  },
+  {
+    "fileName": "example.js",
+    "id": "1",
+    "location": {
+      "start": {
+        "column": 9,
+        "line": 2
+      },
+      "end": {
+        "column": 14,
+        "line": 2
+      }
+    },
+    "mutatorName": "ArithmeticOperator",
+    "replacement": "a - b"
+  }
+]
 ```
+
+</div>
+
+<div class="placementActions"  style="display: none">
+
+```json
+[
+  {
+    "placer": "expressionMutantPlacer",
+    "type": "BinaryExpression",
+    "location": {
+      "start": {
+        "line": 2,
+        "column": 9
+      },
+      "end": {
+        "line": 2,
+        "column": 14
+      }
+    },
+    "replacement": {
+      "type": "ConditionalExpression",
+      "test": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "Identifier",
+          "name": "stryMutAct_9fa48"
+        },
+        "arguments": [
+          {
+            "type": "StringLiteral",
+            "value": "1"
+          }
+        ]
+      },
+      "consequent": {
+        "type": "BinaryExpression",
+        "operator": "-",
+        "left": {
+          "type": "Identifier",
+          "start": 31,
+          "end": 32,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 9
+            },
+            "end": {
+              "line": 2,
+              "column": 10
+            },
+            "identifierName": "a"
+          },
+          "name": "a"
+        },
+        "right": {
+          "type": "Identifier",
+          "start": 35,
+          "end": 36,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 13
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            },
+            "identifierName": "b"
+          },
+          "name": "b"
+        },
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 9
+          },
+          "end": {
+            "line": 2,
+            "column": 14
+          }
+        }
+      },
+      "alternate": {
+        "type": "SequenceExpression",
+        "expressions": [
+          {
+            "type": "CallExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "stryCov_9fa48"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "value": "1"
+              }
+            ]
+          },
+          {
+            "type": "BinaryExpression",
+            "start": 31,
+            "end": 36,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "left": {
+              "type": "Identifier",
+              "start": 31,
+              "end": 32,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 9
+                },
+                "end": {
+                  "line": 2,
+                  "column": 10
+                },
+                "identifierName": "a"
+              },
+              "name": "a"
+            },
+            "operator": "+",
+            "right": {
+              "type": "Identifier",
+              "start": 35,
+              "end": 36,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 13
+                },
+                "end": {
+                  "line": 2,
+                  "column": 14
+                },
+                "identifierName": "b"
+              },
+              "name": "b"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "placer": "statementMutantPlacer",
+    "type": "BlockStatement",
+    "location": {
+      "start": {
+        "line": 1,
+        "column": 20
+      },
+      "end": {
+        "line": 3,
+        "column": 1
+      }
+    },
+    "replacement": {
+      "type": "BlockStatement",
+      "body": [
+        {
+          "type": "IfStatement",
+          "test": {
+            "type": "CallExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "stryMutAct_9fa48"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "value": "0"
+              }
+            ]
+          },
+          "consequent": {
+            "type": "BlockStatement",
+            "body": [
+              {
+                "type": "BlockStatement",
+                "body": [],
+                "directives": []
+              }
+            ],
+            "directives": []
+          },
+          "alternate": {
+            "type": "BlockStatement",
+            "body": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "SequenceExpression",
+                  "expressions": [
+                    {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "Identifier",
+                        "name": "stryCov_9fa48"
+                      },
+                      "arguments": [
+                        {
+                          "type": "StringLiteral",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "start": 24,
+                "end": 36,
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 14
+                  }
+                },
+                "argument": {
+                  "type": "ConditionalExpression",
+                  "test": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "stryMutAct_9fa48"
+                    },
+                    "arguments": [
+                      {
+                        "type": "StringLiteral",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  "consequent": {
+                    "type": "BinaryExpression",
+                    "operator": "-",
+                    "left": {
+                      "type": "Identifier",
+                      "start": 31,
+                      "end": 32,
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 10
+                        },
+                        "identifierName": "a"
+                      },
+                      "name": "a"
+                    },
+                    "right": {
+                      "type": "Identifier",
+                      "start": 35,
+                      "end": 36,
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 14
+                        },
+                        "identifierName": "b"
+                      },
+                      "name": "b"
+                    },
+                    "loc": {
+                      "start": {
+                        "line": 2,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 14
+                      }
+                    }
+                  },
+                  "alternate": {
+                    "type": "SequenceExpression",
+                    "expressions": [
+                      {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "stryCov_9fa48"
+                        },
+                        "arguments": [
+                          {
+                            "type": "StringLiteral",
+                            "value": "1"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "BinaryExpression",
+                        "start": 31,
+                        "end": 36,
+                        "loc": {
+                          "start": {
+                            "line": 2,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 14
+                          }
+                        },
+                        "left": {
+                          "type": "Identifier",
+                          "start": 31,
+                          "end": 32,
+                          "loc": {
+                            "start": {
+                              "line": 2,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 2,
+                              "column": 10
+                            },
+                            "identifierName": "a"
+                          },
+                          "name": "a"
+                        },
+                        "operator": "+",
+                        "right": {
+                          "type": "Identifier",
+                          "start": 35,
+                          "end": 36,
+                          "loc": {
+                            "start": {
+                              "line": 2,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 2,
+                              "column": 14
+                            },
+                            "identifierName": "b"
+                          },
+                          "name": "b"
+                        },
+                        "leadingComments": null,
+                        "trailingComments": null,
+                        "innerComments": null
+                      }
+                    ]
+                  },
+                  "trailingComments": [],
+                  "leadingComments": [],
+                  "innerComments": []
+                }
+              }
+            ],
+            "directives": []
+          }
+        }
+      ],
+      "directives": []
+    }
+  }
+]
+```
+
+</div>
+
+</stryker-instrumenter-explainer>
 
 ---
 
@@ -156,6 +569,254 @@ function add(a, b) {
 
 ---
 
+### Algorithm another example
+
+<stryker-instrumenter-explainer style="height: 1000px">
+
+<div class="code" style="display: none">
+
+```js
+console.log(person?.address.street);
+```
+
+</div>
+<div class="mutants"  style="display: none">
+
+```json
+[
+  {
+    "fileName": "example.js",
+    "id": "0",
+    "location": {
+      "start": {
+        "column": 12,
+        "line": 1
+      },
+      "end": {
+        "column": 27,
+        "line": 1
+      }
+    },
+    "mutatorName": "OptionalChaining",
+    "replacement": "person.address"
+  }
+]
+```
+
+</div>
+<div class="placementActions"  style="display: none">
+
+```json
+[
+  {
+    "placer": "expressionMutantPlacer",
+    "type": "OptionalMemberExpression",
+    "location": {
+      "start": {
+        "line": 1,
+        "column": 12
+      },
+      "end": {
+        "line": 1,
+        "column": 34
+      }
+    },
+    "replacement": {
+      "type": "ConditionalExpression",
+      "test": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "Identifier",
+          "name": "stryMutAct_9fa48"
+        },
+        "arguments": [
+          {
+            "type": "StringLiteral",
+            "value": "0"
+          }
+        ]
+      },
+      "consequent": {
+        "type": "OptionalMemberExpression",
+        "object": {
+          "type": "OptionalMemberExpression",
+          "object": {
+            "type": "Identifier",
+            "name": "person",
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "line": 1,
+                "column": 18
+              },
+              "identifierName": "person"
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "address",
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 20
+              },
+              "end": {
+                "line": 1,
+                "column": 27
+              },
+              "identifierName": "address"
+            }
+          },
+          "computed": false,
+          "optional": false,
+          "trailingComments": [],
+          "leadingComments": [],
+          "innerComments": []
+        },
+        "property": {
+          "type": "Identifier",
+          "name": "street",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 28
+            },
+            "end": {
+              "line": 1,
+              "column": 34
+            },
+            "identifierName": "street"
+          }
+        },
+        "computed": false,
+        "optional": false,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
+            "line": 1,
+            "column": 34
+          }
+        }
+      },
+      "alternate": {
+        "type": "SequenceExpression",
+        "expressions": [
+          {
+            "type": "CallExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "stryCov_9fa48"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "type": "OptionalMemberExpression",
+            "start": 12,
+            "end": 34,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "line": 1,
+                "column": 34
+              }
+            },
+            "object": {
+              "type": "OptionalMemberExpression",
+              "start": 12,
+              "end": 27,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 12
+                },
+                "end": {
+                  "line": 1,
+                  "column": 27
+                }
+              },
+              "object": {
+                "type": "Identifier",
+                "start": 12,
+                "end": 18,
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 18
+                  },
+                  "identifierName": "person"
+                },
+                "name": "person"
+              },
+              "computed": false,
+              "property": {
+                "type": "Identifier",
+                "start": 20,
+                "end": 27,
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 20
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 27
+                  },
+                  "identifierName": "address"
+                },
+                "name": "address"
+              },
+              "optional": true
+            },
+            "computed": false,
+            "property": {
+              "type": "Identifier",
+              "start": 28,
+              "end": 34,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 28
+                },
+                "end": {
+                  "line": 1,
+                  "column": 34
+                },
+                "identifierName": "street"
+              },
+              "name": "street"
+            },
+            "optional": false
+          }
+        ]
+      }
+    }
+  }
+]
+```
+
+</div>
+
+</stryker-instrumenter-explainer>
+
+---
 ### Abstractions
 
 ```ts

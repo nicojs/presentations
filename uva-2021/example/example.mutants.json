@@ -1,66 +1,375 @@
 [
   {
-    "fileName": "example.js",
-    "id": "0",
+    "placer": "expressionMutantPlacer",
+    "type": "BinaryExpression",
     "location": {
       "start": {
-        "column": 22,
-        "line": 0
+        "line": 2,
+        "column": 9
       },
       "end": {
-        "column": 1,
-        "line": 4
+        "line": 2,
+        "column": 14
       }
     },
-    "mutatorName": "BlockStatement",
-    "replacement": "{}"
+    "replacement": {
+      "type": "ConditionalExpression",
+      "test": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "Identifier",
+          "name": "stryMutAct_9fa48"
+        },
+        "arguments": [
+          {
+            "type": "StringLiteral",
+            "value": "1"
+          }
+        ]
+      },
+      "consequent": {
+        "type": "BinaryExpression",
+        "operator": "-",
+        "left": {
+          "type": "Identifier",
+          "start": 31,
+          "end": 32,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 9
+            },
+            "end": {
+              "line": 2,
+              "column": 10
+            },
+            "identifierName": "a"
+          },
+          "name": "a"
+        },
+        "right": {
+          "type": "Identifier",
+          "start": 35,
+          "end": 36,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 13
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            },
+            "identifierName": "b"
+          },
+          "name": "b"
+        },
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 9
+          },
+          "end": {
+            "line": 2,
+            "column": 14
+          }
+        }
+      },
+      "alternate": {
+        "type": "SequenceExpression",
+        "expressions": [
+          {
+            "type": "CallExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "stryCov_9fa48"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "value": "1"
+              }
+            ]
+          },
+          {
+            "type": "BinaryExpression",
+            "start": 31,
+            "end": 36,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "left": {
+              "type": "Identifier",
+              "start": 31,
+              "end": 32,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 9
+                },
+                "end": {
+                  "line": 2,
+                  "column": 10
+                },
+                "identifierName": "a"
+              },
+              "name": "a"
+            },
+            "operator": "+",
+            "right": {
+              "type": "Identifier",
+              "start": 35,
+              "end": 36,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 13
+                },
+                "end": {
+                  "line": 2,
+                  "column": 14
+                },
+                "identifierName": "b"
+              },
+              "name": "b"
+            }
+          }
+        ]
+      }
+    }
   },
   {
-    "fileName": "example.js",
-    "id": "1",
+    "placer": "statementMutantPlacer",
+    "type": "BlockStatement",
     "location": {
       "start": {
-        "column": 5,
-        "line": 1
+        "line": 1,
+        "column": 20
       },
       "end": {
-        "column": 10,
-        "line": 1
+        "line": 3,
+        "column": 1
       }
     },
-    "mutatorName": "ConditionalExpression",
-    "replacement": "true"
-  },
-  {
-    "fileName": "example.js",
-    "id": "2",
-    "location": {
-      "start": {
-        "column": 5,
-        "line": 1
-      },
-      "end": {
-        "column": 10,
-        "line": 1
-      }
-    },
-    "mutatorName": "ConditionalExpression",
-    "replacement": "false"
-  },
-  {
-    "fileName": "example.js",
-    "id": "3",
-    "location": {
-      "start": {
-        "column": 12,
-        "line": 1
-      },
-      "end": {
-        "column": 3,
-        "line": 3
-      }
-    },
-    "mutatorName": "BlockStatement",
-    "replacement": "{}"
+    "replacement": {
+      "type": "BlockStatement",
+      "body": [
+        {
+          "type": "IfStatement",
+          "test": {
+            "type": "CallExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "stryMutAct_9fa48"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "value": "0"
+              }
+            ]
+          },
+          "consequent": {
+            "type": "BlockStatement",
+            "body": [
+              {
+                "type": "BlockStatement",
+                "body": [],
+                "directives": []
+              }
+            ],
+            "directives": []
+          },
+          "alternate": {
+            "type": "BlockStatement",
+            "body": [
+              {
+                "type": "ExpressionStatement",
+                "expression": {
+                  "type": "SequenceExpression",
+                  "expressions": [
+                    {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "Identifier",
+                        "name": "stryCov_9fa48"
+                      },
+                      "arguments": [
+                        {
+                          "type": "StringLiteral",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "start": 24,
+                "end": 36,
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 14
+                  }
+                },
+                "argument": {
+                  "type": "ConditionalExpression",
+                  "test": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "stryMutAct_9fa48"
+                    },
+                    "arguments": [
+                      {
+                        "type": "StringLiteral",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  "consequent": {
+                    "type": "BinaryExpression",
+                    "operator": "-",
+                    "left": {
+                      "type": "Identifier",
+                      "start": 31,
+                      "end": 32,
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 10
+                        },
+                        "identifierName": "a"
+                      },
+                      "name": "a"
+                    },
+                    "right": {
+                      "type": "Identifier",
+                      "start": 35,
+                      "end": 36,
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 14
+                        },
+                        "identifierName": "b"
+                      },
+                      "name": "b"
+                    },
+                    "loc": {
+                      "start": {
+                        "line": 2,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 14
+                      }
+                    }
+                  },
+                  "alternate": {
+                    "type": "SequenceExpression",
+                    "expressions": [
+                      {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "stryCov_9fa48"
+                        },
+                        "arguments": [
+                          {
+                            "type": "StringLiteral",
+                            "value": "1"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "BinaryExpression",
+                        "start": 31,
+                        "end": 36,
+                        "loc": {
+                          "start": {
+                            "line": 2,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 14
+                          }
+                        },
+                        "left": {
+                          "type": "Identifier",
+                          "start": 31,
+                          "end": 32,
+                          "loc": {
+                            "start": {
+                              "line": 2,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 2,
+                              "column": 10
+                            },
+                            "identifierName": "a"
+                          },
+                          "name": "a"
+                        },
+                        "operator": "+",
+                        "right": {
+                          "type": "Identifier",
+                          "start": 35,
+                          "end": 36,
+                          "loc": {
+                            "start": {
+                              "line": 2,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 2,
+                              "column": 14
+                            },
+                            "identifierName": "b"
+                          },
+                          "name": "b"
+                        },
+                        "leadingComments": null,
+                        "trailingComments": null,
+                        "innerComments": null
+                      }
+                    ]
+                  },
+                  "trailingComments": [],
+                  "leadingComments": [],
+                  "innerComments": []
+                }
+              }
+            ],
+            "directives": []
+          }
+        }
+      ],
+      "directives": []
+    }
   }
 ]
