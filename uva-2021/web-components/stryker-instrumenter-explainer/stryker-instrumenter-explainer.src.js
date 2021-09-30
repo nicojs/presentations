@@ -38,7 +38,7 @@ template.innerHTML = `
       <pre><code class="output js hljs javascript" data-noescape>
       </code></pre>
     </div>
-    <pre><code class="text-xxs ast json hljs"></code></pre>
+    <pre><code class="text-xs ast json hljs"></code></pre>
     
   </div>
 </div>
@@ -73,16 +73,16 @@ class Step {
   next;
 
   /**
-   * @type {StepData | undefined}
+   * @type {StepData}
    */
   data;
 
   /**
    *
+   * @param {StepData} data
    * @param {Step} [previous]
-   * @param {StepData} [data]
    */
-  constructor(previous, data) {
+  constructor(data, previous) {
     this.previous = previous;
     this.data = data;
     if (this.previous) {
@@ -102,7 +102,7 @@ customElements.define(
   "stryker-instrumenter-explainer",
   class extends HTMLElement {
     /**
-     * @type {Step}
+     * @type {Step | undefined}
      */
     currentStep;
     /**
@@ -149,7 +149,6 @@ customElements.define(
 
     connectedCallback() {
       // Initialize component
-      this.currentStep = new Step();
       this.currentMutants = [];
       this.currentPlacements = [];
 
@@ -166,7 +165,7 @@ customElements.define(
       traverse(codeAst, {
         enter(path) {
           const { loc, start, end, type } = path.node;
-          self.currentStep = new Step(self.currentStep, {
+          self.currentStep = new Step({
             action: "enter",
             type,
             start,
@@ -175,7 +174,7 @@ customElements.define(
               matchesLocation(mutant.location, loc)
             ),
             code: generate(codeAst).code,
-          });
+          }, self.currentStep);
         },
         exit(path) {
           const { loc, start, end, type } = path.node;
@@ -189,14 +188,14 @@ customElements.define(
             path.skip();
           }
 
-          self.currentStep = new Step(self.currentStep, {
+          self.currentStep = new Step({
             action: "exit",
             type,
             start,
             end,
             placement,
             code: generate(codeAst).code,
-          });
+          }, self.currentStep);
         },
       });
 
@@ -221,10 +220,10 @@ customElements.define(
       this.currentStep = this.currentStep.next;
       this.nextButton.disabled = !this.currentStep.next;
 
-      if (this.currentStep.data?.mutants) {
+      if (this.currentStep?.data.mutants) {
         this.currentMutants.push(...this.currentStep.data.mutants);
       }
-      if (this.currentStep.data?.placement) {
+      if (this.currentStep?.data.placement) {
         this.currentPlacements.push(this.currentStep.data.placement);
       }
       this.render();
@@ -233,10 +232,10 @@ customElements.define(
     previousStep(ev) {
       ev.preventDefault();
       this.currentMutants = this.currentMutants.filter(
-        (mutant) => !this.currentStep.data?.mutants?.includes(mutant)
+        (mutant) => !this.currentStep?.data.mutants?.includes(mutant)
       );
       this.currentPlacements = this.currentPlacements.filter(
-        (placement) => this.currentStep.data?.placement !== placement
+        (placement) => this.currentStep?.data.placement !== placement
       );
       this.currentStep = this.currentStep.previous;
 
@@ -279,7 +278,7 @@ customElements.define(
 
       this.astCodeNode.innerHTML = prettier.format(
         JSON.stringify(
-          pruneAst(parseSync(this.currentStep.data?.code ?? this.code))
+          pruneAst(parseSync(this.currentStep?.data.code ?? this.code))
         ),
         { parser: "json", plugins: [prettierParserBabel], printWidth: 70 }
       );

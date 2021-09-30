@@ -7,7 +7,7 @@
 
 ### Some highlights
 
-* StrykerJS: > 2.5m total downloads (200k / month)
+* StrykerJS: > 2.5m total downloads (<npm-weekly-downloads package="@stryker-mutator/core"></npm-weekly-downloads>)
 * Stryker.NET and Stryker4s: ~100k downloads each
 * &gt; 10 internships, 3 hackathons, multiple talks at conferences / podcasts
 * Shared projects: 

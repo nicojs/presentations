@@ -817,6 +817,7 @@ console.log(person?.address.street);
 </stryker-instrumenter-explainer>
 
 ---
+
 ### Abstractions
 
 ```ts
@@ -832,8 +833,9 @@ interface MutantPlacer<TNode extends types.Node = types.Node> {
 }
 ```
 
-- `NodeMutator`s don't know anything mutant placing
-- `MutantPlacer`s don't know anything about mutating
+- Single responsibility principal
+  - `NodeMutator`s mutate nodes
+  - `MutantPlacer`s place mutants in the AST
 
 <!-- .element class="fragment" -->
 
@@ -841,11 +843,14 @@ interface MutantPlacer<TNode extends types.Node = types.Node> {
 
 ### Remarks on placing algorithm
 
+<emoji-list class="sm">
+
 - 🐠 The Babel AST is a _mutatable_ AST
 - 🧳 Visitor design pattern
   - `OnEnter`
   - `OnLeave`
 - 👇 Immutable on the way down (OnEnter)
 - 👆 Replace nodes on way up (OnLeave)
+  - Node placement can be done higher up the AST.
 
-<!-- .element class="no-list" -->
+</emoji-list>

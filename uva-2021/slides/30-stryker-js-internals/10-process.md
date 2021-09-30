@@ -2,7 +2,6 @@
 
 [![stryker-process.svg](/img/stryker-process.svg)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggTFJcbiAgICBBKChTdGFydCkpIC0tPiBCKDEuIFByZXBhcmUpXG4gICAgQiAtLT4gQygyLiBDb2RlIGluc3RydW1lbnRhdGlvbilcbiAgICBDIC0tPiBEKDMuIERyeSBydW4pXG4gICAgRCAtLT4gRXtTdWNjZXNzP31cbiAgICBFIC0tPnxZZXN8IEYoNC4gTXV0YXRpb24gdGVzdGluZylcbiAgICBFIC0tPnxOb3wgSCgoZW5kKSlcbiAgICBGIC0tPiBIIiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0) <!-- .element target="_blank" -->
 
-
 ---
 
 ### 1. Prepare
@@ -87,10 +86,10 @@
 - Control run
 - Discover tests
 - Enrich each mutant
-    - Determine `estimatedNetTime`
-    - Determine `hitCount`
-    - Determine `static`
-    - Measure `coveredBy`
+  - Determine `estimatedNetTime`
+  - Determine `hitCount`
+  - Determine `static`
+  - Measure `coveredBy`
 
 </div>
 <div class="text-sm">
@@ -105,10 +104,10 @@
     "end": { "column": 2, "line": 175 },
     "start": { "column": 6, "line": 31 }
   },
-  "estimatedNetTime":710,
-  "hitCount":66,
-  "static":false,
-  "coveredBy":["260","261"]
+  "estimatedNetTime": 710,
+  "hitCount": 66,
+  "static": false,
+  "coveredBy": ["260", "261"]
 }
 ```
 
@@ -128,11 +127,11 @@
 
 - Run in test runner
 - Determine the status
-    - `Ignored`
-    - `NoCoverage`
-    - `Survived`
-    - `Killed`
-    - `RuntimeError`
+  - `Ignored`
+  - `NoCoverage`
+  - `Survived`
+  - `Killed`
+  - `RuntimeError`
 - Determin `statusReason`/`killedBy`
 - Report each mutant to the reporter.
 
@@ -164,7 +163,24 @@
 
 Process diagram
 
-[![mutation-testing-process.svg](/img/mutation-testing-process.svg)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZmxvd2NoYXJ0IFREXG4gICAgQShzdGFydCktLT5Ee0lnbm9yZWQ_fVxuICAgIHN1YmdyYXBoIHBlciBtdXRhbnRcbiAgICBELS0gTm8gLS0-IEV7Q292ZXJlZD99XG4gICAgRS0tIFllcyAtLT4gRihFeGVjdXRlIGluIHRlc3QgcnVubmVyKVxuICAgIEYtLSB0aW1lb3V0IGV4cGlyZWQgLS0-RyhSZXN0YXJ0IHRlc3QgcnVubmVyKVxuICAgIEctLSBSZXBvcnQgVGltZW91dCAtLT5ZKFJlcG9ydCBtdXRhbnQpXG4gICAgRi0tIFJlcG9ydCBLaWxsZWQvU3VyaXZlZCAtLT5ZXG4gICAgRS0tIE5vIFxcbiBSZXBvcnQgTm9Db3ZlcmFnZSAtLT4gWVxuICAgIEQtLSBZZXMgXFxuIFJlcG9ydCBJZ25vcmVkIC0tPiBZXG4gICAgZW5kXG4gICAgWS0tPlooKGVuZCkpIiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0) <!-- .element target="_blank" -->
+<kc-mermaid>
+
+<script type="text/template">
+flowchart TD
+    A(start)-->D{Ignored?}
+    subgraph per mutant
+    D-- No --> E{Covered?}
+    E-- Yes --> F(Execute in test runner)
+    F-- timeout expired -->G(Restart test runner)
+    G-- Report Timeout -->Y(Report mutant)
+    F-- Report Killed/Surived -->Y
+    E-- No \n Report NoCoverage --> Y
+    D-- Yes \n Report Ignored --> Y
+    end
+    Y-->Z((end))
+</script>
+
+</kc-mermaid>
 
 ---
 

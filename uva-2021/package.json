@@ -5,15 +5,25 @@
   "scripts": {
     "clean": "rimraf img/*:Zone.Identifier .parcel-cache",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "parcel build",
+    "build": "parcel build",
+    "prestart": "npm run build",
     "start": "kc serve"
   },
-  "source": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.src.js",
-  "module": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.js",
+  "stryker-instrumenter-explainer": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.js",
+  "kc-mermaid": "web-components/kc-mermaid/kc-mermaid.js",
   "keywords": [],
   "targets": {
-    "module": {
-      "includeNodeModules": true
+    "stryker-instrumenter-explainer": {
+      "context": "browser",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule",
+      "source": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.src.js"
+    },
+    "kc-mermaid": {
+      "context": "browser",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule",
+      "source": "web-components/kc-mermaid/kc-mermaid.src.js"
     }
   },
   "author": "",
@@ -30,6 +40,8 @@
   "dependencies": {
     "@babel/core": "^7.15.5",
     "@babel/generator": "^7.15.4",
-    "@swc/helpers": "^0.2.13"
+    "@swc/helpers": "^0.2.13",
+    "js-base64": "^3.7.2",
+    "mermaid": "^8.13.0"
   }
 }
