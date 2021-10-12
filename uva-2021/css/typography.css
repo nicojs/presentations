@@ -5,6 +5,18 @@
   font-size: 0.6em;
 }
 
+.reveal .citation {
+  text-align: left;
+  font-size: .4em;
+  border: 1px #444 solid;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.text-xl p {
+  font-size: 1.2em;
+}
+
 section.is-lab {
   background-color: rgba(0, 0, 0, .4);
   border-radius: 20px ;
