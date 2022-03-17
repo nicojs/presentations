@@ -1,0 +1,20 @@
+{
+  "name": "stryker-iska-2020",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "kc-serve --theme black --highlight darkula"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.rhea.infosupport.net:10022/nicojs/stryker-iska-2020.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "infosupport-kc-serve-fork": "^2.1.4"
+  }
+}

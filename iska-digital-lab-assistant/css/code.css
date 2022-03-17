@@ -1,0 +1,5 @@
+:not(pre) code {
+     color: #900;
+    font-size: 0.7em;
+    background-color: #efefef;
+}

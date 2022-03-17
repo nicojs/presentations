@@ -1,0 +1,15 @@
+{
+  "name": "iska-digital-lab-assistant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "kc serve -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@infosupport/kc-cli": "^2.0.7"
+  }
+}

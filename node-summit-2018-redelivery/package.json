@@ -1,0 +1,19 @@
+{
+  "name": "node-summit-2018-redelivery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "kc serve -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitlab.rhea.infosupport.net:10022/nicojs/node-summit-2018-redelivery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@infosupport/kc-cli": "^2.3.7"
+  }
+}

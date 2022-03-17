@@ -1,0 +1,12 @@
+.reveal img.img-responsive {
+    max-height: 500px;
+}
+
+.reveal img.img-flex {
+    flex: 1;
+}
+
+.reveal .emblem {
+    width: 300px;
+    border-radius: 5px;
+}
