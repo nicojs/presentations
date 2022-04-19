@@ -1,0 +1,35 @@
+.reveal .img-header img {
+  width: 200px;
+}
+
+.reveal .img-rounded {
+    border-radius: 10px;
+}
+.reveal .img-round {
+    border-radius: 50%;
+}
+
+img.icon {
+  height: 100px;
+}
+
+img.meme {
+  max-width: 300px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge img{
+  border-radius: 50%;
+  width: 35px;
+  margin: 0;
+}
+
+.reveal .img-inline-text {
+  height: 50px;
+  vertical-align: middle;
+  margin: 0;
+}
