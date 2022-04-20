@@ -13,6 +13,10 @@ img.icon {
   height: 100px;
 }
 
+img.sm-icon {
+  height: 40px;
+}
+
 img.meme {
   max-width: 300px;
 }

@@ -6,3 +6,16 @@
 .col {
   flex: 1 150px;
 }
+
+.no-list li {
+  list-style-type: none;
+}
+.reveal .closing-text {
+  padding: 50px;
+  margin-top: 300px;
+  background-color: rgba(0, 0, 0, .3);
+  border-radius: 25px;
+}
+.reveal .closing-text a {
+  color: #CCC;
+}
