@@ -1,0 +1,90 @@
+:root {
+  /* Overriding variables */
+  --r-heading-text-transform: none;
+}
+
+.reveal h1 img,
+.reveal h2 img,
+.reveal h3 img,
+.reveal h4 img {
+  height: 1em;
+  vertical-align: bottom;
+  margin-bottom: 20px;
+}
+
+.reveal .img-rounded {
+  border-radius: 20px;
+}
+.reveal .img-round {
+  border-radius: 50%;
+}
+
+.reveal .no-list {
+  list-style-type: none;
+}
+
+.reveal ul .list-style-icon, .reveal ol .list-style-icon {
+  width: 140px;
+  display: inline-block;
+  text-align: center;
+  font-style: normal;
+}
+.reveal ul ul .list-style-icon {
+  width: 70px;
+}
+
+.reveal img.list-style-icon,
+.reveal .list-style-icon > img {
+  height: 1em;
+  vertical-align: bottom;
+  margin: 0;
+}
+
+.reveal blockquote {
+  width: 100%;
+}
+.reveal blockquote cite {
+  display: block;
+  font-size: 0.7em;
+  font-style: normal;
+}
+.reveal pre code {
+  max-height: initial;
+}
+.reveal pre {
+  font-size: 0.5em;
+}
+
+.reveal .xs {
+  font-size: 0.4em;
+}
+.reveal .xxs {
+  font-size: 0.3em;
+}
+
+.reveal .flex {
+  display: flex;
+}
+
+.reveal .flex > * {
+  margin: 10px;
+  width: 50%;
+}
+
+.reveal .hljs {
+  min-height: 95%;
+}
+
+.reveal small {
+  vertical-align: middle;
+}
+
+.reveal *:not(pre) > code {
+  color: #e3e1e1;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: .8em;
+}
+
+ul {
+  font-size: 0.8em;
+}
