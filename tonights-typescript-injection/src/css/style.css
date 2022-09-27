@@ -33,6 +33,9 @@
   width: 70px;
 }
 
+.reveal .meme {
+  height: 1000px;
+}
 .reveal img.list-style-icon,
 .reveal .list-style-icon > img {
   height: 1em;
@@ -71,6 +74,14 @@
   width: 50%;
 }
 
+.reveal .flex-v-center {
+  align-items: center;
+}
+
+.reveal .flex-h-center {
+  align-content: space-around;
+}
+
 .reveal .hljs {
   min-height: 95%;
 }
@@ -87,4 +98,24 @@
 
 ul {
   font-size: 0.8em;
+}
+
+.overlay {
+  background-color: rgba(0,0,0,.3);
+  border-radius: 100px;
+  color: var(--r-heading-color);
+  padding: 100px;
+}
+
+.reveal .stryker-explanation {
+  background-color: rgba(27,27,29, .3);
+  border-radius: 50px;
+}
+
+.reveal .flavor-img {
+  height: 200px;
+}
+
+.reveal .stryker, .reveal .stryker h2 {
+  color: #f1c40f;
 }

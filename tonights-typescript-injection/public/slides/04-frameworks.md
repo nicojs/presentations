@@ -39,16 +39,16 @@ movies.getAll();
 
 ### DI Containers in the wild
 
-- <img class="list-style-icon" src="/img/angular.svg"> Angular
-- <span class="list-style-icon"><img src="/img/inversify.png"></span> InversifyJS
-
-<!-- .element class="no-list" -->
+<div class="flex" style="justify-content: space-around">
+<img src="/img/angular.png">
+<img src="/img/inversify.png">
+</div>
 
 ---
 
-### ![](/img/angular.svg) Angular
+### ![](/img/angular.png) Angular
 
-```ts
+```ts [1-500|1,8]
 @Injectable()
 export class MovieService {
   constructor(private http: HttpClient) {}
@@ -60,12 +60,11 @@ export class MoviesComponent {
 }
 ```
 
-
-- <!-- .element class="fragment" data-fragment-index="0" --> <i class="list-style-icon">👍</i>
+- <!-- .element class="fragment" --> <i class="list-style-icon">👍</i>
   Type safety
-- <!-- .element class="fragment" data-fragment-index="1" -->
-  <i class="list-style-icon">👎</i> Build into Angular itself
-- <!-- .element class="fragment" data-fragment-index="1" -->
+- <!-- .element class="fragment"  -->
+  <i class="list-style-icon">👎</i> Built into Angular itself
+- <!-- .element class="fragment" -->
   <i class="list-style-icon">👎</i> Requires the Angular compiler
 
 <!-- .element class="no-list" -->
@@ -74,16 +73,7 @@ export class MoviesComponent {
 
 ### ![](/img/inversify.png) InversifyJS
 
-```ts
-interface Logger {
-  info(message: string): void;
-}
-const logger: Logger = {
-  info(message: string) {
-    console.log(message);
-  },
-};
-
+```ts [0-500|11-14,1,3]
 @injectable()
 class PhotoService {
   constructor(@inject('logger') private log: Logger) {}
@@ -97,13 +87,11 @@ class PhotoService {
 const context = new Container();
 context.bind('logger').toConstantValue(logger);
 context.bind(PhotoService).toSelf();
-context
-  .get(PhotoService)
-  .getAll()
-  .then((photos) => console.log(`${photos.length} photos`));
+const photoService = context.get(PhotoService);
+photoService.getAll();
 ```
 
-<!-- .element class="xxs" -->
+<!-- .element class="xs" -->
 
 ---
 
@@ -145,8 +133,7 @@ context.bind('logger').toConstantValue('logger');
 context.bind(PhotoService).toSelf();
 context
   .get(PhotoService)
-  .getAll()
-  .then((photos) => console.log(`${photos.length} photos`));
+  .getAll();
 ```
 
 <!-- .element class="xs" -->
@@ -156,3 +143,14 @@ TypeError: this.log.info is not a function
 ```
 
 <!-- .element class="fragment" -->
+
+---
+
+### What we want
+
+- <i class="list-style-icon">👍</i> No custom compiler
+- <i class="list-style-icon">👍</i> No framework requirement
+- <i class="list-style-icon">👍</i> No `--experimentalXXX` or `reflect-metadata`
+- <i class="list-style-icon">👍</i> Type safe!
+
+<!-- .element class="no-list" -->

@@ -615,6 +615,8 @@ monaco.editor.defineTheme('github-default-dark', {
   encodedTokensColors: [],
 });
 
+let tempFileCounter = 0;
+
 export function defineMonacoEditor(scaleFactor: number) {
   customElements.define(
     'monaco-editor',
@@ -625,11 +627,8 @@ export function defineMonacoEditor(scaleFactor: number) {
 
       connectedCallback() {
         let code = this.innerText.trim();
-        if (this.type === 'module' && !code.includes('export')) {
-          code += '\n\n\n\n\n\n\n\n\n\n\nexport {}';
-        }
         this.innerHTML = `
-    <div class="editor-frame" style="all: initial; margin: var(--r-block-margin) auto;">
+    <div class="editor-frame" style="text-align: left; margin: var(--r-block-margin) auto;">
       <div class="container" style="margin: auto; width: 90%; height: ${
         this.getAttribute('editor-height') ??
         DEFAULT_EDITOR_HEIGHT * scaleFactor
@@ -638,13 +637,19 @@ export function defineMonacoEditor(scaleFactor: number) {
     `;
         this.#container = this.querySelector<HTMLElement>('.container')!;
         this.editor = monaco.editor.create(this.#container, {
-          value: code,
-          language: this.getAttribute('lang') ?? 'typescript',
+          model: monaco.editor.createModel(
+            `${this.showFileName ? `// ${this.fileName}\n` : ''}${code}`,
+            this.getAttribute('lang') ?? 'typescript',
+            this.fileUrl
+          ),
           theme: this.getAttribute('theme') ?? 'github-default-dark',
           fontSize: 18 * scaleFactor,
           scrollBeyondLastLine: false,
         });
 
+        if (this.revealLine) {
+          this.editor.revealLine(this.revealLine);
+        }
         this.#resizeObserver = new ResizeObserver(() => {
           this.editor?.layout();
         });
@@ -658,6 +663,28 @@ export function defineMonacoEditor(scaleFactor: number) {
         if (this.#container) {
           this.#resizeObserver?.unobserve(this.#container);
         }
+      }
+
+      get revealLine() {
+        const line = this.getAttribute('reveal-line');
+        return line ? parseInt(line) : undefined;
+      }
+
+      get showFileName() {
+        return this.hasAttribute('show-file-name');
+      }
+
+      #fileName: string | undefined;
+      get fileName(): string {
+        if (!this.#fileName) {
+          this.#fileName = this.getAttribute('file-name') ?? `__tmp_file_${++tempFileCounter}.ts`;
+        }
+        return this.#fileName;
+      }
+
+      get fileUrl() {
+        const fileName = this.fileName;
+        return monaco.Uri.file(fileName);
       }
 
       get type() {
