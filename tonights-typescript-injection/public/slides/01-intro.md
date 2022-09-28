@@ -6,6 +6,14 @@
 
 ---
 
+![](/img/memes/complex.jpg) <!-- .element class="meme" -->
+
+---
+
+![](/img/memes/try.jpg) <!-- .element class="meme" -->
+
+---
+
 ## 🌜 ![](/img/ts.svg) 💉
 
 - <img src="/img/ts.svg" class="list-style-icon" style="color: #1d9bf0"></img> TypeScript
@@ -17,10 +25,6 @@
 
 ---
 
-![](/img/memes/try.jpg) <!-- .element class="meme" -->
-
----
-
 ## Me
 
 <div class="flex">
@@ -28,7 +32,6 @@
 ![nico](/img/nico.jpg) <!-- .element class="img-round" style="width: 500px" -->
 
 ![nico](/img/nico2.jpg) <!-- .element class="img-round" style="width: 500px" -->
-
 
 </div>
 
@@ -49,7 +52,7 @@
 
 - <i class="list-style-icon">💼</i> Consultancy
 - <i class="list-style-icon">🏢</i> Multiple sectors
-- <i class="list-style-icon">👨‍👨‍👧‍👧</i> ~500 colleagues 
+- <i class="list-style-icon">👨‍👨‍👧‍👧</i> ~500 colleagues
 
 <!-- .element class="no-list" -->
 
@@ -57,9 +60,9 @@
 
 ---
 
-<!-- .slide: class="stryker" data-background="#e84b39" -->
+<!-- .slide: class="stryker"  -->
 
-## Stryker ![stryker-man](/img/stryker-man.svg) <!-- .element: style="height: 228px; float: right" -->
+## ![stryker-man](/img/stryker-man.svg) Stryker 
 
 <div class="stryker-explanation">
 
@@ -69,21 +72,21 @@
 
 <figure>
 
-![](/img/js.svg) <!-- .element class="flavor-img" --> 
+![](/img/js.svg) <!-- .element class="flavor-img" -->
 
 <figcaption>JS</figcaption>
 
 </figure>
 <figure>
 
-![](/img/cs.svg) <!-- .element class="flavor-img" --> 
+![](/img/cs.svg) <!-- .element class="flavor-img" -->
 
 <figcaption>C#</figcaption>
 
 </figure>
 <figure>
 
-![](/img/scala.webp) <!-- .element class="flavor-img" --> 
+![](/img/scala.webp) <!-- .element class="flavor-img" -->
 
 <figcaption>Scala</figcaption>
 

@@ -134,9 +134,9 @@ PhotoService.inject;
 </monaco-editor>
 
 - ✅ `as const`
-  - ✅ No repetition <!-- .element class="no-list" -->  
-  - ✅ Marked as readonly <!-- .element class="no-list" -->  
-  
+  - ✅ No repetition <!-- .element class="no-list" -->
+  - ✅ Marked as readonly <!-- .element class="no-list" -->
+
 <!-- .element class="no-list fragment" -->
 
 ---
@@ -245,12 +245,9 @@ const PhotoServiceStatic: Injectable = PhotoService;
 
 Correlation can be accomplished using a generic type.
 
-<monaco-editor reveal-line="4" editor-height="700">
+<monaco-editor editor-height="700">
 
 ```ts
-import { HttpClient } from './dependencies';
-import { Context } from './context';
-
 interface Injectable<Token extends keyof Context> {
   //                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
   new (arg: Context[Token]): any;
@@ -265,6 +262,9 @@ class PhotoService {
 }
 
 const PhotoServiceStatic: Injectable<'httpClient'> = PhotoService;
+
+import { HttpClient } from './dependencies';
+import { Context } from './context';
 ```
 
 </monaco-editor>
@@ -279,12 +279,9 @@ const PhotoServiceStatic: Injectable<'httpClient'> = PhotoService;
 
 🤔 What about additional parameters...
 
-<monaco-editor reveal-line="4" editor-height="700">
+<monaco-editor editor-height="700">
 
 ```ts
-import { HttpClient, Logger } from './dependencies';
-import { Context } from './context';
-
 interface Injectable2<
   Token extends keyof Context,
   Token2 extends keyof Context
@@ -299,6 +296,9 @@ class PhotoService {
 }
 
 const PhotoServiceStatic: Injectable2<'httpClient', 'logger'> = PhotoService;
+
+import { HttpClient, Logger } from './dependencies';
+import { Context } from './context';
 ```
 
 </monaco-editor>
@@ -311,13 +311,9 @@ Each additional parameter needs a new `InjectableN`
 
 We can declare generic tuple types.
 
-<monaco-editor reveal-line="5" editor-height="550">
+<monaco-editor editor-height="550">
 
 ```ts
-import { Context } from './context';
-import { CorrespondingTypes } from './corresponding-types';
-import { HttpClient, Logger } from './dependencies';
-
 interface Injectable<Tokens extends (keyof Context)[]> {
   //                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   new (...args: CorrespondingTypes<Tokens>): any;
@@ -329,6 +325,10 @@ class PhotoService {
   static inject = ['httpClient', 'logger'] as const;
 }
 const PhotoServiceStatic: Injectable<['httpClient', 'logger']> = PhotoService;
+
+import { Context } from './context';
+import { CorrespondingTypes } from './corresponding-types';
+import { HttpClient, Logger } from './dependencies';
 ```
 
 </monaco-editor>
@@ -345,13 +345,10 @@ const PhotoServiceStatic: Injectable<['httpClient', 'logger']> = PhotoService;
 
 The `CorrespondingTypes` mapped type.
 
-<monaco-editor reveal-line="4" editor-height="450" file-name="corresponding-types.ts">
+<monaco-editor editor-height="450" file-name="corresponding-types.ts">
 
 ```ts
-import { HttpClient, Logger } from './dependencies';
-import { Context } from './context';
-
-type CorrespondingTypes<Tokens extends readonly (keyof Context)[]> = {
+export type CorrespondingTypes<Tokens extends readonly (keyof Context)[]> = {
   [I in keyof Tokens]: Tokens[I] extends keyof Context
     ? Context[Tokens[I]]
     : never;
@@ -360,6 +357,9 @@ type CorrespondingTypes<Tokens extends readonly (keyof Context)[]> = {
 let a: CorrespondingTypes<['httpClient', 'logger']>;
 // 👆👇 Equivalent
 let b: [HttpClient, Logger];
+
+import { HttpClient, Logger } from './dependencies';
+import { Context } from './context';
 ```
 
 </monaco-editor>
@@ -550,12 +550,12 @@ class Injector<TContext = {}> {
 
 Combine types with `&`.
 
-<monaco-editor reveal-line="3" editor-height="50">
+<monaco-editor editor-height="50">
 
 ```ts
-import { HttpClient, Logger } from './dependencies';
-
 type Context = {} & { httpClient: HttpClient } & { logger: Logger };
+
+import { HttpClient, Logger } from './dependencies';
 ```
 
 </monaco-editor>
@@ -564,11 +564,9 @@ This way we can construct the context along the way.
 
 <!-- .element class="fragment" data-fragment-index="1" -->
 
-<monaco-editor reveal-line="3" editor-height="550" class="fragment" data-fragment-index="1">
+<monaco-editor editor-height="550" class="fragment" data-fragment-index="1">
 
 ```ts
-import { HttpClient, logger } from './dependencies';
-
 function provideStuff<TContext, Token extends string, TStuff>(
   context: TContext,
   token: Token,
@@ -580,6 +578,8 @@ function provideStuff<TContext, Token extends string, TStuff>(
 const ctx = {};
 const ctx2 = provideStuff(ctx, 'logger', logger);
 const ctx3 = provideStuff(ctx2, 'httpClient', new HttpClient(logger));
+
+import { HttpClient, logger } from './dependencies';
 ```
 
 </monaco-editor>
@@ -588,11 +588,9 @@ const ctx3 = provideStuff(ctx2, 'httpClient', new HttpClient(logger));
 
 ### Putting it all together 🎉
 
-<monaco-editor reveal-line="4" editor-height="1200" file-name="injector.ts" show-file-name>
+<monaco-editor editor-height="1200" file-name="injector.ts" show-file-name>
 
 ```ts
-import { Injectable } from './injectable';
-
 export class Injector<TContext = {}> {
   provideValue<Token extends string, R>(
     token: Token,
@@ -618,6 +616,8 @@ export class Injector<TContext = {}> {
     return /* out of scope */;
   }
 }
+
+import { Injectable } from './injectable';
 ```
 
 </monaco-editor>
@@ -630,8 +630,9 @@ export class Injector<TContext = {}> {
 1. <i class="list-style-icon">✅</i> Correlate tokens to types.
 1. <i class="list-style-icon">✅</i> Put it all together in a container.
 
----
+<!-- .element class="no-list" -->
 
+---
 
 ### The result
 
@@ -662,4 +663,4 @@ const photoService = injector.inject(PhotoService);
 
 ### Shameless plug
 
-Its ready to use: [💉 typed-inject](https://github.com/nicojs/typed-inject#typed-inject) <!-- .element target="_blank" -->
+It's ready to use: [💉 typed-inject](https://github.com/nicojs/typed-inject#typed-inject) <!-- .element target="_blank" -->

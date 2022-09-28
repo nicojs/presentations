@@ -4,6 +4,12 @@
 - DI is a great tool in our toolbox.
   - Inversion of Control
 - We can create a type safe DI framework
+  - <!-- .element class="no-list" --> <i class="list-style-icon">🕵️‍</i> Literal types
+  - <!-- .element class="no-list" --> <i class="list-style-icon">🔐</i> <code>keyof</code>
+  - <!-- .element class="no-list" --> <i class="list-style-icon">🗃️</i> Lookup types
+  - <!-- .element class="no-list" --> <i class="list-style-icon">🛠️</i> Generic types
+  - <!-- .element class="no-list" --> <i class="list-style-icon">🔀</i> Mapped types
+  - <!-- .element class="no-list" --> <i class="list-style-icon">🚦</i> Intersection types
 - [typed-inject](https://github.com/nicojs/typed-inject) is ready to use
 
 ---

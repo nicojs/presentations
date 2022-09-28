@@ -13,12 +13,12 @@ A DI framework _automates_ the _creation_ of your _dependencies_.
 ```ts
 // Without DI container
 
-const movies = new MovieService(
+const photoService = new PhotoService(
   new HttpClient(logger));
-movies.getAll();
+
+photoService.getAll();
 ```
 
-<!-- prettier-ignore-end -->
 
 ```ts
 // With DI container
@@ -27,11 +27,14 @@ const di = new Container();
 
 // ✨ Insert magic here
 
-const movies = di.create(MovieService);
-movies.getAll();
+const photoService = 
+  di.create(PhotoService);
+
+photoService.getAll();
 ```
 
 <!-- .element class="fragment" -->
+<!-- prettier-ignore-end -->
 
 </div>
 
@@ -40,8 +43,8 @@ movies.getAll();
 ### DI Containers in the wild
 
 <div class="flex" style="justify-content: space-around">
-<img src="/img/angular.png">
-<img src="/img/inversify.png">
+<img src="/img/angular.png" style="max-height: 600px; width: unset"> 
+<img src="/img/inversify.png" style="max-height: 600px; width: unset">
 </div>
 
 ---
@@ -131,9 +134,7 @@ class PhotoService {
 const context = new Container();
 context.bind('logger').toConstantValue('logger');
 context.bind(PhotoService).toSelf();
-context
-  .get(PhotoService)
-  .getAll();
+context.get(PhotoService).getAll();
 ```
 
 <!-- .element class="xs" -->
