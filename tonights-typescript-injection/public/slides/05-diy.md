@@ -73,7 +73,7 @@ class PhotoService {
 
 ---
 
-#### Unusable
+### Unusable
 
 - <i class="list-style-icon"><img src="/img/inversify.png"></i>`@inject("token")` decorator.
   - <!-- .element class="no-list" --> <span class="list-style-icon">❌</span> No <a href="https://www.npmjs.com/package/reflect-metadata" target="_blank"><code>reflect-metadata</code></a>
@@ -119,16 +119,16 @@ A generic `string[]`, not useful for TypeScript.
 
 We can solve this by being explicit.
 
-<monaco-editor reveal-line="3" editor-height="250">
+<monaco-editor editor-height="255">
 
 ```ts
-import { HttpClient, Logger } from './dependencies';
-
 export class PhotoService {
   constructor(private http: HttpClient, private log: Logger) {}
-  static inject: ['httpClient', 'logger'] = ['httpClient', 'logger'];
+  static inject: ['http', 'logger'] = ['http', 'logger'];
 }
 PhotoService.inject;
+
+import { HttpClient, Logger } from './dependencies';
 ```
 
 </monaco-editor>
@@ -167,7 +167,7 @@ interface Injectable {
 
 class PhotoService {
   constructor(http: HttpClient, log: Logger) {}
-  static inject = ['httpClient', 'logger'] as const;
+  static inject = ['http', 'logger'] as const;
 }
 
 const PhotoServiceStatic: Injectable = PhotoService;
@@ -191,7 +191,7 @@ A _lookup type_ that represents the dependencies.
 import { HttpClient, Logger } from './dependencies';
 
 export interface Context {
-  httpClient: HttpClient;
+  http: HttpClient;
   logger: Logger;
 }
 ```
@@ -207,7 +207,7 @@ The keys are the _tokens_, the values are _types_.
 We can use `keyof` to improve our `Injectable`.
 
 ```ts
-let token: 'logger' | 'httpClient';
+let token: 'logger' | 'http';
 // 👆👇 Equivalent
 let token: keyof Context;
 ```
@@ -216,21 +216,21 @@ Use this in the static interface.
 
 <!-- .element class="fragment" data-fragment-index="1" -->
 
-<monaco-editor reveal-line="5" class="fragment" data-fragment-index="1" editor-height="450">
+<monaco-editor class="fragment" data-fragment-index="1" editor-height="450">
 
 ```ts
-import { HttpClient, Logger } from './dependencies';
-import { Context } from './context';
-
 interface Injectable {
   new (...arg: Context[keyof Context][]): any;
   inject: readonly (keyof Context)[];
 }
 class PhotoService {
   constructor(http: HttpClient, log: Logger) {}
-  static inject = ['httpClient', 'logger'] as const;
+  static inject = ['http', 'logger'] as const;
 }
 const PhotoServiceStatic: Injectable = PhotoService;
+
+import { HttpClient, Logger } from './dependencies';
+import { Context } from './context';
 ```
 
 </monaco-editor>
@@ -258,10 +258,10 @@ interface Injectable<Token extends keyof Context> {
 
 class PhotoService {
   constructor(http: HttpClient) {}
-  static inject = ['httpClient'] as const;
+  static inject = ['http'] as const;
 }
 
-const PhotoServiceStatic: Injectable<'httpClient'> = PhotoService;
+const PhotoServiceStatic: Injectable<'http'> = PhotoService;
 
 import { HttpClient } from './dependencies';
 import { Context } from './context';
@@ -292,10 +292,10 @@ interface Injectable2<
 
 class PhotoService {
   constructor(http: HttpClient, log: Logger) {}
-  static inject = ['httpClient', 'logger'] as const;
+  static inject = ['http', 'logger'] as const;
 }
 
-const PhotoServiceStatic: Injectable2<'httpClient', 'logger'> = PhotoService;
+const PhotoServiceStatic: Injectable2<'http', 'logger'> = PhotoService;
 
 import { HttpClient, Logger } from './dependencies';
 import { Context } from './context';
@@ -322,9 +322,9 @@ interface Injectable<Tokens extends (keyof Context)[]> {
 
 class PhotoService {
   constructor(http: HttpClient, log: Logger) {}
-  static inject = ['httpClient', 'logger'] as const;
+  static inject = ['http', 'logger'] as const;
 }
-const PhotoServiceStatic: Injectable<['httpClient', 'logger']> = PhotoService;
+const PhotoServiceStatic: Injectable<['http', 'logger']> = PhotoService;
 
 import { Context } from './context';
 import { CorrespondingTypes } from './corresponding-types';
@@ -333,7 +333,7 @@ import { HttpClient, Logger } from './dependencies';
 
 </monaco-editor>
 
-✅ Valid `Tokens`: `['httpClient', 'logger]`
+✅ Valid `Tokens`: `['http', 'logger]`
 
 🤔 What does `CorrespondingTypes` look like
 
@@ -354,7 +354,7 @@ export type CorrespondingTypes<Tokens extends readonly (keyof Context)[]> = {
     : never;
 };
 
-let a: CorrespondingTypes<['httpClient', 'logger']>;
+let a: CorrespondingTypes<['http', 'logger']>;
 // 👆👇 Equivalent
 let b: [HttpClient, Logger];
 
@@ -402,7 +402,7 @@ export class HttpClient {
 
 export class PhotoService {
   constructor(public http: HttpClient, public log: Logger) {}
-  static inject = ['httpClient', 'logger'] as const;
+  static inject = ['http', 'logger'] as const;
 }
 ```
 
@@ -414,12 +414,9 @@ export class PhotoService {
 
 Let's call our container 💉 an `Injector`
 
-<monaco-editor reveal-line="4" editor-height="550">
+<monaco-editor editor-height="600">
 
 ```ts
-import { PhotoService } from './app';
-import { Context } from './context';
-
 class Injector {
   inject<Tokens extends readonly (keyof Context)[], R>(
     Injectable: Injectable<Tokens, R>
@@ -429,6 +426,7 @@ class Injector {
     return new Injectable(...args);
   }
 }
+
 const injector = new Injector();
 const photoService = injector.inject(PhotoService);
 
@@ -436,6 +434,9 @@ interface Injectable<Tokens extends readonly (keyof Context)[], R> {
   new (...args: CorrespondingTypes<Tokens>): R;
   inject: Tokens;
 }
+
+import { PhotoService } from './app';
+import { Context } from './context';
 ```
 
 </monaco-editor>
@@ -472,20 +473,16 @@ What we really want is an API like this:
 ```ts
 const appInjector = new Injector()
   .provideValue('logger', logger)
-  .provideClass('httpClient', HttpClient);
+  .provideClass('http', HttpClient);
 ```
 
-Each `provideXXX` call should _expand_ the DI container with a new injectable.
+Each `provideXXX` _expands_ the DI container.
 
 ```ts
 const photoService = appInjector.inject(PhotoService);
 ```
 
-<!-- .element class="fragment" data-fragment-index="0" -->
-
 So we can inject our `PhotoService`
-
-<!-- .element class="fragment" data-fragment-index="0" -->
 
 ---
 
@@ -523,11 +520,9 @@ export type CorrespondingTypes<
 
 And use that in the injector
 
-<monaco-editor editor-height="500">
+<monaco-editor editor-height="400">
 
 ```ts
-import { Injectable } from './injectable';
-
 class Injector<TContext = {}> {
   //           ^^^^^^^^
   inject<Tokens extends readonly (keyof TContext)[], R>(
@@ -536,6 +531,8 @@ class Injector<TContext = {}> {
     return /* out of scope */;
   }
 }
+
+import { Injectable } from './injectable';
 ```
 
 </monaco-editor>
@@ -577,7 +574,7 @@ function provideStuff<TContext, Token extends string, TStuff>(
 
 const ctx = {};
 const ctx2 = provideStuff(ctx, 'logger', logger);
-const ctx3 = provideStuff(ctx2, 'httpClient', new HttpClient(logger));
+const ctx3 = provideStuff(ctx2, 'http', new HttpClient(logger));
 
 import { HttpClient, logger } from './dependencies';
 ```
