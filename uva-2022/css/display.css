@@ -1,0 +1,7 @@
+.reveal .row {
+    display: flex;
+}
+
+.reveal .row > * {
+  width: 100%;
+}

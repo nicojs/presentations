@@ -1,0 +1,71 @@
+.text-sm, .text-sm code {
+  font-size: 0.7em;
+}
+.text-xs, .text-xs code {
+  font-size: 0.6em;
+}
+
+.reveal .citation {
+  text-align: left;
+  font-size: .4em;
+  border: 1px #444 solid;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.text-xl p {
+  font-size: 1.2em;
+}
+
+section.is-lab {
+  background-color: rgba(0, 0, 0, .4);
+  border-radius: 20px ;
+}
+
+body.is-lab img {
+  float: none;
+}
+
+blockquote.text-sm {
+  /* padding-top: 0; */
+  padding-bottom: 0;
+}
+
+.reveal h1 {
+  font-size: 2em;
+}
+
+.reveal blockquote p {
+  text-align: left;
+}
+
+blockquote cite::before {
+   content: '— ';
+   color: #444;
+   font-style: italic;
+}
+
+blockquote cite {
+   font-style: italic;
+   /* font-size: .8em; */
+   text-align: right;
+   display: block;
+   color: #444;
+}
+
+.reveal blockquote p:first-child {
+    display: block;
+}
+.reveal blockquote p:last-child {
+    display: block;
+}
+
+.reveal .no-list {
+  list-style-type: none;
+}
+
+.reveal .pull-right {
+  display: inline;
+  text-align: right;
+  width: 100%;
+}
