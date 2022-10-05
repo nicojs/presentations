@@ -38,12 +38,14 @@
 </div>
 <div>
 
-#### Jan-Jelle Kersten
+#### Jan-Jelle Kester
 
 ![jan-jelle](/img/jan-jelle.jpg) <!-- .element class="img-round" style="width: 250px" -->
 
 * 💼 Architect consultant
 * 🐱‍👤 Research center
+* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;jjkester
+* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;jjkester
 
 <!-- .element class="no-list" -->
 
