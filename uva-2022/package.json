@@ -46,6 +46,7 @@
     "@babel/core": "^7.19.3",
     "@babel/generator": "^7.19.3",
     "@swc/helpers": "^0.4.11",
+    "bootstrap-icons": "^1.9.1",
     "js-base64": "^3.7.2",
     "mermaid": "^9.1.7"
   }

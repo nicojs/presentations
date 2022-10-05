@@ -1,3 +1,5 @@
+<!-- .element class="is-module" -->
+
 ## StrykerJS Test runners
 
 ---

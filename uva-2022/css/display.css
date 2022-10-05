@@ -5,3 +5,13 @@
 .reveal .row > * {
   width: 100%;
 }
+
+.overlay {
+  background-color: rgba(0,0,0,.3);
+  border-radius: 100px;
+  color: #fff;
+  padding: 100px;
+}
+.reveal .overlay h2 {
+  color: #fff;
+}

@@ -1,6 +1,6 @@
 ## Mutation testing
 
-<!-- .slide: class="is-welcome" -->
+<!-- .slide: class="is-module" -->
 
 (Practical! 👷‍♂️)
 

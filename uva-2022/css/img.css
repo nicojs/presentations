@@ -16,6 +16,10 @@
     vertical-align: middle;
 }
 
+.reveal .img-round {
+    border-radius: 50%;
+}
+
 img.logo {
     max-width: 200px;
 }
