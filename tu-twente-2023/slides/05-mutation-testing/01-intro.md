@@ -1,10 +1,12 @@
 ## Mutation testing
 
-<!-- .slide: class="is-module" -->
+---
 
-(Practical! 👷‍♂️)
+![sonarqube-global](/img/Dashboards-Global.png)
 
-<!-- .element class="fragment" --> 
+---
+
+![sonarqube-project](/img/Dashboards-Project.png)
 
 ---
 
