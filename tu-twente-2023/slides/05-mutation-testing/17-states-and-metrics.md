@@ -43,6 +43,10 @@
 
 </div>
 
-**Question**: what different conclusions can we derive from the 2 scores?
+---
+
+![](/img/stryker-sonarqube.webp)
+
+**Question**: Which challenge remains with regards to the presented mutation operators?
 
 <!-- .element class="fragment" data-fragment-index="2" -->

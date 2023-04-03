@@ -1,15 +1,17 @@
-## Common mutations
 
-| Original                  | Mutated                         |
-| ------------------------- | :------------------------------ |
-| `a + b`                   | `a - b`                         |
-| `a / b`                   | `a * b`                         |
-| `a < b`                   | `a > b`                         |
-| `a == b`                  | `a != b`                        |
-| `a && b`                  | <code>a &#124;&#124; b</code>   |
-| `var drink = "Cola"`      | `var drink = ""`                |
-| `var list = [1, 2, 3, 4]` | `var list = []`                 |
-| `if (a > b) { ... }`      | `if (true) { ... }`             |
-| `function fn() { ...}`    | `function fn() { /* EMPTY */ }` |
+### Generic Process of Mutation Analysis
 
-<!-- .element class="text-sm" -->
+![](/img/generic-process-mutation-analysis.PNG)
+
+---
+
+### Generic Process of Mutation Analysis
+
+![](/img/generic-process-mutation-analysis-highlight.PNG)
+
+---
+
+### Popular operator mutations
+
+![](/img/popular-operators.PNG)
+

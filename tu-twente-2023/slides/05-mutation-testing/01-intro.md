@@ -2,9 +2,13 @@
 
 ---
 
+### Code quality
+
 ![sonarqube-global](/img/Dashboards-Global.png)
 
 ---
+
+### Code quality - testing
 
 ![sonarqube-project](/img/Dashboards-Project.png)
 

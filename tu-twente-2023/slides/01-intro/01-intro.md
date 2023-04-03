@@ -2,20 +2,23 @@
 
 # Kill all mutants with Stryker 
 
-### Mutation testing workshop
+### Mutation testing guest lecture
 
 ---
 
 ## Agenda
 
 1. Mutation testing
+    1. What is it
+    1. History
+    1. Challenges
+    1. Strategies
 1. Stryker
 1. StrykerJS 
     1. Mutators
     1. Internals
     1. Instrumenting code
     1. (Test runners)
-1. Hands-on lab
 
 ---
 
@@ -38,14 +41,14 @@
 </div>
 <div>
 
-#### Jan-Jelle Kester
+#### Rinse van Hees
 
-![jan-jelle](/img/jan-jelle.jpg) <!-- .element class="img-round" style="width: 250px" -->
+![jan-jelle](/img/rinse.jpg) <!-- .element class="img-round" style="width: 250px" -->
 
 * 💼 Architect consultant
 * 🐱‍👤 Research center
-* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;jjkester
-* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;jjkester
+* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;hesnir
+* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;rinse-van-hees
 
 <!-- .element class="no-list" -->
 
