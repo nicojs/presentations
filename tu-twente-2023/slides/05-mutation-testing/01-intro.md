@@ -1,5 +1,7 @@
 ## Mutation testing
 
+<!-- .slide: class="is-module" -->
+
 ---
 
 ### Code quality
