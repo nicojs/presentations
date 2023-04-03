@@ -45,6 +45,13 @@
 
 ---
 
+### Stryker report
+
+![](https://raw.githubusercontent.com/stryker-mutator/mutation-testing-elements/master/packages/elements/docs/directory-result-example.png) <!-- .element style="height: 300px" -->
+
+
+---
+
 ![](/img/stryker-sonarqube.webp)
 
 **Question**: Which challenge remains with regards to the presented mutation operators?
