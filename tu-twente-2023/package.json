@@ -19,35 +19,28 @@
       "outputFormat": "esmodule",
       "source": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.src.js",
       "sourceMap": false
-    },
-    "kc-mermaid": {
-      "context": "browser",
-      "includeNodeModules": true,
-      "outputFormat": "esmodule",
-      "source": "web-components/kc-mermaid/kc-mermaid.src.js",
-      "sourceMap": false
     }
   },
   "author": "",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "license": "ISC",
   "devDependencies": {
-    "@infosupport/kc-cli": "^4.7.3",
-    "@stryker-mutator/api": "^6.2.2",
-    "@stryker-mutator/instrumenter": "^6.2.2",
+    "@stryker-mutator/api": "^6.4.2",
+    "@stryker-mutator/instrumenter": "^6.4.2",
     "assert": "^2.0.0",
-    "parcel": "^2.7.0",
+    "buffer": "^5.7.1",
+    "parcel": "^2.8.3",
     "path-browserify": "^1.0.1",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.7",
     "process": "^0.11.10",
-    "rimraf": "^3.0.2"
+    "rimraf": "^4.4.1"
   },
   "dependencies": {
-    "@babel/core": "^7.19.3",
-    "@babel/generator": "^7.19.3",
-    "@swc/helpers": "^0.4.11",
-    "bootstrap-icons": "^1.9.1",
-    "js-base64": "^3.7.2",
-    "mermaid": "^9.1.7"
+    "@babel/core": "^7.21.4",
+    "@babel/generator": "^7.21.4",
+    "@swc/helpers": "^0.4.14",
+    "bootstrap-icons": "^1.10.3",
+    "js-base64": "^3.7.5",
+    "mermaid": "^10.0.2"
   }
 }

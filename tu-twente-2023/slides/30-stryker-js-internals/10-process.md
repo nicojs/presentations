@@ -163,24 +163,9 @@
 
 Process diagram
 
-<kc-mermaid>
+[![](/img/stryker-mutation-testing-process.svg)](https://mermaid.live/edit#pako:eNptkTFvgzAQhf-K5QkkUHeGVlUhUVQ1Q9KFiMXFB1gCG5lzmgrx33tg0jCUyXfve_Y9buSlkcATXrXmu2yERfaZFprR9xoMSHUYx8_peKi1sSBfJq8N7qu2om9YD5Z1DoVGL6RxzI6GkYdl45u5wsaUkZbDsIi7ILtB6RCY0gxhQGad1mBDj-4IRdWBccjg1iu6ZbbtgxMsQ_1j2ZPlBL2ZE6xOcuTB2vNDbq5f---qbUE-nZ1VV_9I_piWkhRUrejRLIFEDUuE_JF4TrUB15-1pUBLf8ipeQkCqsOQR7wD2wklaQHjrBccG-ig4AkdJVTCtVjwWZkIdr0UCJlUaCxPKtEOEHHh0Jx_dMkTtA7uUKoELaj7o2AxffhdLyuPeC_0xZg7M_0CcQOmRg)
 
-<script type="text/template">
-flowchart TD
-    A(start)-->D{Ignored?}
-    subgraph per mutant
-    D-- No --> E{Covered?}
-    E-- Yes --> F(Execute in test runner)
-    F-- timeout expired -->G(Restart test runner)
-    G-- Report Timeout -->Y(Report mutant)
-    F-- Report Killed/Surived -->Y
-    E-- No \n Report NoCoverage --> Y
-    D-- Yes \n Report Ignored --> Y
-    end
-    Y-->Z((end))
-</script>
-
-</kc-mermaid>
+<!-- .element target="_blank" -->
 
 ---
 
@@ -190,15 +175,14 @@ To finish up, the HTML report is generated.
 
 ![](https://raw.githubusercontent.com/stryker-mutator/mutation-testing-elements/master/packages/elements/docs/directory-result-example.png) <!-- .element style="height: 300px" -->
 
-* Single page application using native web components
-* Using [mutation testing elements](https://github.com/stryker-mutator/mutation-testing-elements/tree/master/packages/elements#mutation-testing-elements) <!-- .element target="_blank" -->
- (by the Stryker team)
-
+- Single page application using native web components
+- Using [mutation testing elements](https://github.com/stryker-mutator/mutation-testing-elements/tree/master/packages/elements#mutation-testing-elements) <!-- .element target="_blank" -->
+  (by the Stryker team)
 
 ---
 
 ## Conclusion
 
-* StrykerJS's global process consists of 4 steps.
-* Each step enriches the internal structure that represents a mutant
-* After the final step, the report is written and StrykerJS is done.
+- StrykerJS's global process consists of 4 steps.
+- Each step enriches the internal structure that represents a mutant
+- After the final step, the report is written and StrykerJS is done.

@@ -8,7 +8,7 @@
 
 Let's zoom in on the instrumentation itself.
 
-[![mutation-testing-process-focus-2.svg](img/mutation-testing-process-focus-2.svg)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggTFJcbiAgICBBKChTdGFydCkpIC0tPiBCKDEuIFByZXBhcmUpXG4gICAgQiAtLT4gQygyLiBDb2RlIGluc3RydW1lbnRhdGlvbilcbiAgICBDIC0tPiBEKDMuIERyeSBydW4pXG4gICAgRCAtLT4gRXtTdWNjZXNzP31cbiAgICBFIC0tPnxZZXN8IEYoNC4gTXV0YXRpb24gdGVzdGluZylcbiAgICBFIC0tPnxOb3wgSCgoZW5kKSlcbiAgICBGIC0tPiBIXG4gICAgc3R5bGUgRiBmaWxsOiNmZjBcblxuIiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0) <!-- .element target="_blank" -->
+[![mutation-testing-process-focus-2.svg](img/mutation-testing-process-focus-2.svg)](https://mermaid-js.github.io/mermaid-live-editor/edit/#pako:eNpNkMtqwzAQRX9lmG5kSNznypSUxnZIoC2lWRW0Ua1xIrDlII0WIfG_V7EdiFbSuUd3YE5YdZoww51Thz18_EgL8bwLsWXlOElgPl_AUjym8O3ooBwlo7Ecglw8pZDHhtc_B_cLYz270JJlxaazk5oP6kZIXAbTaBCdrWINTvFmiAvxnELhjuDC9V8xBOVpG6qKvH_rR1xe8PmX_BlW4iWFzzBOAybPxu6SW-2rO8NaCLI6mfhqaF2PD8_HhiKqTdNkd3X9MGJpcYYtuVYZHXdzulCJvKeWJGbxqqlWoWGJ0vZRDQetmEptuHOY1arxNEMVuNsebYVZ3AldpcKouOp2svp_A5ZySA) <!-- .element target="_blank" -->
 
 ---
 
@@ -62,7 +62,7 @@ It generates 2 mutants
 
 ### A simple example (2)
 
-```js [0-300|2-6|7-8|9]
+```js
 function add(a, b) {
   if (stryMutAct_9fa48("0")) {
     {
@@ -90,20 +90,10 @@ function stryMutAct_9fa48(id) {
 function stryCov_9fa48(mutant) {
   var cov = global.__stryker__.mutantCoverage;
   var currentTestId = global.__stryker__.currentTestId;
-
-  if (!cov) {
-    cov = global.__stryker__.mutantCoverage = {
-      static: {},
-      perTest: {},
-    };
-  }
-
   var c = cov.static;
   if (currentTestId) {
     c = cov.perTest[currentTestId] = cov.perTest[currentTestId] || {};
   }
-
-  if (!c[mutant]) c[mutant] = 0;
   c[mutant]++;
 }
 ```
@@ -558,14 +548,6 @@ function add (a, b) {
 </div>
 
 </stryker-instrumenter-explainer>
-
----
-
-<!-- .slide: class="is-lab" -->
-
-### Let's take a look
-
-👀
 
 ---
 

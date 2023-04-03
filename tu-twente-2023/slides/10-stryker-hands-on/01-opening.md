@@ -1,11 +1,8 @@
 # Stryker
 
-Mutation testing
-
 ![stryker](/img/stryker.svg) <!-- .element class="img-width-20" -->
 
 > For someone who hates mutants, you certainly keep some strange company.<cite>Professor X</cite><br/>
->
 > Oh, they serve their purpose. As long as they can be controlled. <cite>William Stryker</cite><br/>
 
 <!-- .element class="text-sm" -->
