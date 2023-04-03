@@ -14,6 +14,10 @@
 
 ### Mutant metrics
 
+<div class="kc-grid">
+
+<div>
+
 - **Detected** \
   `killed + timeout`
 - **Undetected** \
@@ -26,12 +30,18 @@
 - <!-- .element class="fragment" data-fragment-index="0" -->
   **Invalid** \
   `Runtime Error + Compile Error`
-- <!-- .element class="fragment" data-fragment-index="1" -->
-  **Mutation score** \
+
+</div>
+
+
+- **Mutation score** \
   `detected / valid * 100`
-- <!-- .element class="fragment" data-fragment-index="1" -->
-  **Mutation score based on covered code** \
+- **Mutation score based on covered code** \
   `detected / covered * 100`
+
+<!-- .element class="fragment" data-fragment-index="1" -->
+
+</div>
 
 **Question**: what different conclusions can we derive from the 2 scores?
 
