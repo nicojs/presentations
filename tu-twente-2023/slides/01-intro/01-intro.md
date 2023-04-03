@@ -76,20 +76,3 @@
 
 <!-- .slide: data-background-image="/img/research-center.png" data-background-color="#f8f8f8" data-background-size="contain"-->
 
----
-
-<!-- .slide: data-background-image="/img/hacktoberfestbg.png" data-background-repeat="repeat" data-background-size="100px" -->
-
-![](/img/hacktoberfest.png)
-
-Hackathon @ Info Support, September 26th
-
-<!-- .element class="hacktoberfest" -->
-
-[infosupport.com/resources/hacktoberfest-2022](https://infosupport.com/resources/hacktoberfest-2022) <!-- .element target="_blank" -->
-
-<!-- .element class="hacktoberfest" -->
-
----
-
-<!-- .slide: data-background-image="/img/references.png" data-background-size="contain"-->
