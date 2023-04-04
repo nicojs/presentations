@@ -50,8 +50,7 @@ the total time needed to perform mutation analysis.
 
 ### Data-flow analysis:
 
-> This technique uses program data 
-ow-related information to decide
+> This technique uses program data-flow-related information to decide
 which mutants to generate and to analyze mutants. It considers whether variables
 that are more prone to failure during execution are reached and referenced.
 
