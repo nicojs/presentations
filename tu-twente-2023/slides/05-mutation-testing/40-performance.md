@@ -57,6 +57,16 @@ that are more prone to failure during execution are reached and referenced.
 
 --- 
 
+### Control-flow analysis:
+
+> This technique uses program control 
+ow-related information,
+focusing on execution characteristics to identify branches and commands that help determine
+which structures are most relevant to the generation and execution of mutants.
+
+
+--- 
+
 ### Minimization and prioritization of test sets:
 
 > This technique analyzes the test suite to
@@ -71,17 +81,6 @@ test cases.
 > This technique chooses a subset of mutation operators to use.
 The choice relies on testers' intuition regarding the signiffcance of particular groups of
 mutants.
-
---- 
-
-### Control-flow analysis:
-
-> This technique uses program control 
-ow-related information,
-focusing on execution characteristics to identify branches and commands that help determine
-which structures are most relevant to the generation and execution of mutants.
-
-
 
 ---
 
