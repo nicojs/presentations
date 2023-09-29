@@ -13,3 +13,9 @@ function isAllowedToBuyAlcohol(customer) {
 var customer = { name: 'Professor X', age: 96 };
 expect(isAllowedToBuyAlcohol(customer)).to.equal(true);
 </code></pre>
+
+---
+
+#### Generic Process of Mutation Analysis
+
+![](/img/generic-process-mutation-analysis.PNG)

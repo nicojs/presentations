@@ -8,4 +8,8 @@
 
 ---
 
-![whos-testing-the-tests-meme.jpg](/img/whos-testing-the-tests-meme.jpg)
+![](/img/sonarqube-project.png)
+
+---
+
+![](/img/whos-testing-the-tests-meme.jpg)
