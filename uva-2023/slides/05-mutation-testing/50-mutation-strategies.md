@@ -4,13 +4,6 @@ How to place the mutations into the code
 
 ---
 
-### 2 obvious candidates
-
-1. Source code mutation
-1. Byte code mutation
-
----
-
 ### Source code mutation
 
 Generate mutants based on source code

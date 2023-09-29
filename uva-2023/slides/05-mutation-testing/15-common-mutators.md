@@ -1,4 +1,10 @@
-## Common mutations
+### Mutation operators
+
+![](/img/popular-operators.png)
+
+---
+
+#### Common mutations
 
 | Original                  | Mutated                         |
 | ------------------------- | :------------------------------ |
