@@ -1,0 +1,37 @@
+/* CSS to hide fragments in code blocks that are not visible */
+
+.reveal .slides section.fragments-no-display .fragment.fade-out {
+    opacity: 1;
+    display: inline-block;
+}
+
+.reveal .slides section.fragments-no-display .fragment.fade-out.visible {
+    opacity: 0;
+    display: none;
+}
+
+.reveal .slides section.fragments-no-display .fragment.semi-fade-out {
+    display: inline-block;
+}
+
+.reveal .slides section.fragments-no-display .fragment.semi-fade-out.visible {
+    display: inline-block;
+}
+
+.reveal .slides section.fragments-no-display .fragment {
+    display: none;
+}
+
+.reveal .slides section.fragments-no-display .fragment.visible {
+    display: inline-block;
+}
+
+.reveal .slides section.fragments-no-display .fragment.current-visible {
+    opacity: 0;
+    display: none;
+}
+
+.reveal .slides section.fragments-no-display .fragment.current-visible.current-fragment {
+    opacity: 1;
+    display: inline-block;
+}
