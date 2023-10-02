@@ -1,4 +1,23 @@
-## Frameworks
+<!-- .slide: class="is-fancy2" -->
+
+## Apply mutation testing
+
+---
+
+### In general
+
+A lot of progress in 45 years
+
+&nbsp;
+
+- Integrates with build tool
+- Uses information already provided by your tests
+
+<!-- .element: class="fragment" -->
+
+---
+
+### Frameworks
 
 | Language                | Framework    |
 | ----------------------- | :----------- |
