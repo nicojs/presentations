@@ -1,4 +1,4 @@
-<!-- .element class="is-module" -->
+<!-- .element class="is-module is-module-img" -->
 
 ## Instrument code
 

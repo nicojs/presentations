@@ -17,11 +17,6 @@
   font-size: 1.2em;
 }
 
-section.is-lab {
-  background-color: rgba(0, 0, 0, .4);
-  border-radius: 20px ;
-}
-
 body.is-lab img {
   float: none;
 }

@@ -1,8 +1,15 @@
+<div class="kc-flex">
+<div style="width: 100%">
+
 # Stryker
 
 Mutation testing
 
-![stryker](/img/stryker.svg) <!-- .element class="img-width-20" -->
+</div>
+
+![stryker](/img/stryker.svg) <!-- .element class="kc-right" style="width: 8vw" -->
+
+</div>
 
 > For someone who hates mutants, you certainly keep some strange company.<cite>Professor X</cite><br/>
 >
