@@ -6,7 +6,7 @@ Improve the library numbers.js ([https://github.com/numbers/numbers.js](https://
 
 ---
 
-<!-- .slide: class="is-lab" -->
+<!-- .slide: class="is-fancy3" -->
 
 #### Exercise 1
 
@@ -16,28 +16,30 @@ Improve mutation score here.
 
 ---
 
-<!-- .slide: class="is-lab" -->
+<!-- .slide: class="is-fancy3" -->
 
 #### Exercise 2
 
-![exercise-2](/img/exercise-2.png)
+![exercise-2](/img/exercise-2.png) <!-- .element: style="width: 70%" -->
 
 Line 61 here isn't well tested. Can you figure out why? StrykerJS doesn't generate a mutant here. Design a mutator that would generate a mutant that survives here.
 
 ---
 
-<!-- .slide: class="is-lab" -->
+<!-- .slide: class="is-fancy3" -->
 
 #### Exercise 3
 
 Implement that mutator in StrykerJS. A empty mutator is prepared for just this occasion.
-`stryker-js/packages/instrumenter/src/mutators/uva-mutator.ts`. Be sure to enable TypeScript watch compilation with `F1` and selecting "Tasks: Run build task" (or using `CTL+shift+B`).
+`stryker-js/packages/instrumenter/src/mutators/uva-mutator.ts`.
+
+Be sure to enable TypeScript watch compilation with `F1` and selecting "Tasks: Run build task" (or using `CTL+shift+B`).
 
 You can validate that your mutator works by running: `./run-stryker.sh -m lib/numbers/basic.js:53-70` from the `numbers.js` directory.
 
 ---
 
-<!-- .slide: class="is-lab" -->
+<!-- .slide: class="is-fancy3" -->
 
 ### Exercise 4
 

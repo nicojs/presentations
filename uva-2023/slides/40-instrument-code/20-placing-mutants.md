@@ -1,3 +1,5 @@
+<!-- .slide: class="is-fancy2" -->
+
 ## Placing mutants
 
 ![placing-mutants.jpg](/img/placing-mutants.jpg)

@@ -1,3 +1,6 @@
+.img-width-30 {
+    width: 30%;
+}
 .img-width-25 {
     width: 25%;
 }
@@ -40,4 +43,16 @@ img.logo {
 
 .img-rounded {
     border-radius: 10px;
+}
+
+.reveal section.is-module.is-module-img h2 {
+    transform: translateY(50px);
+}
+
+.reveal section.is-module.is-module-img p img {
+    max-height: 30vh !important;
+}
+
+.reveal section.is-module.is-module-img *:nth-child(2) {
+    margin-top: 50px;
 }
