@@ -1,9 +1,7 @@
-## Disadvantages
-
-<emoji-list>
+### Disadvantages
 
 * 🐌 Slower
 * 🛠️ Configuration
 * 👷 Project support
 
-</emoji-list>
+<!-- .element class="no-list" -->

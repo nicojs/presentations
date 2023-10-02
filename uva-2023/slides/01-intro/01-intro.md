@@ -1,12 +1,12 @@
-<!-- .slide: class="is-welcome" -->
+<!-- .slide: class="is-welcome text-xl" -->
 
 # Kill all mutants with Stryker 
 
-### Mutation testing workshop
+Mutation testing workshop
 
 ---
 
-## Agenda
+### Agenda
 
 1. Mutation testing
    1. What is it
@@ -23,14 +23,14 @@
 
 ---
 
-## Who are we
+### Who are we
 
 <div style="justify-content: center" class="kc-flex kc-gap4">
 <div>
 
-#### Nico Jansen
+##### Nico Jansen
 
-![nico](/img/nico.jpg) <!-- .element class="img-round" style="width: 250px" -->
+![Nico](/img/nico.jpg) <!-- .element class="img-round" style="width: 200px" -->
 
 * 💼 Manager & Trainer KC
 * 🧙‍♂️ Open sourcerer
@@ -42,9 +42,9 @@
 </div>
 <div>
 
-#### Jan-Jelle Kester
+##### Jan-Jelle Kester
 
-![jan-jelle](/img/jan-jelle.jpg) <!-- .element class="img-round" style="width: 250px" -->
+![Jan-Jelle](/img/jan-jelle.jpg) <!-- .element class="img-round" style="width: 200px" -->
 
 * 💼 Software engineering consultant
 * 🦸 Research center

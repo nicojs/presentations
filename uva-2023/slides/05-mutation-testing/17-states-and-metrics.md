@@ -1,4 +1,4 @@
-## Mutant states
+### Mutant states
 
 - ✅ Killed
 - 👽 Survived
@@ -12,7 +12,7 @@
 
 ---
 
-### Mutant metrics
+#### Mutant metrics
 
 - **Detected** = `killed + timeout`
 - **Undetected** = `survived + no coverage`
