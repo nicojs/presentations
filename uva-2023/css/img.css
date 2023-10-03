@@ -23,8 +23,19 @@
     border-radius: 50%;
 }
 
+.reveal .img-round-vertical {
+    border-radius: 300px;
+}
+
 img.logo {
     max-width: 200px;
+}
+
+img.img-inline {
+    display: inline-block;
+    height: 1em;
+    margin: 0;
+    padding: 0;
 }
 
 .reveal section img.logo-bullet {

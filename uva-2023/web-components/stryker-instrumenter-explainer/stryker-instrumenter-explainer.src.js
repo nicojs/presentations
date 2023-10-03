@@ -3,8 +3,10 @@ import hljsCss from "./hljs.css.js";
 import css from "./stryker-instrumenter-explainer.css.js";
 import { parseSync, traverse } from "@babel/core";
 import generate from "@babel/generator";
-import prettier from "prettier/esm/standalone.mjs";
-import prettierParserBabel from "prettier/esm/parser-babel.mjs";
+import * as prettier from "prettier";
+import * as estree from "prettier/plugins/estree.js";
+import * as babel from "prettier/plugins/babel.js";
+const plugins = [estree, babel];
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -38,13 +40,14 @@ template.innerHTML = `
       <pre><code class="output js hljs javascript" data-noescape>
       </code></pre>
     </div>
-    <pre><code class="text-xs ast json hljs"></code></pre>
+    <pre><code class="text-xxs ast json hljs"></code></pre>
     
   </div>
 </div>
 `;
 document.body.appendChild(template);
 
+/** @type {any} */
 const revealHighlightJS = Reveal.getPlugin("highlight");
 
 /**
@@ -165,16 +168,19 @@ customElements.define(
       traverse(codeAst, {
         enter(path) {
           const { loc, start, end, type } = path.node;
-          self.currentStep = new Step({
-            action: "enter",
-            type,
-            start,
-            end,
-            mutants: self.allMutants.filter((mutant) =>
-              matchesLocation(mutant.location, loc)
-            ),
-            code: generate(codeAst).code,
-          }, self.currentStep);
+          self.currentStep = new Step(
+            {
+              action: "enter",
+              type,
+              start,
+              end,
+              mutants: self.allMutants.filter((mutant) =>
+                matchesLocation(mutant.location, loc)
+              ),
+              code: generate(codeAst).code,
+            },
+            self.currentStep
+          );
         },
         exit(path) {
           const { loc, start, end, type } = path.node;
@@ -188,14 +194,17 @@ customElements.define(
             path.skip();
           }
 
-          self.currentStep = new Step({
-            action: "exit",
-            type,
-            start,
-            end,
-            placement,
-            code: generate(codeAst).code,
-          }, self.currentStep);
+          self.currentStep = new Step(
+            {
+              action: "exit",
+              type,
+              start,
+              end,
+              placement,
+              code: generate(codeAst).code,
+            },
+            self.currentStep
+          );
         },
       });
 
@@ -245,6 +254,7 @@ customElements.define(
     render() {
       let markedCode = this.code;
       if (this.currentStep.data) {
+        
         const { action, type, start, end } = this.currentStep.data;
         markedCode = `${this.code.substr(
           0,
@@ -254,10 +264,15 @@ customElements.define(
           end
         )}</span>${this.code.substr(end)}`;
         this.stepExplanation.innerHTML = `${action} ${type}`;
-        this.jsCodeOutputNode.innerHTML = prettier.format(
-          this.currentStep.data.code,
-          { parser: "babel", plugins: [prettierParserBabel], printWidth: 40 }
-        );
+        prettier
+          .format(this.currentStep.data.code, {
+            parser: "babel",
+            printWidth: 40,
+            plugins,
+          })
+          .then((formatted) => {
+            this.jsCodeOutputNode.innerHTML = formatted;
+          });
       } else {
         this.jsCodeOutputNode.innerHTML = this.code;
         this.stepExplanation.innerHTML = "<em>none</em>";
@@ -276,21 +291,24 @@ customElements.define(
         )
         .join("")}</ul>`;
 
-      this.astCodeNode.innerHTML = prettier.format(
-        JSON.stringify(
-          pruneAst(parseSync(this.currentStep?.data.code ?? this.code))
-        ),
-        { parser: "json", plugins: [prettierParserBabel], printWidth: 70 }
-      );
+      prettier
+        .format(
+          JSON.stringify(
+            pruneAst(parseSync(this.currentStep?.data.code ?? this.code))
+          ),
+          { parser: "json", printWidth: 70, plugins }
+        )
+        .then((formatted) => {
+          this.astCodeNode.innerHTML = formatted;
 
-      // Highlight
-      revealHighlightJS.highlightBlock(this.jsCodeNode);
-      revealHighlightJS.highlightBlock(this.jsCodeOutputNode);
-      revealHighlightJS.highlightBlock(this.astCodeNode);
+          // Highlight
+          revealHighlightJS.highlightBlock(this.jsCodeOutputNode);
+          revealHighlightJS.highlightBlock(this.astCodeNode);
 
-      // Buttons
-      this.previousButton.disabled = !this.currentStep.previous;
-      this.nextButton.disabled = !this.currentStep.next;
+          // Buttons
+          this.previousButton.disabled = !this.currentStep.previous;
+          this.nextButton.disabled = !this.currentStep.next;
+        });
     }
   }
 );

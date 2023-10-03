@@ -1,20 +1,66 @@
-<!-- .element: class="fragments-no-display"-->
+<!-- .slide: data-auto-animate -->
 ### Mutating code
 
-<pre><code data-noescape data-trim class="lang-ts hljs typescript">
-// Production code
+```js
 function isAllowedToBuyAlcohol(customer) {
-    return <span class="fragment fade-out" data-fragment-index="2">customer.age <span class="fragment fade-out" data-fragment-index="0">>=</span><span class="fragment current-visible" data-fragment-index="0"><</span><span class="fragment fade-in" data-fragment-index="1">></span> 18</span><span class="fragment fade-in" data-fragment-index="2">true</span>;
-    <span class="fragment current-visible" data-fragment-index="0">// test fails, Mutant KILLED</span><span class="fragment current-visible" data-fragment-index="1">// test passes, Mutant SURVIVED</span><span class="fragment current-visible" data-fragment-index="2">// test passes, Mutant SURVIVED</span>
+    return customer.age >= 18;
 }
-</code></pre>
+```
 
-<pre><code class="lang-js hljs javascript">// Test
-var customer = { name: 'Professor X', age: 96 };
+```js
+const customer = { name: 'Professor X', age: 96 };
 expect(isAllowedToBuyAlcohol(customer)).to.equal(true);
-</code></pre>
+```
 
 ---
+
+<!-- .slide: data-auto-animate -->
+
+### Mutating code
+
+
+```js
+function isAllowedToBuyAlcohol(customer) {
+    return customer.age >= 18;
+    /* 👽 1 */ return customer.age < 18;
+    /* 👽 2 */ return customer.age > 18;
+    /* 👽 3 */ return false;
+    /* 👽 4 */ return true;
+}
+```
+
+```js
+const customer = { name: 'Professor X', age: 96 };
+expect(isAllowedToBuyAlcohol(customer)).to.equal(true);
+```
+
+---
+
+<!-- .slide: data-auto-animate -->
+
+### Mutating code
+
+```
+👽 1 ✅ Killed
+👽 2 ❌ Survived
+👽 3 ✅ Killed
+👽 4 ❌ Survived
+```
+
+How can we improve our result
+
+Add more tests!
+
+<!-- .element class="fragment" data-fragment-index="1" -->
+
+- test when `age < 18`
+- test when `age === 18`
+
+<!-- .element class="fragment" data-fragment-index="1" -->
+
+----
+
+
 
 #### Generic Process of Mutation Analysis
 

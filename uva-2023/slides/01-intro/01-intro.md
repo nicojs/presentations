@@ -74,6 +74,10 @@ Mutation testing workshop
 
 ---
 
+<!-- .slide: data-background-image="/img/references.png" data-background-size="contain"-->
+
+---
+
 <!-- .slide: data-background-image="/img/focus.png" data-background-color="#003865" data-background-size="contain"-->
 
 ---
@@ -82,7 +86,7 @@ Mutation testing workshop
 
 ---
 
-<!-- .slide: data-background-image="/img/hacktoberfestbg.png" data-background-repeat="repeat" data-background-size="100px" -->
+<!-- .slide: data-background-color="#1a0306"  -->
 
 ![](/img/hacktoberfest-2023.webp)
 
@@ -96,4 +100,13 @@ Hackathon @ Info Support, October 13 + 14
 
 ---
 
-<!-- .slide: data-background-image="/img/references.png" data-background-size="contain"-->
+<!-- .slide: data-background-color="#1a0306" -->
+
+<div class="kc-columns">
+
+![](/img/stryker-socks.jpg) <!-- .element class="img-round-vertical" -->
+
+![](/img/thesis-fair.png)
+
+</div>
+

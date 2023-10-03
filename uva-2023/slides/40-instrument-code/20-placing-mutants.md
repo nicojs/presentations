@@ -64,14 +64,13 @@ It generates 2 mutants
 
 ### A simple example (2)
 
-```js [0-300|2-6|7-8|9]
+```js [0-300|2-4|6]
 function add(a, b) {
   if (stryMutAct_9fa48("0")) {
     {
     }
   } else {
-    stryCov_9fa48("0");
-    return stryMutAct_9fa48("1") ? a - b : (stryCov_9fa48("1"), a + b);
+    return stryMutAct_9fa48("1") ? a - b : a + b;
   }
 }
 ```
@@ -85,28 +84,6 @@ function add(a, b) {
 ```js
 function stryMutAct_9fa48(id) {
   return global.__stryker__.activeMutant === id;
-}
-```
-
-```js
-function stryCov_9fa48(mutant) {
-  var cov = global.__stryker__.mutantCoverage;
-  var currentTestId = global.__stryker__.currentTestId;
-
-  if (!cov) {
-    cov = global.__stryker__.mutantCoverage = {
-      static: {},
-      perTest: {},
-    };
-  }
-
-  var c = cov.static;
-  if (currentTestId) {
-    c = cov.perTest[currentTestId] = cov.perTest[currentTestId] || {};
-  }
-
-  if (!c[mutant]) c[mutant] = 0;
-  c[mutant]++;
 }
 ```
 
@@ -129,8 +106,8 @@ function stryCov_9fa48(mutant) {
 <div class="code" style="display: none">
 
 ```js
-function add (a, b) {
-  return a + b
+function add(a, b) {
+  return a + b;
 }
 ```
 
@@ -563,13 +540,6 @@ function add (a, b) {
 
 ---
 
-<!-- .slide: class="is-lab" -->
-
-### Let's take a look
-
-👀
-
----
 
 ### Algorithm another example
 

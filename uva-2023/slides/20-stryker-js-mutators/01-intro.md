@@ -1,7 +1,7 @@
-<!-- .element class="is-module is-module-img" -->
+<!-- .element class="is-module" -->
 
-## StrykerJS mutators👽👾
+## StrykerJS mutators
 
-![stryker](/img/stryker.svg) <!-- .element class="img-width-25" -->
+### 👽 ![stryker](/img/stryker.svg) <!-- .element class="img-width-25 img-inline" --> 👾
 
 

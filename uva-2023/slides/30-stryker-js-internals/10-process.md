@@ -78,7 +78,7 @@
 
 #### 3. Dry run
 
-[![mutation-testing-process-focus-3.svg](/img/mutation-testing-process-focus-3.svg)<!-- .element style="height: 50px" -->](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggTFJcbiAgICBBKChTdGFydCkpIC0tPiBCKDEuIFByZXBhcmUpXG4gICAgQiAtLT4gQygyLiBDb2RlIGluc3RydW1lbnRhdGlvbilcbiAgICBDIC0tPiBEKDMuIERyeSBydW4pXG4gICAgRCAtLT4gRXtTdWNjZXNzP31cbiAgICBFIC0tPnxZZXN8IEYoNC4gTXV0YXRpb24gdGVzdGluZylcbiAgICBFIC0tPnxOb3wgSCgoZW5kKSlcbiAgICBGIC0tPiBIXG5cbiAgICBzdHlsZSBEIGZpbGw6I0ZGMCIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9) <!-- .element target="_blank" -->
+[![mutation-testing-process-focus-3.svg](/img/mutation-testing-process-focus-3.svg)<!-- .element style="height: 100px" -->](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggTFJcbiAgICBBKChTdGFydCkpIC0tPiBCKDEuIFByZXBhcmUpXG4gICAgQiAtLT4gQygyLiBDb2RlIGluc3RydW1lbnRhdGlvbilcbiAgICBDIC0tPiBEKDMuIERyeSBydW4pXG4gICAgRCAtLT4gRXtTdWNjZXNzP31cbiAgICBFIC0tPnxZZXN8IEYoNC4gTXV0YXRpb24gdGVzdGluZylcbiAgICBFIC0tPnxOb3wgSCgoZW5kKSlcbiAgICBGIC0tPiBIXG5cbiAgICBzdHlsZSBEIGZpbGw6I0ZGMCIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9) <!-- .element target="_blank" -->
 
 <div class="row">
 <div>
@@ -94,7 +94,7 @@
 </div>
 <div class="text-sm">
 
-```json [0-500|10-13]
+```json [10-13]
 {
   "id": "0",
   "mutatorName": "ArithmeticOperator",
@@ -133,12 +133,12 @@
   - `Killed`
   - `RuntimeError`
 - Determin `statusReason`/`killedBy`
-- Report each mutant to the reporter.
+- Report each mutant.
 
 </div>
 <div class="text-sm">
 
-```json [0-500|11-12]
+```json [11-12]
 {
   "id": "0",
   "mutatorName": "ArithmeticOperator",
