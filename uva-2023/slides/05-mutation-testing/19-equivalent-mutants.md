@@ -1,18 +1,43 @@
-<!-- .element: class="fragments-no-display"-->
+<!-- .slide: data-auto-animate -->
+
 ### Equivalent mutants
 
-<pre><code data-noescape data-trim class="lang-ts hljs typescript">
+```js
 // Production code
 function calculateInLoop() {
     var value = 0;
-    for (i = 0; i <span class="fragment fade-out" data-fragment-index="0"><</span><span class="fragment current-visible" data-fragment-index="0">!=</span> 10; i++) {
+    for (i = 0; i < 10; i++) {
         value += 1;
     }
     return value
-    <span class="fragment current-visible" data-fragment-index="0">// test passes, Mutant SURVIVED</span>
 }
-</code></pre>
+```
 
-<pre><code class="lang-js hljs javascript">// Test
+```js
+// Test
 expect(calculateInLoop).to.equal(45);
-</code></pre>
+```
+
+---
+
+<!-- .slide: data-auto-animate -->
+
+### Equivalent mutants
+
+```js
+// Production code
+function calculateInLoop() {
+    var value = 0;
+    for (i = 0; i != 10; i++) { // 👽
+        value += 1;
+    }
+    return value
+}
+```
+
+```js
+// Test
+expect(calculateInLoop).to.equal(45);
+```
+
+Test passes!

@@ -6,6 +6,8 @@
 
 #### "Recent" popularity
 
+![](/img/mutation-testing-survey.png) <!-- .element: style="width: 50%" -->
+
 <div class="kc-flex">
 
 ![](/img/early-history.png)
