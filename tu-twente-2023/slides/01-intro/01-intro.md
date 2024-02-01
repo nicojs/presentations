@@ -46,7 +46,7 @@
 ![Rense van Hees](/img/rinse.jpg) <!-- .element class="img-round" style="width: 250px" -->
 
 - 💼 Architect consultant
-- 🐱‍👤 Research center
+- 🔬 Research center
 - <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;hesnir
 - <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;rinse-van-hees
 
