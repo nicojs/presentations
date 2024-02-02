@@ -1,0 +1,16 @@
+.fragment.semi-fade-in {
+    opacity: .5;
+}
+.fragment.semi-fade-in.visible {
+    opacity: 1;
+}
+
+.fragment.semi-fade-in-then-out {
+    opacity: .5;
+}
+.fragment.semi-fade-in-then-out.visible {
+    opacity: .5;
+}
+.fragment.semi-fade-in-then-out.visible.current-fragment {
+    opacity: 1;
+}

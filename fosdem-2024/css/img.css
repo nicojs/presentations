@@ -1,0 +1,17 @@
+.reveal .img-round {
+  border-radius: 50%;
+}
+.reveal section img.logo {
+  vertical-align: middle;
+}
+
+img.logo {
+  max-width: 200px;
+}
+
+img.img-inline {
+  display: inline;
+  max-width: 100px;
+  height: auto;
+  vertical-align: middle;
+}

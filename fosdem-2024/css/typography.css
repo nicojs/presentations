@@ -1,0 +1,44 @@
+.reveal ul.no-list {
+  margin: 0;
+}
+
+.reveal ul.no-list li {
+  list-style-type: none;
+}
+
+.reveal ul.no-list li::marker {
+  content: none;
+}
+
+.reveal .stryker-module {
+  background: #22323d;
+}
+
+.reveal .stryker-module h2 {
+  color: #f1c40f;
+}
+
+.reveal .stryker-module h2:first-of-type::before {
+  border: none;
+}
+
+.reveal h1,
+h2,
+h3,
+h4,
+p,
+ul {
+  text-align: center;
+}
+
+.reveal .is-module h1, .reveal .is-module h2 {
+  text-align: left;
+}
+
+.sm {
+  font-size: .7em;
+}
+
+ul, ol {
+    width: auto;
+}

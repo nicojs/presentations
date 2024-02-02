@@ -1,0 +1,16 @@
+{
+  "name": "fosdem-2024",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "kc serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@infosupport/kc-cli": "^4.15.3",
+    "bootstrap-icons": "^1.11.3"
+  }
+}
