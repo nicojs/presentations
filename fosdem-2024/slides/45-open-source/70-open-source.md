@@ -18,7 +18,7 @@ Stryker is an open source initiative
 
 ---
 
-## Who is thinking...? <span class="fragment" data-fragment-index="0">🧦</span>
+## Who is thinking? <span class="fragment" style="font-size: .4em" data-fragment-index="0">... be honest 🧦</span>
 
 <div class="kc-columns kc-gap1">
 

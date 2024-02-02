@@ -7,7 +7,7 @@
 - <!-- .element: class="fragment custom semi-fade-in-then-out" -->
   StrykerJS
 - <!-- .element: class="fragment custom semi-fade-in-then-out" -->
-  Stryker and open source 
+  Open source and consultancy?
 
 ... Let's keep it light-hearted tonight 😀
 <!-- .element: class="fragment" -->

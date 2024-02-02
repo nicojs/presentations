@@ -1,5 +1,8 @@
 # Thank you!&nbsp;&nbsp;&nbsp;
 
+[github.com/nicojs/presentations](https://github.com/nicojs/presentations/) <!-- .element target="_blank" style="color: #fff" -->
+
+
 <!-- .slide: class="is-fancy3" data-background-gradient="linear-gradient(90deg, rgba(232,75,57,1) 50%, rgba(0,56,101,0) 50%)" -->
 
 <div class="kc-flex kc-columns kc-gap5">

@@ -1,3 +1,3 @@
 <!-- .slide: class="is-module" -->
 
-## Open source in consultancy?
+## Open source and consultancy?
