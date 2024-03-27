@@ -1,4 +1,4 @@
-# UVA-2023
+# UTwente-2024
 
 ## Prerequisites
 

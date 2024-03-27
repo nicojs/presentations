@@ -19,7 +19,6 @@ Mutation testing workshop
     1. Internals
     1. Instrumenting code
     1. (Test runners)
-1. Hands-on lab
 
 ---
 
@@ -42,14 +41,14 @@ Mutation testing workshop
 </div>
 <div>
 
-##### Jan-Jelle Kester
+##### Rinse van Hees
 
-![Jan-Jelle](/img/jan-jelle.jpg) <!-- .element class="img-round" style="width: 200px" -->
+![Rinse van Hees](/img/rinseh.png) <!-- .element class="img-round" style="width: 200px" -->
 
-* 💼 Software engineering consultant
+* 💼 Software architect & consultant
 * 🦸 Research center
-* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;jjkester
-* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;jjkester
+* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;hesnir
+* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;rinse-van-hees
 
 <!-- .element class="no-list" -->
 
@@ -86,15 +85,15 @@ Mutation testing workshop
 
 ---
 
-<!-- .slide: data-background-color="#1a0306"  -->
 
-![](/img/hacktoberfest-2023.webp)
 
-Hackathon @ Info Support, October 13 + 14
+![](/img/masterclass.png)
 
-<!-- .element class="hacktoberfest" -->
+Masterclass @ Online, April 10
 
-[carriere.infosupport.com/hacktoberfest](https://carriere.infosupport.com/hacktoberfest/) <!-- .element target="_blank" -->
+
+
+[carriere.infosupport.com/masterclass-coding-beyond-large-language-models/](https://carriere.infosupport.com/masterclass-coding-beyond-large-language-models/) <!-- .element target="_blank" -->
 
 <!-- .element class="hacktoberfest" -->
 
@@ -105,8 +104,6 @@ Hackathon @ Info Support, October 13 + 14
 <div class="kc-columns">
 
 ![](/img/stryker-socks.jpg) <!-- .element class="img-round-vertical" -->
-
-![](/img/thesis-fair.png)
 
 </div>
 
