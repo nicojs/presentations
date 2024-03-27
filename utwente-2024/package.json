@@ -1,0 +1,46 @@
+{
+  "name": "uva-2021",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean": "rimraf img/*:Zone.Identifier .parcel-cache",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build",
+    "prestart": "npm run build",
+    "start": "kc serve"
+  },
+  "stryker-instrumenter-explainer": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.js",
+  "kc-mermaid": "web-components/kc-mermaid/kc-mermaid.js",
+  "keywords": [],
+  "targets": {
+    "stryker-instrumenter-explainer": {
+      "context": "browser",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule",
+      "source": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.src.js",
+      "sourceMap": false
+    }
+  },
+  "author": "",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "license": "ISC",
+  "devDependencies": {
+    "@infosupport/kc-cli": "^4.15.3",
+    "@stryker-mutator/api": "^7.2.0",
+    "@stryker-mutator/instrumenter": "^7.2.0",
+    "assert": "^2.1.0",
+    "parcel": "^2.9.3",
+    "path-browserify": "^1.0.1",
+    "prettier": "^3.0.3",
+    "process": "^0.11.10",
+    "rimraf": "^5.0.5"
+  },
+  "dependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/generator": "^7.23.0",
+    "@swc/helpers": "^0.5.2",
+    "bootstrap-icons": "^1.11.1",
+    "js-base64": "^3.7.5",
+    "mermaid": "^10.5.0"
+  }
+}

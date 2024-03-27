@@ -1,0 +1,7 @@
+/* .reveal pre {
+    height: auto;
+} */
+
+p:has(img) {
+    text-align: center;
+}
