@@ -2,7 +2,7 @@
 
 # Kill all mutants with Stryker 
 
-Mutation testing workshop
+Mutation testing guest lecture
 
 ---
 
@@ -13,6 +13,10 @@ Mutation testing workshop
    1. History
    1. Challenges
    1. Strategies
+1. Current research
+   1. Simulatanious testing
+   1. Mutation levels
+1. Short break
 1. Stryker
 1. StrykerJS 
     1. Mutators
