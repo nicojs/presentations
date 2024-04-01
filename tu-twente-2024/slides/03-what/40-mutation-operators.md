@@ -4,7 +4,17 @@ Transform operations in source code to one or more mutated versions of that sour
 
 ---
 
+
+
+### Popular operator mutations
+
+![](/img/popular-operators.PNG)
+
+
+----
+
 #### Common mutations
+
 
 | Original       | Mutated                       |
 |----------------|-------------------------------|
@@ -18,4 +28,4 @@ Transform operations in source code to one or more mutated versions of that sour
 | `a > b`        | `true`                        |
 | `{ ... }`      | `{}`                          |
 
-<!-- .element class="small" -->
+<!-- .element class="text-sm" -->

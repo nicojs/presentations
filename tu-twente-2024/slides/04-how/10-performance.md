@@ -5,13 +5,10 @@
 For every mutation we run the whole test suite once.
 <!-- .element: class="fragment semi-fade-out" data-fragment-index="1" -->
 
-`$$
-\left.t_m = |T| \Bigm | m \in M\right. \\
-t_M = \sum_{m \in M} |T| = |T| \times |M|
-$$`
+![time complexity](img/timecomplexity.png)
 <!-- .element class="fragment semi-fade-out" data-fragment-index="1" -->
 
-We need to be smarter: `$ t_M < |T| \times |M| $`!
+We need to be smarter: ![do faster](img/faster.png)
 <!-- .element class="fragment" data-fragment-index="1" -->
 
 

@@ -1,3 +1,15 @@
+### Code quality
+
+![sonarqube-global](/img/Dashboards-Global.png)
+
+---
+
+### Code quality - testing
+
+![sonarqube-project](/img/Dashboards-Project.png)
+
+---
+
 ![SonarQube quality gate](/img/sonarqube-coverage.png)
 <!-- .element: class="stretch" -->
 

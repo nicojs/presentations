@@ -4,9 +4,7 @@ Placing mutations into source code
 
 ---
 
-<div class="r-hstack items-start items-gap">
 
-<div class="fragment semi-fade-out" data-fragment-index="1">
 
 #### Source code mutation
 
@@ -16,8 +14,7 @@ Placing mutations into source code
 - ✅ Easy
 - ❌ Slow
 
-</div>
-<div class="fragment custom semi-fade-in" data-fragment-index="1">
+---
 
 #### Byte code mutation
 
@@ -27,9 +24,7 @@ Placing mutations into source code
 - ❌ False positives
 - ❌ Complicated
 
-</div>
 
-</div>
 
 Note: How can we do better? 🧦
 

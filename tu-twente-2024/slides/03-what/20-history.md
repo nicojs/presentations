@@ -11,11 +11,12 @@ Acree, Allen & Budd, Timothy & Demillo, Richard & Lipton, Richard & Sayward, Fre
 
 ---
 
-### "Recent" popularity
+#### Emperical princple of coupling effect
 
-![Theoretical publications vs. practical publications](/img/early-history.png)
+> This principle hypothesizes that complex faults are the result of relatively simple faults. Consequently, the detection of comlex faults is often assured by the detection of simple faults.
 
-Y. Jia and M. Harman, "An Analysis and Survey of the Development of Mutation Testing," in IEEE Transactions on Software Engineering, vol. 37, no. 5, pp. 649-678, Sept.-Oct. 2011, DOI: 10.1109/TSE.2010.62.
-<!-- .element: class="attribution" -->
+#### Competent programmer
 
-Note: Mainly theoretical until the 90s, large peak from the second half of the 00s
+> The coupling effect is supported by the idea of the competent programmer. The idea is that programmers write code ithat is close to correct, indicating that many bugs are by trivial of syntactic mistakes.
+
+
