@@ -56,3 +56,17 @@ Is the code _that is tested_ being tested adequately?
 ### Not all mutants can be killed
 
 While it is easy to _reach_ all your code, it is not possible to write a test case for every possible internal change of your program
+
+```js [3]
+function calculateInLoop() {
+    var value = 0;
+    for (i = 0; i < 10; i++) { 
+        i /* 👽 */ -= 1;
+    }
+    return value
+}
+```
+
+```js []
+expect(calculateInLoop).to.equal(45); /* ⏳ Timeout */
+```
