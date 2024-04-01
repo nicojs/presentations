@@ -23,7 +23,7 @@
 
 ### Computationally expensive
 
-> Annecdotal evidence suggests that on average between 0.5 to 2 mutants are generated per line of code. For We have seen projects that have 5 mutants per line of code.
+> Annecdotal evidence suggests that on average between 0.5 to 2 mutants are generated per line of code. In extreme cases have seen projects that have 5 mutants per line of code.
 
 > For one of our sample projects around 7000 mutants are generated. Even if running all the tests would only take 1 second we would still have to wait for 2 hours for the results.
 
