@@ -14,7 +14,7 @@ Mutation testing guest lecture
    1. Challenges
    1. Strategies
 1. Current research
-   1. Simulatanious testing
+   1. Simultaneous testing
    1. Mutation levels
 1. Short break
 1. Stryker
@@ -22,7 +22,8 @@ Mutation testing guest lecture
     1. Mutators
     1. Internals
     1. Instrumenting code
-    1. (Test runners)
+
+<!-- .element class="kc-agenda" -->
 
 ---
 
