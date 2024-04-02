@@ -17,6 +17,6 @@ Acree, Allen & Budd, Timothy & Demillo, Richard & Lipton, Richard & Sayward, Fre
 
 #### Competent programmer
 
-> The coupling effect is supported by the idea of the competent programmer. The idea is that programmers write code ithat is close to correct, indicating that many bugs are by trivial of syntactic mistakes.
+> The coupling effect is supported by the idea of the competent programmer. The idea is that programmers write code that is close to correct, indicating that many bugs are caused by trivial or syntactic mistakes.
 
 

@@ -40,7 +40,7 @@ expect(calculateInLoop).to.equal(45); /* ✅ Passes */
 
 ### Equivalent mutants
 
-> The detection of equivalent mutants is in general impossible as determining whether two programs are the equivilent is undicidable. 
+> The detection of equivalent mutants is in general impossible as determining whether two programs are the equivalent is undicidable. 
 
 Automatically detecting equivalent mutants and infeasible paths. A.J Offut & J. Pan. 1997
 
