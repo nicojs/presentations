@@ -41,20 +41,22 @@ and Software, vol. 157, Jul. 2019. DOI: 10.1016/j.jss.2019.07.100.
 <div>
 
 - 🦥 Random mutation
-- 🧐 Higher order mutation
-- 🏎️ Parallel execution
+- 🧐 Evolutionary algorithms
 - 🦥 Data-flow analysis
-- 🦥 Control-flow analysis
-- 🧐 Minimization and prioritization of test sets
+- 🧐 Model-based mutation
+- 🧐 State-based analysis
+- 🦥 Incremental mutation testing
+- 🦥 Minimal mutation
 
 </div>
 <div>
 
 - 🦥 Constrained mutation
-- 🧐 Evolutionary algorithms
-- 🧐 Model-based mutation
-- 🧐 State-based analysis
-- 🦥 Minimal mutation
+- 🏎️ Parallel execution
+- 🦥 Control-flow analysis
+- 🧐 Minimization and prioritization of test sets
+- 🦥 Smart bail / fast fail
+- 🧐 Higher order mutation
 - 🦥 Selective mutation
 
 </div>
@@ -71,11 +73,6 @@ Note:
 > This technique uses program data-flow-related information to decide which mutants to generate and to analyze mutants.
 > It considers whether variables that are more prone to failure during execution are reached and referenced.
 
-
-#### 🦥 Constrained mutation
-
-> This technique chooses a subset of mutation operators to use.
-> The choice relies on testers' intuition regarding the significance of particular groups of mutants.
 
 #### 🧐 Evolutionary algorithms
 
@@ -95,60 +92,5 @@ Note:
 
 > This technique identifies and eliminates redundant mutants by applying the concepts of mutant subsumption and dominator mutants.
 
-#### 🦥 Selective mutation
-
-> This technique tries to avoid the application of mutation operators that are responsible for the most mutants or to select mutation operators that result in mutants that are killed by tests that also kill lots of mutants created by other operators.
-> The idea is that if a test set T<sub>op</sub>, that is adequate for a subset of mutation operators M<sub>op</sub>, also kills a very high percentage of all mutants, then we can select only the operators in M<sub>op</sub>
-
----
-
-#### 🏎️ Parallel execution
-
-> This technique executes mutants in parallel processors, reducing the total time needed to perform mutation analysis.
-
----
-
-#### 🦥 Control-flow analysis
-
-> This technique uses program control flow-related information, focusing on execution characteristics to identify branches and commands that help determine which structures are most relevant to the generation and execution of mutants.
-
-&nbsp;
-![Mutant schemata](/img/mutant-schemata-mutation.svg)
-![dry run](/img/dryrun.png)
-
----
-
-#### 🦥 Control-flow analysis - reachability matrix
 
 
-
-![dry run](/img/matrix.png)
-
----
-
-#### 🧐 Higher order mutation
-
-> This technique combines two or more simple mutations to create a single complex mutant.
-
-```js [3]
-function calculateInLoop() {
-    var value = 0;
-    for (i = 0; i != /* 👽 */ 10; i++) { 
-        value /* 👽 */ -= 1;
-    }
-    return value
-}
-```
-
-```js []
-expect(calculateInLoop).to.equal(45); 
-```
-
----
-#### 🧐 Simultanious testing
-
-
----
-#### 🧐 Minimization and prioritization of test sets
-
-> This technique analyzes the test suite to score test cases based on their effectiveness at killing mutants, then either eliminates test cases that are ineffective or runs the most effective test cases before the less effective test cases.

@@ -1,4 +1,4 @@
-### Mutation levels 🦥
+### Mutation levels 🦥 (Constrained mutation / Selective mutation)
 
 Selective mutation approach by Info Support's Jan Smits
 
@@ -48,15 +48,4 @@ Implemented by a project group of CS master students from the University of Twen
 - Documentation to follow...
 <!-- .element: class="fragment" -->
 
----
 
-### Further reducing test runs 🧐
-
-Analyze multiple mutants per test run
-
-- Minimal number of test runs
-- Combine mutants that do not influence each other
-- No negative effects on accuracy
-
-Current graduation project of CS master student at Info Support
-<!-- .element: class="fragment" -->

@@ -14,7 +14,7 @@ stryker-mutator.io
 </div>
 <div>
 
-
+> Interested in doing further research on improving mutation testing performance? Come talk to us afterwards!
 
 </div>
 </div>
