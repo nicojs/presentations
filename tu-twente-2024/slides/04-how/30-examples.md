@@ -33,7 +33,7 @@
 
 > This technique combines two or more simple mutations to create a single complex mutant.
 
-```js [3]
+```js []
 function calculateInLoop() {
     var value = 0;
     for (i = 0; i != /* 👽 */ 10; i++) { 
@@ -50,7 +50,10 @@ expect(calculateInLoop).to.equal(45);
 ---
 #### 🧐 Simultanious testing
 
-> 
+> Find the optimal set of sets with mutants that can be enabled at te same time. Current research by master student Mart de Roos.
+
+![dry run](/img/simultanioustesting.png)
+
 
 
 ---

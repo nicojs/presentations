@@ -70,6 +70,24 @@ expect(isAdult(customer)).to.equal(true);
 
 ---
 
+### Mutants that time out
+
+```js []
+function calculateInLoop() {
+    var value = 0;
+    for (i = 0; i < 10; i-- /* 👽 */) { 
+        value += 1;
+    }
+    return value
+}
+```
+
+```js []
+expect(calculateInLoop).to.equal(45); /* ⏳ Timeout */
+```
+
+---
+
 <!-- .slide: data-auto-animate -->
 
 ### Mutation score
