@@ -20,8 +20,5 @@
 
 <i class="bi bi-github" style="color: #fff"></i> &nbsp;<a target="_blank" href="https://github.com/nicojs" style="color: #fff">nicojs</a>  <i class="bi bi-twitter-x" style="margin-left: 20px; color: #fff"></i> &nbsp;<a target="_blank" style="color: #fff" href="https://twitter.com/_nicojs">\_nicojs</a>
 
-<!-- .element style="text-align: left" -->
-
-
 </div>
 </div>

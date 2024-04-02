@@ -12,6 +12,8 @@
 ![stryker-man](/img/stryker-man.svg) <!-- .element: width="75%" -->
 
 [stryker-mutator.io](https://stryker-mutator.io) <!-- .element target="_blank" style="color: #fff" -->
+<br /><i class="bi bi-twitter-x" style="margin-left: 20px; color: #fff"></i> &nbsp;<a target="_blank" style="color: #fff" href="https://twitter.com/stryker_mutator">stryker_mutator</a>
+
 
 </div>
 <div>
