@@ -1,0 +1,92 @@
+.hover-zoom:hover {
+  transform: scale(1);
+  transition: transform 0.2s;
+}
+.hover-zoom {
+  transition: transform 0.2s;
+  transform: scale(0.9);
+}
+
+.slogan {
+  background-image: url(./isks-2024.png);
+}
+
+.slogan h1 {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+}
+
+/* First demo */
+/*
+@view-transition {
+  navigation: auto;
+} 
+*/
+
+/* Second demo */
+
+/* @view-transition {
+  navigation: auto;
+}
+
+
+::view-transition-group(root) {
+    animation-duration: 0.5s;
+}
+@keyframes move-out {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes move-in {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+::view-transition-old(root) {
+    animation: 0.4s ease-in both move-out;
+
+}
+::view-transition-new(root) {
+    animation: 0.4s ease-in both move-in;
+} */
+
+/* Third demo */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(*) {
+  animation-duration: .3s;
+}
+
+.genai {
+  view-transition-name: genai;
+}
+.tinfoil-hats {
+  view-transition-name: tinfoil-hats;
+}
+.container-security {
+  view-transition-name: container-security;
+}
+.avonturen-in-warmteland {
+  view-transition-name: avonturen-in-warmteland;
+}
+.bedrijvenfluisteraar {
+  view-transition-name: bedrijvenfluisteraar;
+}
+.great-expectations {
+  view-transition-name: great-expectations;
+}
+/* ::view-transition-group(genai) {
+    animation-duration: 0.5s;
+}
+ */

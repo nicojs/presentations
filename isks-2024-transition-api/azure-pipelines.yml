@@ -1,0 +1,11 @@
+trigger:
+  - '*'
+
+extends:
+  template: kc-publish.yml@kc-pipelines
+
+resources:
+  repositories:
+    - repository: kc-pipelines
+      type: git
+      name: kc-pipelines

@@ -13,6 +13,8 @@
 
 ### [https://we.tl/t-qwJfDUS4tC](https://we.tl/t-qwJfDUS4tC)
 
+https://we.tl/t-qwJfDUS4tC
+
 <!-- .slide: data-background-color="#1a0306" -->
 
 ![](/img/stryker-socks.jpg) <!-- .element class="img-round-vertical" -->
