@@ -1,0 +1,20 @@
+{
+  "name": "isks-2024-transition-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:demo\" \"npm run start:slides\"",
+    "start:demo": "cd demo/mpa && five-server",
+    "start:slides": "kc serve -o"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@infosupport/kc-cli": "^5.4.0",
+    "bootstrap-icons": "^1.11.3",
+    "concurrently": "^8.2.2",
+    "five-server": "^0.3.3"
+  }
+}

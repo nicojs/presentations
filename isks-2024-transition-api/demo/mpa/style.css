@@ -20,7 +20,10 @@
 
 /* @view-transition {
   navigation: auto;
-  animation-duration: 1s;
+}
+
+::view-transition-group(root) {
+  animation-duration: 2s;
 } */
 
 /* Demo 2 */
