@@ -60,12 +60,12 @@
 
 /* Third demo */
 
-@view-transition {
+/* @view-transition {
   navigation: auto;
 }
 
 ::view-transition-group(*) {
-  animation-duration: .3s;
+  animation-duration: 1s;
 }
 
 .genai {
@@ -85,7 +85,7 @@
 }
 .great-expectations {
   view-transition-name: great-expectations;
-}
+} */
 /* ::view-transition-group(genai) {
     animation-duration: 0.5s;
 }
