@@ -16,49 +16,60 @@
   border-radius: 5px;
 }
 
-/* First demo */
-/*
-@view-transition {
-  navigation: auto;
-} 
-*/
-
-/* Second demo */
+/* Demo 1 */
 
 /* @view-transition {
   navigation: auto;
-}
+  animation-duration: 1s;
+} */
 
+/* Demo 2 */
+/* 
+@view-transition {
+  navigation: auto;
+}
 
 ::view-transition-group(root) {
-    animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
+
+@media (prefers-reduced-motion) {
+  ::view-transition-group(root) {
+    animation-duration: 0s;
+  }
+}
+
 @keyframes move-out {
-    from {
-        transform: translateY(0%);
-    }
-    to {
-        transform: translateY(-100%);
-    }
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
 }
 
 @keyframes move-in {
-    from {
-        transform: translateY(100%);
-    }
-    to {
-        transform: translateY(0%);
-    }
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
 }
 ::view-transition-old(root) {
-    animation: 0.4s ease-in both move-out;
-
+  animation: 0.4s ease-in both move-out;
 }
 ::view-transition-new(root) {
-    animation: 0.4s ease-in both move-in;
+  animation: 0.4s ease-in both move-in;
 } */
 
-/* Third demo */
+/* Demo 2.5*/
+/* 
+#header {
+  view-transition-name: header;
+} */
+
+/* Demo 3 */
 
 /* @view-transition {
   navigation: auto;
