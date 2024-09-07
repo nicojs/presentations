@@ -10,12 +10,12 @@
 
 - 👪 A Dad ??!!
 - 💼 Manager Kenniscentrum
-- 🧙‍♂️ Open sourcerer
+- 👽 StrykerJS maintainer
 - 🏊‍♂️ Love to swim and run
 
 <!-- .element class="no-list" -->
 
-<i class="bi bi-github" style="color: #fff"></i> &nbsp;<a target="_blank" href="https://github.com/nicojs" style="color: #fff">nicojs</a>  <i class="bi bi-twitter-x" style="margin-left: 20px; color: #fff"></i> &nbsp;<a target="_blank" style="color: #fff" href="https://twitter.com/_nicojs">\_nicojs</a>
+<i class="bi bi-github" style="color: #fff"></i> <a target="_blank" href="https://github.com/nicojs" style="color: #fff">nicojs</a>  <i class="bi bi-twitter-x" style="margin-left: 20px; color: #fff"></i> <a target="_blank" style="color: #fff" href="https://twitter.com/_nicojs">\_nicojs</a> <i style="margin-left: 20px;" class="bi bi-slack"></i> nicojs
 
 </div>
 </div>
