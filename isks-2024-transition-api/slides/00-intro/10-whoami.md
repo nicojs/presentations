@@ -12,6 +12,7 @@
 - 💼 Manager Kenniscentrum
 - 👽 StrykerJS maintainer
 - 🏊‍♂️ Love to swim and run
+- ✨ Front end enthusiast
 
 <!-- .element class="no-list" -->
 
