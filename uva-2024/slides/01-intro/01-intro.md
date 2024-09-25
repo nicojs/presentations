@@ -34,8 +34,9 @@ Mutation testing guest lecture
 
 ##### Nico Jansen
 
-![Nico](/img/nico.jpg) <!-- .element class="img-round" style="width: 200px" -->
+![Nico](/img/nico.jpg) <!-- .element class="img-round" style="height: 200px" -->
 
+* 👪 A ... dad?
 * 💼 Manager & Trainer KC
 * 🧙‍♂️ Open sourcerer
 * <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;nicojs
@@ -112,3 +113,6 @@ Masterclass @ Online, April 10
 
 </div>
 
+---
+
+<!-- .slide: data-background-color="#6bbe4c" data-background-image="../../img/slides/01-intro_image.png" data-background-size="contain" -->

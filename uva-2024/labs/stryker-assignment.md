@@ -24,7 +24,7 @@ To get started, be sure you have [vscode](https://code.visualstudio.com/) and [a
 
 ```sh
 $ node -v
-v18.18.0
+v20.17.0
 ```
 
 Also make sure to have bash (linux shell) or git-bash (windows) installed.
