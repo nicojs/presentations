@@ -52,14 +52,9 @@ Now wait for StrykerJS to be compiled for the first time.
 
 The build command task will remain running after the first compilation. Any changes you make will be recompiled on the fly.
 
-After StrykerJS is compiled, it is time for your first StrykerJS run. You can execute `run-stryker.sh` from inside the "numbers.js" directory.
+After StrykerJS is compiled, it is time for your first StrykerJS run. You
 
-```sh
-cd numbers.js
-./run-stryker.sh
-```
-
-Running Stryker this way should take about 10 seconds:
+Running Stryker this way should take a couple of seconds:
 
 ![exec-stryker.png](../img/labs/exec-stryker.png)
 
@@ -95,8 +90,6 @@ These tasks can help you by allowing you to debug the code. For example, if you 
 
 If you want to debug a mutator, you can add a breakpoint in the TypeScript file of the mutator and debug "👽 Run Stryker".
 
-Last but not least: you can focus StrykerJS to only mutate specific lines of in a file using `./run-stryker.sh -m file.js:from-to`. For example: `./run-stryker.sh -m lib/numbers/basic.js:60-65` will only mutation test lines 60 through 65 (6 lines in total). This is generally much faster than running StrykerJS on the entire file.
-
 ---
 
 ### 1.3. Improve mutation score
@@ -113,15 +106,13 @@ When you zoom in on the `subtraction` function, you can see that line 61 has no 
 
 Design a mutator that proofs that this line of code isn't well tested. Test out your mutator by manually inserting the mutant into the code yourself and running the tests. Do the tests still pass?
 
-Write down a short report where you explain what mutator is needed and why it isn't well tested.
-
 ![](../img/labs/exercise-4.png)
 
 ---
 
 ### 1.5. Implement the mutator
 
-Implement the mutator designed in exercise 4 mutator. A empty mutator is prepared for just this occasion: "assignment-operator-mutator.ts". Make sure TypeScript compiler is running in watch mode.
+Implement the mutator designed in exercise 4 mutator. A empty mutator is prepared for just this occasion: "uva-mutator.ts". Make sure TypeScript compiler is running in watch mode.
 
 Test that your mutator works by executing StrykerJS on the basic.js file. There should be a surviving mutant on line 61.
 

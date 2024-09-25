@@ -8,7 +8,7 @@ Transform operations in source code to one or more mutated versions of that sour
 
 ### Popular operator mutations
 
-![](/img/popular-operators.PNG)
+![](/img/popular-operators.png)
 
 
 ----
