@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "packageManager": "npm",
+  "reporters": ["json"],
+  "testRunner_comment": "Test runner is set in verify.ts",
+  "coverageAnalysis": "perTest",
+  "karma": {
+    "projectType": "custom",
+    "configFile": "karma.conf.cjs",
+    "config": {}
+  },
+  "testRunnerNodeArgs": ["--experimental-vm-modules"],
+  "concurrency": 1,
+  "tap": {
+    "testFiles": ["test/loop.tap.js"]
+  }
+}
