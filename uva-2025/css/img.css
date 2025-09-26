@@ -1,0 +1,69 @@
+.img-width-30 {
+    width: 30%;
+}
+.img-width-25 {
+    width: 25%;
+}
+.img-width-20 {
+    width: 20%;
+}
+.img-width-15 {
+    width: 15%;
+}
+
+.img-max-height-700 img {
+    max-height: 700px !important;
+}
+
+.reveal section img.logo {
+    vertical-align: middle;
+}
+
+.reveal .img-round {
+    border-radius: 50%;
+}
+
+.reveal .img-round-vertical {
+    border-radius: 300px;
+}
+
+img.logo {
+    max-width: 200px;
+}
+
+img.img-inline {
+    display: inline-block;
+    height: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+.reveal section img.logo-bullet {
+    width: 150px;
+    margin-right: 20px;
+}
+
+.reveal section img.logo-wide {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+.reveal section img.emblem {
+    vertical-align: middle;
+}
+
+.img-rounded {
+    border-radius: 10px;
+}
+
+.reveal section.is-module.is-module-img h2 {
+    transform: translateY(50px);
+}
+
+.reveal section.is-module.is-module-img p img {
+    max-height: 30vh !important;
+}
+
+.reveal section.is-module.is-module-img *:nth-child(2) {
+    margin-top: 50px;
+}

@@ -1,0 +1,4 @@
+.parcel-cache
+**/*.pdf
+node_modules
+dist
