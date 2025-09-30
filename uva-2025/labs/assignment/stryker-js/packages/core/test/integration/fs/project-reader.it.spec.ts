@@ -5,7 +5,11 @@ import { coreTokens } from '../../../src/di/index.js';
 import { FileSystem, ProjectReader } from '../../../src/fs/index.js';
 import { resolveFromRoot } from '../../helpers/test-utils.js';
 
-const resolveTestResource = resolveFromRoot.bind(undefined, 'testResources', 'input-files');
+const resolveTestResource = resolveFromRoot.bind(
+  undefined,
+  'testResources',
+  'input-files',
+);
 
 describe(`${ProjectReader.name} integration`, () => {
   let sut: ProjectReader;
@@ -25,12 +29,22 @@ describe(`${ProjectReader.name} integration`, () => {
 
   it('should resolve reasonable project source files to be mutated by default', async () => {
     process.chdir(resolveTestResource());
-    const project = await sut.read();
+    const project = await sut.read(undefined);
     expect([...project.filesToMutate.keys()]).deep.eq([
       resolveTestResource('lib', 'string-utils.js'),
       resolveTestResource('src', 'app.ts'),
-      resolveTestResource('src', 'components', 'calculator', 'calculator.component.tsx'),
-      resolveTestResource('src', 'components', 'heading', 'heading.component.vue'),
+      resolveTestResource(
+        'src',
+        'components',
+        'calculator',
+        'calculator.component.tsx',
+      ),
+      resolveTestResource(
+        'src',
+        'components',
+        'heading',
+        'heading.component.vue',
+      ),
       resolveTestResource('src', 'index.html'),
       resolveTestResource('src', 'services', 'storage.ts'),
       resolveTestResource('src', 'services', 'test.ts'),
@@ -42,10 +56,12 @@ describe(`${ProjectReader.name} integration`, () => {
   it('should be able to read files from disk', async () => {
     // Arrange
     process.chdir(resolveTestResource());
-    const project = await sut.read();
+    const project = await sut.read(undefined);
 
     // Act
-    const content = await project.files.get(resolveTestResource('lib', 'string-utils.js'))?.readContent();
+    const content = await project.files
+      .get(resolveTestResource('lib', 'string-utils.js'))
+      ?.readContent();
 
     // Assert
     expect(content).eq(stringConcatSnapshot);

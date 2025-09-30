@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.1](https://github.com/stryker-mutator/stryker-js/compare/v9.1.0...v9.1.1) (2025-08-30)
+
+**Note:** Version bump only for package @stryker-mutator/instrumenter
+
+# [9.1.0](https://github.com/stryker-mutator/stryker-js/compare/v9.0.1...v9.1.0) (2025-08-30)
+
+### Bug Fixes
+
+- **deps:** update babel monorepo ([#5415](https://github.com/stryker-mutator/stryker-js/issues/5415)) ([34cff8e](https://github.com/stryker-mutator/stryker-js/commit/34cff8e6d24a901b7d497ac1ca01e6466355d987))
+- **deps:** update dependency angular-html-parser to ~9.2.0 ([#5346](https://github.com/stryker-mutator/stryker-js/issues/5346)) ([ff6897f](https://github.com/stryker-mutator/stryker-js/commit/ff6897f334de3a26ce019f0de392662ced0fb48a))
+
+### Features
+
+- **core:** implement the mutation server protocol (MSP) ([#5086](https://github.com/stryker-mutator/stryker-js/issues/5086)) ([6ab231d](https://github.com/stryker-mutator/stryker-js/commit/6ab231d8d05124a085271b8f55ba7de534042253))
+
+## [9.0.1](https://github.com/stryker-mutator/stryker-js/compare/v9.0.0...v9.0.1) (2025-05-14)
+
+**Note:** Version bump only for package @stryker-mutator/instrumenter
+
+# [9.0.0](https://github.com/stryker-mutator/stryker-js/compare/v8.7.1...v9.0.0) (2025-05-13)
+
+### Bug Fixes
+
+- **deps:** update babel monorepo ([#5053](https://github.com/stryker-mutator/stryker-js/issues/5053)) ([64b348e](https://github.com/stryker-mutator/stryker-js/commit/64b348eb4fd1fbfe96a254b57436d1f0f7e7b851))
+- **deps:** update dependency angular-html-parser to v8 ([#5214](https://github.com/stryker-mutator/stryker-js/issues/5214)) ([68e6fc4](https://github.com/stryker-mutator/stryker-js/commit/68e6fc40efdfc3f5b8713c34c3fb79782e906b7b))
+- **deps:** update dependency angular-html-parser to v9 ([#5254](https://github.com/stryker-mutator/stryker-js/issues/5254)) ([a163d00](https://github.com/stryker-mutator/stryker-js/commit/a163d007d8d55fc6e7fae248b856676512586bd7))
+- **deps:** update dependency semver to ~7.7.0 ([#5184](https://github.com/stryker-mutator/stryker-js/issues/5184)) ([5c78a65](https://github.com/stryker-mutator/stryker-js/commit/5c78a65a109f3b348601de934604b96931082ea8))
+- **instrumenter:** Allow script tags with type "module" to be mutated ([#5230](https://github.com/stryker-mutator/stryker-js/issues/5230)) ([c301e27](https://github.com/stryker-mutator/stryker-js/commit/c301e27b8e8dfb6a5890d21aae2937d6990652d9))
+
+### Features
+
+- **node:** drop support for node 18 ([#5290](https://github.com/stryker-mutator/stryker-js/issues/5290)) ([307ef79](https://github.com/stryker-mutator/stryker-js/commit/307ef79f009b75eaa58b2824be20b352ab5fd340))
+- **svelte:** support svelte to v5 ([#5089](https://github.com/stryker-mutator/stryker-js/issues/5089)) ([fc8ddf3](https://github.com/stryker-mutator/stryker-js/commit/fc8ddf3f6b9f9a066138c144b999ee737edaee78))
+- **vitest-runner:** support vitest 3 browser mode ([6f4c1f0](https://github.com/stryker-mutator/stryker-js/commit/6f4c1f0c08674eb2bf05f0d0b4435f646e1f9980))
+
+### BREAKING CHANGES
+
+- **node:** Node 18 is no longer supported, please use Node 20 or higher
+- **vitest-runner:** vitest runner now supports vitest v2 or higher
+
+## [8.7.1](https://github.com/stryker-mutator/stryker-js/compare/v8.7.0...v8.7.1) (2024-12-11)
+
+**Note:** Version bump only for package @stryker-mutator/instrumenter
+
+# [8.7.0](https://github.com/stryker-mutator/stryker-js/compare/v8.6.0...v8.7.0) (2024-12-06)
+
+**Note:** Version bump only for package @stryker-mutator/instrumenter
+
+# [8.6.0](https://github.com/stryker-mutator/stryker-js/compare/v8.5.0...v8.6.0) (2024-09-29)
+
+### Features
+
+- **ignore:** add "angular" ignore plugin ([#4789](https://github.com/stryker-mutator/stryker-js/issues/4789)) ([5d792d8](https://github.com/stryker-mutator/stryker-js/commit/5d792d8ea061b0fbaf14c435ef969ccb946d8362))
+- **instrumenter:** add expression mutator for Date ([#4917](https://github.com/stryker-mutator/stryker-js/issues/4917)) ([#4918](https://github.com/stryker-mutator/stryker-js/issues/4918)) ([8207ef6](https://github.com/stryker-mutator/stryker-js/commit/8207ef63abe8c20013ee9f6098876222fe4253fc))
+
 # [8.5.0](https://github.com/stryker-mutator/stryker-js/compare/v8.4.0...v8.5.0) (2024-08-11)
 
 **Note:** Version bump only for package @stryker-mutator/instrumenter

@@ -1,15 +1,28 @@
 import path from 'path';
+import fs from 'fs';
 
-import { assertions, factory, TempTestDirectorySandbox, testInjector } from '@stryker-mutator/test-helpers';
+import {
+  assertions,
+  factory,
+  TempTestDirectorySandbox,
+  testInjector,
+} from '@stryker-mutator/test-helpers';
 import { TestStatus } from '@stryker-mutator/api/test-runner';
 import { expect } from 'chai';
 
-import { createVitestTestRunnerFactory, VitestTestRunner } from '../../src/vitest-test-runner.js';
+import {
+  createVitestTestRunnerFactory,
+  VitestTestRunner,
+} from '../../src/vitest-test-runner.js';
 import { VitestRunnerOptionsWithStrykerOptions } from '../../src/vitest-runner-options-with-stryker-options.js';
+import { createVitestRunnerOptions } from '../util/factories.js';
 
-const test1 = 'src/heading.component.spec.ts#HeadingComponent should project its content';
-const test2 = 'src/math.component.spec.ts#my-math should support simple addition';
-const test3 = 'src/math.component.spec.ts#my-math should support simple subtraction';
+const test1 =
+  'src/heading.component.spec.ts#HeadingComponent should project its content';
+const test2 =
+  'src/math.component.spec.ts#my-math should support simple addition';
+const test3 =
+  'src/math.component.spec.ts#my-math should support simple subtraction';
 
 describe('VitestRunner in browser mode', () => {
   let sut: VitestTestRunner;
@@ -18,13 +31,15 @@ describe('VitestRunner in browser mode', () => {
   let sandboxFileName: string;
 
   beforeEach(async () => {
-    sut = testInjector.injector.injectFunction(createVitestTestRunnerFactory('__stryker2__'));
+    sut = testInjector.injector.injectFunction(
+      createVitestTestRunnerFactory('__stryker2__'),
+    );
     options = testInjector.options as VitestRunnerOptionsWithStrykerOptions;
-    options.vitest = {};
+    options.vitest = createVitestRunnerOptions();
 
     sandbox = new TempTestDirectorySandbox('browser-project', { soft: true });
     await sandbox.init();
-    sandboxFileName = path.resolve(sandbox.tmpDir, 'src/heading.component.ts');
+    sandboxFileName = path.resolve(sandbox.tmpDir, 'src/math.component.ts');
     await sut.init();
   });
   afterEach(async () => {
@@ -34,7 +49,7 @@ describe('VitestRunner in browser mode', () => {
 
   describe(VitestTestRunner.prototype.dryRun.name, () => {
     it('should report the run result', async () => {
-      const runResult = await sut.dryRun();
+      const runResult = await sut.dryRun(factory.dryRunOptions());
       assertions.expectCompleted(runResult);
       assertions.expectTestResults(runResult, [
         {
@@ -59,7 +74,7 @@ describe('VitestRunner in browser mode', () => {
     });
 
     it('should report mutant coverage', async () => {
-      const runResult = await sut.dryRun();
+      const runResult = await sut.dryRun(factory.dryRunOptions());
       assertions.expectCompleted(runResult);
       expect(runResult.mutantCoverage).deep.eq({
         perTest: {
@@ -126,7 +141,12 @@ describe('VitestRunner in browser mode', () => {
   describe(VitestTestRunner.prototype.mutantRun.name, () => {
     it('should be able to kill a mutant', async () => {
       const runResult = await sut.mutantRun(
-        factory.mutantRunOptions({ activeMutant: factory.mutant({ id: '50' }), mutantActivation: 'runtime', testFilter: [test3], sandboxFileName }),
+        factory.mutantRunOptions({
+          activeMutant: factory.mutant({ id: '50' }),
+          mutantActivation: 'runtime',
+          testFilter: [test3],
+          sandboxFileName,
+        }),
       );
       assertions.expectKilled(runResult);
       expect(runResult.killedBy).deep.eq([test3]);
@@ -136,9 +156,15 @@ describe('VitestRunner in browser mode', () => {
 
     it('should be able to survive after killing mutant', async () => {
       // Arrange
-      await sut.mutantRun(
-        factory.mutantRunOptions({ activeMutant: factory.mutant({ id: '50' }), mutantActivation: 'runtime', testFilter: [test3], sandboxFileName }),
+      const initResult = await sut.mutantRun(
+        factory.mutantRunOptions({
+          activeMutant: factory.mutant({ id: '50' }),
+          mutantActivation: 'runtime',
+          testFilter: [test3],
+          sandboxFileName,
+        }),
       );
+      assertions.expectKilled(initResult);
 
       // Act
       const runResult = await sut.mutantRun(
@@ -152,6 +178,33 @@ describe('VitestRunner in browser mode', () => {
 
       // Assert
       assertions.expectSurvived(runResult);
+      expect(runResult.nrOfTests).eq(1);
+    });
+
+    it('should be able to kill after survive mutant', async () => {
+      // Arrange
+      const initResult = await sut.mutantRun(
+        factory.mutantRunOptions({
+          activeMutant: factory.mutant({ id: '48' }), // Should survive
+          sandboxFileName,
+          mutantActivation: 'runtime',
+          testFilter: [test2],
+        }),
+      );
+      assertions.expectSurvived(initResult);
+
+      // Act
+      const runResult = await sut.mutantRun(
+        factory.mutantRunOptions({
+          activeMutant: factory.mutant({ id: '50' }),
+          mutantActivation: 'runtime',
+          testFilter: [test3],
+          sandboxFileName,
+        }),
+      );
+
+      // Assert
+      assertions.expectKilled(runResult);
       expect(runResult.nrOfTests).eq(1);
     });
 
@@ -170,6 +223,28 @@ describe('VitestRunner in browser mode', () => {
       assertions.expectKilled(runResult);
       expect(runResult.killedBy).deep.eq([test3]);
       expect(runResult.failureMessage).contains('42 - 2 = undefined');
+    });
+
+    // See issue https://github.com/stryker-mutator/stryker-js/issues/5242
+    it("shouldn't take a screenshot on test failure", async () => {
+      // Act
+      const runResult = await sut.mutantRun(
+        factory.mutantRunOptions({
+          activeMutant: factory.mutant({ id: '14' }), // Static mutant
+          sandboxFileName,
+          mutantActivation: 'static',
+          testFilter: [test3],
+        }),
+      );
+
+      // Assert
+      assertions.expectKilled(runResult);
+      expect(runResult.killedBy).deep.eq([test3]);
+      expect(runResult.failureMessage).contains('42 - 2 = undefined');
+      const allScreenshots = (
+        await fs.promises.readdir(process.cwd(), { recursive: true })
+      ).filter((file) => file.endsWith('.png'));
+      expect(allScreenshots, allScreenshots.join('')).empty;
     });
   });
 });

@@ -1,1 +1,1 @@
-../stryker-js/packages/core/bin/stryker.js run $@
+../stryker-js/packages/core/bin/stryker run $@

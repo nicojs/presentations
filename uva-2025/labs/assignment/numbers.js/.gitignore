@@ -2,5 +2,6 @@
 node_modules
 npm-debug.log
 *.*~
-.stryker-tmp/
-reports/
+
+.stryker-tmp
+reports

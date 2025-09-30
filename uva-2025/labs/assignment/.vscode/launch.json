@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "👽 Run Stryker",
       "skipFiles": ["<node_internals>/**"],
-      "args": ["run", "-m", "lib/numbers/basic.js,lib/numbers/calculus.js"],
+      "args": ["run"],
       "cwd": "${workspaceFolder}/numbers.js",
       "program": "${workspaceFolder}/stryker-js/packages/core/bin/stryker.js",
       "outputCapture": "std"
@@ -31,7 +31,7 @@
       "cwd": "${workspaceFolder}/stryker-js/packages/instrumenter",
       "program": "${workspaceFolder}/stryker-js/node_modules/mocha/bin/_mocha",
       "env": {
-        "CHAI_JEST_SNAPSHOT_UPDATE_ALL": "true"
+        "CHAI_JEST_SNAPSHOT_UPDATE_ALL": "false"
       }
     }
   ]

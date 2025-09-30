@@ -117,7 +117,7 @@ Config file:
 
 Settings for the `clear-text` reporter.
 
-- `allowColor`: "Indicates whether or not to use color coding in output.",
+- `allowColor`: Indicates whether or not to use color coding in output.
 - `allowEmojis`: Enable emojis in your clear text report (experimental).
 - `logTests`: Indicates whether or not to log which tests were executed for a given mutant.
 - `maxTestsToLog`: Indicates the maximum amount of test to log when `logTests` is enabled.
@@ -166,10 +166,11 @@ The possible values are:
 
 ### `dashboard` [`DashboardOptions`]
 
-Default: `{ baseUrl: 'https://dashboard.stryker-mutator.io/api/reports', reportType: 'mutationScore' }`<br />
+Default: `{ baseUrl: 'https://dashboard.stryker-mutator.io/api/reports', reportType: 'full' }`<br />
 Command line:
 
-- `--dashboard.project github.com/my-org/my-project --dashboard.version branch-or-tag`
+- `--dashboard.project github.com/my-org/my-project`
+- `--dashboard.version branch-or-tag`
 - `--dashboard.module my-module`
 - `--dashboard.baseUrl https://dashboard.stryker-mutator.io/api/reports`
 - `--dashboard.reportType full`
@@ -323,11 +324,13 @@ Default: `[]`<br />
 Command line: _none_<br />
 Config file: `"ignorers": ["console.debug"]`<br />
 
-Specify which ignore-plugins to use. With an ignore-plugin you can ignore mutants inside common code patterns that you don't want to test for some reason. For example, you can use this to ignore all `console.debug()` statements from being mutated. 
+Specify which ignore-plugins to use. With an ignore-plugin, you can skip mutating specific code patterns that you don't want to test or cannot be mutated. For example, you may use an ignore-plugin to exclude all `console.debug()` statements from mutation testing. 
 
-You only specify the name of the plugins here. The plugin's implementation must be loaded using a separate file, which must be listed in your [plugins array](#plugins-string).
+Here's a list of built-in ignore plugins:
 
-See [using an ignore-plugin](./disable-mutants.md#using-an-ignore-plugin) for more information.
+- `"angular"`: Ignores mutating of code in an Angular application that is required to be static by the Angular Compiler. This includes `input()`, `output()` and `model()` option objects. This should be enabled for all Angular projects.
+
+To create your own ignore plugin, implement it in a separate file and load it by specifying its name in the [plugins array](#plugins-string). For more details, see [Using an Ignore-Plugin](./disable-mutants.md#using-an-ignore-plugin).
 
 ### `ignoreStatic` [`boolean`]
 
@@ -507,7 +510,7 @@ more like your would run the tests yourself in your project directory.
 Only disable this setting if you really know what you are doing.
 
 For example, [Jest](https://jestjs.io/) expects any plugins to be located at "./node_modules/..."
-in the Sandbox directory. Another example can be running [karma](http://karma-runner.github.io/) tests where
+in the Sandbox directory. Another example can be running [karma](https://karma-runner.github.io/) tests where
 you specify files from the 'node_modules/angular/...'. Without symlinking the
 node_modules directory this would not be possible.
 

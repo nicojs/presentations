@@ -14,7 +14,7 @@ describe(StringBuilder.name, () => {
       expect(sut.toString()).eq('123');
     });
 
-    const DEFAULT_MAX_CHARACTERS = 2048;
+    const DEFAULT_MAX_CHARACTERS = 8192;
     it(`should append a to maximum of ${DEFAULT_MAX_CHARACTERS} characters by default`, () => {
       const sut = new StringBuilder();
       for (let i = 0; i < DEFAULT_MAX_CHARACTERS; i++) {
@@ -24,7 +24,9 @@ describe(StringBuilder.name, () => {
       const result = sut.toString();
       expect(result).lengthOf(DEFAULT_MAX_CHARACTERS);
       const expectedLastPart = '...expected';
-      expect(result.substr(result.length - expectedLastPart.length)).eq(expectedLastPart);
+      expect(result.substr(result.length - expectedLastPart.length)).eq(
+        expectedLastPart,
+      );
     });
 
     it('should not split the last string, even if it exceeds the max characters', () => {
@@ -44,7 +46,11 @@ describe(StringBuilder.name, () => {
       expect(StringBuilder.concat(...stringBuilders)).eq(`foobar${EOL}baz`);
     });
     it('should remove empty builders', () => {
-      const stringBuilders = [new StringBuilder(), new StringBuilder(), new StringBuilder()];
+      const stringBuilders = [
+        new StringBuilder(),
+        new StringBuilder(),
+        new StringBuilder(),
+      ];
       stringBuilders[0].append('foo');
       stringBuilders[0].append('bar');
       stringBuilders[2].append('baz');

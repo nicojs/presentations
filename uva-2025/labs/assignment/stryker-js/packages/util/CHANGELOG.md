@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.1](https://github.com/stryker-mutator/stryker-js/compare/v9.1.0...v9.1.1) (2025-08-30)
+
+**Note:** Version bump only for package @stryker-mutator/util
+
+# [9.1.0](https://github.com/stryker-mutator/stryker-js/compare/v9.0.1...v9.1.0) (2025-08-30)
+
+**Note:** Version bump only for package @stryker-mutator/util
+
+## [9.0.1](https://github.com/stryker-mutator/stryker-js/compare/v9.0.0...v9.0.1) (2025-05-14)
+
+**Note:** Version bump only for package @stryker-mutator/util
+
+# [9.0.0](https://github.com/stryker-mutator/stryker-js/compare/v8.7.1...v9.0.0) (2025-05-13)
+
+**Note:** Version bump only for package @stryker-mutator/util
+
+## [8.7.1](https://github.com/stryker-mutator/stryker-js/compare/v8.7.0...v8.7.1) (2024-12-11)
+
+### Bug Fixes
+
+- **util:** prevent prototype pollution in deepMerge ([#5144](https://github.com/stryker-mutator/stryker-js/issues/5144)) ([f7b34bf](https://github.com/stryker-mutator/stryker-js/commit/f7b34bfbbde33e45bc213a2f6058bf0c5bf6bce7))
+
+# [8.7.0](https://github.com/stryker-mutator/stryker-js/compare/v8.6.0...v8.7.0) (2024-12-06)
+
+**Note:** Version bump only for package @stryker-mutator/util
+
+# [8.6.0](https://github.com/stryker-mutator/stryker-js/compare/v8.5.0...v8.6.0) (2024-09-29)
+
+**Note:** Version bump only for package @stryker-mutator/util
+
 # [8.5.0](https://github.com/stryker-mutator/stryker-js/compare/v8.4.0...v8.5.0) (2024-08-11)
 
 **Note:** Version bump only for package @stryker-mutator/util

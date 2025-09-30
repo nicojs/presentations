@@ -4,17 +4,16 @@ import fs from 'fs';
 import { isErrnoException } from '@stryker-mutator/util';
 
 export const fileUtils = {
-  deleteDir(dir: string): Promise<void> {
-    return fs.promises.rm(dir, { recursive: true, force: true });
-  },
-
-  async cleanFolder(folderName: string): Promise<string | undefined> {
+  /**
+   * Cleans the dir by creating it.
+   */
+  async cleanDir(dirName: string): Promise<string | undefined> {
     try {
-      await fs.promises.lstat(folderName);
-      await this.deleteDir(folderName);
-      return fs.promises.mkdir(folderName, { recursive: true });
+      await fs.promises.lstat(dirName);
+      await fs.promises.rm(dirName, { recursive: true, force: true });
+      return fs.promises.mkdir(dirName, { recursive: true });
     } catch {
-      return fs.promises.mkdir(folderName, { recursive: true });
+      return fs.promises.mkdir(dirName, { recursive: true });
     }
   },
 
@@ -80,7 +79,10 @@ export const fileUtils = {
    * returns the first occurrence of the node_modules, or null of none could be found.
    * @param basePath starting point
    */
-  async findNodeModulesList(basePath: string, tempDirName?: string): Promise<string[]> {
+  async findNodeModulesList(
+    basePath: string,
+    tempDirName?: string,
+  ): Promise<string[]> {
     const nodeModulesList: string[] = [];
     const dirBfsQueue: string[] = ['.'];
 
@@ -96,8 +98,13 @@ export const fileUtils = {
       }
 
       const parentDir = dir;
-      const filesWithType = await fs.promises.readdir(path.join(basePath, dir), { withFileTypes: true });
-      const dirs = filesWithType.filter((file) => file.isDirectory()).map((childDir) => path.join(parentDir, childDir.name));
+      const filesWithType = await fs.promises.readdir(
+        path.join(basePath, dir),
+        { withFileTypes: true },
+      );
+      const dirs = filesWithType
+        .filter((file) => file.isDirectory())
+        .map((childDir) => path.join(parentDir, childDir.name));
       dirBfsQueue.push(...dirs);
     }
 

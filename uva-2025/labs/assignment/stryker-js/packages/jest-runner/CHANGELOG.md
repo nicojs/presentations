@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.1](https://github.com/stryker-mutator/stryker-js/compare/v9.1.0...v9.1.1) (2025-08-30)
+
+**Note:** Version bump only for package @stryker-mutator/jest-runner
+
+# [9.1.0](https://github.com/stryker-mutator/stryker-js/compare/v9.0.1...v9.1.0) (2025-08-30)
+
+**Note:** Version bump only for package @stryker-mutator/jest-runner
+
+## [9.0.1](https://github.com/stryker-mutator/stryker-js/compare/v9.0.0...v9.0.1) (2025-05-14)
+
+**Note:** Version bump only for package @stryker-mutator/jest-runner
+
+# [9.0.0](https://github.com/stryker-mutator/stryker-js/compare/v8.7.1...v9.0.0) (2025-05-13)
+
+### Bug Fixes
+
+- **deps:** update dependency semver to ~7.7.0 ([#5184](https://github.com/stryker-mutator/stryker-js/issues/5184)) ([5c78a65](https://github.com/stryker-mutator/stryker-js/commit/5c78a65a109f3b348601de934604b96931082ea8))
+- **deps:** update dependency tslib to v2.8.1 ([#5075](https://github.com/stryker-mutator/stryker-js/issues/5075)) ([f069348](https://github.com/stryker-mutator/stryker-js/commit/f069348db3ed1a7af27b058d629fa0dc2472df9c))
+
+### Features
+
+- **node:** drop support for node 18 ([#5290](https://github.com/stryker-mutator/stryker-js/issues/5290)) ([307ef79](https://github.com/stryker-mutator/stryker-js/commit/307ef79f009b75eaa58b2824be20b352ab5fd340))
+
+### BREAKING CHANGES
+
+- **node:** Node 18 is no longer supported, please use Node 20 or higher
+
+## [8.7.1](https://github.com/stryker-mutator/stryker-js/compare/v8.7.0...v8.7.1) (2024-12-11)
+
+**Note:** Version bump only for package @stryker-mutator/jest-runner
+
+# [8.7.0](https://github.com/stryker-mutator/stryker-js/compare/v8.6.0...v8.7.0) (2024-12-06)
+
+**Note:** Version bump only for package @stryker-mutator/jest-runner
+
+# [8.6.0](https://github.com/stryker-mutator/stryker-js/compare/v8.5.0...v8.6.0) (2024-09-29)
+
+### Bug Fixes
+
+- **deps:** update dependency tslib to v2.7.0 ([#4981](https://github.com/stryker-mutator/stryker-js/issues/4981)) ([4bdef40](https://github.com/stryker-mutator/stryker-js/commit/4bdef401f3619da3df3ddb8f8e04464185faee0e))
+- **jest-runner:** allow prerelease jest versions ([#5015](https://github.com/stryker-mutator/stryker-js/issues/5015)) ([#5016](https://github.com/stryker-mutator/stryker-js/issues/5016)) ([0c9cdd1](https://github.com/stryker-mutator/stryker-js/commit/0c9cdd11ba7c26334be225bfebacf49c4ab74eca))
+
 # [8.5.0](https://github.com/stryker-mutator/stryker-js/compare/v8.4.0...v8.5.0) (2024-08-11)
 
 **Note:** Version bump only for package @stryker-mutator/jest-runner

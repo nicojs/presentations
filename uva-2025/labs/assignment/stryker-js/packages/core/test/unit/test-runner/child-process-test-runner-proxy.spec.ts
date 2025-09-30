@@ -1,24 +1,33 @@
 import { URL } from 'url';
 
-import { FileDescriptions, LogLevel, StrykerOptions } from '@stryker-mutator/api/core';
+import { FileDescriptions, StrykerOptions } from '@stryker-mutator/api/core';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Task } from '@stryker-mutator/util';
 import { factory, testInjector } from '@stryker-mutator/test-helpers';
 
 import { ChildProcessCrashedError } from '../../../src/child-proxy/child-process-crashed-error.js';
-import { ChildProcessProxy, Promisified } from '../../../src/child-proxy/child-process-proxy.js';
-import { LoggingClientContext } from '../../../src/logging/index.js';
+import {
+  ChildProcessProxy,
+  Promisified,
+} from '../../../src/child-proxy/child-process-proxy.js';
+import { LoggingServerAddress } from '../../../src/logging/index.js';
 import { ChildProcessTestRunnerProxy } from '../../../src/test-runner/child-process-test-runner-proxy.js';
 import { ChildProcessTestRunnerWorker } from '../../../src/test-runner/child-process-test-runner-worker.js';
 import { IdGenerator } from '../../../src/child-proxy/id-generator.js';
 
 describe(ChildProcessTestRunnerProxy.name, () => {
   let options: StrykerOptions;
-  let childProcessProxyMock: sinon.SinonStubbedInstance<ChildProcessProxy<ChildProcessTestRunnerWorker>>;
-  let proxyMock: sinon.SinonStubbedInstance<Promisified<ChildProcessTestRunnerWorker>>;
-  let childProcessProxyCreateStub: sinon.SinonStubbedMember<typeof ChildProcessProxy.create>;
-  let loggingContext: LoggingClientContext;
+  let childProcessProxyMock: sinon.SinonStubbedInstance<
+    ChildProcessProxy<ChildProcessTestRunnerWorker>
+  >;
+  let proxyMock: sinon.SinonStubbedInstance<
+    Promisified<ChildProcessTestRunnerWorker>
+  >;
+  let childProcessProxyCreateStub: sinon.SinonStubbedMember<
+    typeof ChildProcessProxy.create
+  >;
+  let loggingServerAddress: LoggingServerAddress;
   let clock: sinon.SinonFakeTimers;
   let fileDescriptions: FileDescriptions;
   const idGenerator = new IdGenerator();
@@ -27,15 +36,20 @@ describe(ChildProcessTestRunnerProxy.name, () => {
     clock = sinon.useFakeTimers();
     fileDescriptions = { 'foo.js': { mutate: true } };
     childProcessProxyMock = sinon.createStubInstance(ChildProcessProxy);
-    proxyMock = (childProcessProxyMock as { proxy: Promisified<ChildProcessTestRunnerWorker> }).proxy =
-      factory.testRunner() as sinon.SinonStubbedInstance<Promisified<ChildProcessTestRunnerWorker>>;
+    proxyMock = (
+      childProcessProxyMock as {
+        proxy: Promisified<ChildProcessTestRunnerWorker>;
+      }
+    ).proxy = factory.testRunner() as sinon.SinonStubbedInstance<
+      Promisified<ChildProcessTestRunnerWorker>
+    >;
 
     childProcessProxyCreateStub = sinon.stub(ChildProcessProxy, 'create');
     childProcessProxyCreateStub.returns(childProcessProxyMock);
     options = factory.strykerOptions({
       plugins: ['foo-plugin', 'bar-plugin'],
     });
-    loggingContext = { port: 4200, level: LogLevel.Fatal };
+    loggingServerAddress = { port: 4200 };
     idGenerator.next();
   });
 
@@ -44,9 +58,9 @@ describe(ChildProcessTestRunnerProxy.name, () => {
       options,
       fileDescriptions,
       'a working directory',
-      loggingContext,
+      loggingServerAddress,
       ['plugin', 'paths'],
-      testInjector.logger,
+      testInjector.getLogger,
       idGenerator,
     );
   }
@@ -56,14 +70,18 @@ describe(ChildProcessTestRunnerProxy.name, () => {
     createSut();
     sinon.assert.calledWithExactly(
       childProcessProxyCreateStub,
-      new URL('../../../src/test-runner/child-process-test-runner-worker.js', import.meta.url).toString(),
-      loggingContext,
+      new URL(
+        '../../../src/test-runner/child-process-test-runner-worker.js',
+        import.meta.url,
+      ).toString(),
+      loggingServerAddress,
       options,
       fileDescriptions,
       ['plugin', 'paths'],
       'a working directory',
       ChildProcessTestRunnerWorker,
       ['--inspect', '--no-warnings'],
+      testInjector.getLogger,
       idGenerator,
     );
   });
@@ -77,7 +95,9 @@ describe(ChildProcessTestRunnerProxy.name, () => {
 
   it('should forward `dryRun` calls', async () => {
     const sut = createSut();
-    const expectedResult = factory.completeDryRunResult({ mutantCoverage: factory.mutantCoverage() });
+    const expectedResult = factory.completeDryRunResult({
+      mutantCoverage: factory.mutantCoverage(),
+    });
     proxyMock.dryRun.resolves(expectedResult);
     const runOptions = factory.dryRunOptions({
       timeout: 234,

@@ -2,9 +2,7 @@ var assert = require("assert");
 var numbers = require("../index.js");
 var basic = numbers.basic;
 
-suite("numbers", () => {
-  console.log("\n\n\033[34mTesting Standard Mathematics\033[0m");
-
+suite("numbers", () =>  {
   // longList is used by basic.max() and basic.min()
   // to test for `Maximum call stack size exceeded` exception.
   var longList = [],
@@ -16,6 +14,7 @@ suite("numbers", () => {
   }
   longList.push(1e6);
   longList.push(-1e6);
+  Object.freeze(longList);
 
   // basic.sum
   test("sum should return the sum of items in an array", () => {
@@ -24,32 +23,36 @@ suite("numbers", () => {
   });
 
   test("sum should throw an exception when given anything but an array", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.sum(1);
     }, /Input must be of type Array/);
   });
 
   test("sum should throw an exception when given anything objects other than numbers", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.sum([1, 2, "error"]);
     }, /All elements in array must be numbers/);
   });
 
   // basic.substraction
+  test("subtraction should return the difference of items in an array", () => {
+    assert.equal(basic.subtraction([5, 3, 1, -9]), 0);
+  });
+
   test("subtraction should throw an exception when given anything but an array", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.subtraction(1);
     }, /Input must be of type Array/);
   });
 
   test("subtraction should throw an exception when given anything objects other than numbers", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.subtraction(["test", 1, 1, 2]);
     }, /All elements in array must be numbers/);
   });
 
   test("subtraction should throw an exception last element is not a number", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.subtraction([1, 1, 2, "test"]);
     }, /All elements in array must be numbers/);
   });
@@ -61,19 +64,19 @@ suite("numbers", () => {
   });
 
   test("product should throw an exception when given anything but an array", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.product(1);
     }, /Input must be of type Array/);
   });
 
   test("product should throw an exception when given anything objects other than numbers", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.product([1, 2, "error"]);
     }, /All elements in array must be numbers/);
   });
 
   test("product should throw an exception when given anything objects other than numbers", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.product(["error", 1, 2]);
     }, /All elements in array must be numbers/);
   });
@@ -83,7 +86,7 @@ suite("numbers", () => {
   });
 
   test("square should throw an Error when input is other than a number", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.square("error");
     }, /Input must be a number/);
   });
@@ -91,7 +94,7 @@ suite("numbers", () => {
   // basic.binomial
   test("binomial should return the binomial coefficient (n choose k) of two numbers", () => {
     assert.equal(basic.binomial(5, 3), 10);
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.binomial("error");
     }, /Input must be a number/);
   });
@@ -101,7 +104,7 @@ suite("numbers", () => {
     assert.equal(basic.factorial(4), 24);
     assert.equal(basic.factorial(5), 120);
     assert.throws(
-      () => {
+      () =>  {
         basic.factorial("error");
         basic.factorial(-1);
       },
@@ -112,9 +115,9 @@ suite("numbers", () => {
 
   // basic.gcd
   test("gcd should throw an exception when given a decimal", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.gcd(0.2, 1);
-    }, /Can only operate on integers/);
+    }, "A or B are not integers");
   });
   test("gcd should return the greatest common denominator of two integers", () => {
     assert.equal(basic.gcd(1254, 0), 1254);
@@ -141,7 +144,7 @@ suite("numbers", () => {
 
   // basic.max
   test("basic.max will throw an exception if argument is not an array.", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.max(65, 40);
     }, /Input must be of type Array/);
   });
@@ -155,7 +158,7 @@ suite("numbers", () => {
 
   // basic.min
   test("basic.min will throw an exception if argument is not an array.", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.min(65, 40);
     }, /Input must be of type Array/);
   });
@@ -196,16 +199,16 @@ suite("numbers", () => {
   });
 
   test("divMod should throw an exception when given a decimal", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.divMod(0.2, 0.1);
-    }, /A or B are not integers/);
+    }, 'A or B are not integers');
   });
 
   // basic.egcd
   test("egcd should throw an exception when given a decimal", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.egcd(0.2, 1);
-    }, /Can only operate on integers/);
+    }, 'Inputs must be numbers.');
   });
   test("egcd should return the array [a, x, y] which is the solved linear equation for GCD", () => {
     assert.equal(basic.egcd("ten", 1).toString(), "NaN,NaN,NaN");
@@ -227,7 +230,7 @@ suite("numbers", () => {
   });
 
   test("modInverse will throw an exception if no modular inverse exists", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.modInverse(65, 40);
     }, /No modular inverse exists/);
   });
@@ -242,7 +245,7 @@ suite("numbers", () => {
   });
 
   test("powerMod should throw an exception when given a non number", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.powerMod("error", "error", "error");
     }, /Inputs must be numbers/);
   });
@@ -256,7 +259,7 @@ suite("numbers", () => {
   });
 
   test("numbersEqual should throw an exception when given a non number", () => {
-    assert.throws(() => {
+    assert.throws(() =>  {
       basic.powerMod("error", "error", 0.2);
     }, /Inputs must be numbers/);
   });
@@ -272,7 +275,7 @@ suite("numbers", () => {
     assert.equal(func(7, 4), 840);
 
     assert.throws(
-      () => {
+      () =>  {
         func(-2, 5);
         func(2, 4);
       },

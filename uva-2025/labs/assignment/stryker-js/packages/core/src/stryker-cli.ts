@@ -3,13 +3,18 @@ import semver from 'semver';
 guardMinimalNodeVersion();
 
 import { Command } from 'commander';
-import { MutantResult, DashboardOptions, ALL_REPORT_TYPES, PartialStrykerOptions } from '@stryker-mutator/api/core';
+import {
+  MutantResult,
+  DashboardOptions,
+  ALL_REPORT_TYPES,
+  PartialStrykerOptions,
+} from '@stryker-mutator/api/core';
 
 import { initializerFactory } from './initializer/index.js';
-import { LogConfigurator } from './logging/index.js';
 import { Stryker } from './stryker.js';
 import { defaultOptions } from './config/index.js';
 import { strykerEngines, strykerVersion } from './stryker-package.js';
+import { StrykerServer } from './stryker-server.js';
 
 /**
  * Interpret a command line argument and add it to an object.
@@ -46,7 +51,15 @@ export class StrykerCli {
   constructor(
     private readonly argv: string[],
     private readonly program: Command = new Command(),
-    private readonly runMutationTest = async (options: PartialStrykerOptions) => new Stryker(options).runMutationTest(),
+    private readonly runMutationTest = async (options: PartialStrykerOptions) =>
+      new Stryker(options).runMutationTest(),
+    private readonly runMutationTestingServer = async (
+      options: PartialStrykerOptions,
+    ) => {
+      const server = new StrykerServer(options);
+      const port = await server.start();
+      console.log(JSON.stringify({ port }));
+    },
   ) {}
 
   public run(): void {
@@ -59,6 +72,7 @@ export class StrykerCli {
         `Possible commands:
         run: Run mutation testing
         init: Initialize Stryker for your project
+        runServer: Start the mutation testing server (implements the mutation testing server protocol)
 
         Optional location to a JSON or JavaScript config file as the last argument. If it's a JavaScript file, that file should export the config directly.`,
       )
@@ -77,13 +91,22 @@ export class StrykerCli {
         'A comma separated list of patterns used for specifying which files need to be ignored. This should only be used in cases where you experience a slow Stryker startup, because too many (or too large) files are copied to the sandbox that are not needed to run the tests. For example, image or movie directories. Note: This option will have NO effect when using the `--inPlace` option. The directories `node_modules`, `.git` and some others are always ignored. Example: `--ignorePatterns dist`. These patterns are ALWAYS ignored: [`node_modules`, `.git`, `/reports`, `*.tsbuildinfo`, `/stryker.log`, `.stryker-tmp`]. Because Stryker always ignores these, you should rarely have to adjust the `ignorePatterns` setting at all. This is useful to speed up Stryker by ignoring big directories/files you might have in your repo that has nothing to do with your code. For example, 1.5GB of movie/image files. Specify the patterns to all files or directories that are not used to run your tests and thus should NOT be copied to the sandbox directory for mutation testing. Each patterns in this array should be a [glob pattern](#usage-of-globbing-expressions-on-options). If a glob pattern starts with `/`, the pattern is relative to the current working directory. For example, `/foo.js` matches to `foo.js` but not `subdir/foo.js`. However to SELECT specific files TO BE mutated, you better use `--mutate`.',
         list,
       )
-      .option('--ignoreStatic', 'Ignore static mutants. Static mutants are mutants which are only executed during the loading of a file.')
+      .option(
+        '--ignoreStatic',
+        'Ignore static mutants. Static mutants are mutants which are only executed during the loading of a file.',
+      )
       .option(
         '--incremental',
         "Enable 'incremental mode'. Stryker will store results in a file and use that file to speed up the next --incremental run",
       )
-      .option('--allowEmpty', 'Allows stryker to exit without any errors in cases where no tests are found ')
-      .option('--incrementalFile <file>', 'Specify the file to use for incremental mode.')
+      .option(
+        '--allowEmpty',
+        'Allows stryker to exit without any errors in cases where no tests are found ',
+      )
+      .option(
+        '--incrementalFile <file>',
+        'Specify the file to use for incremental mode.',
+      )
       .option(
         '--force',
         'Run all mutants, even if --incremental is provided and an incremental file exists. Can be used to force a rebuild of the incremental file.',
@@ -107,34 +130,68 @@ export class StrykerCli {
         'A comma separated list of checkers to use, for example --checkers typescript',
         createSplitter(','),
       )
-      .option('--checkerNodeArgs <listOfNodeArgs>', 'A list of node args to be passed to checker child processes.', createSplitter(' '))
+      .option(
+        '--checkerNodeArgs <listOfNodeArgs>',
+        'A list of node args to be passed to checker child processes.',
+        createSplitter(' '),
+      )
       .option(
         '--coverageAnalysis <perTest|all|off>',
         `The coverage analysis strategy you want to use. Default value: "${defaultOptions.coverageAnalysis}"`,
       )
-      .option('--testRunner <name>', 'The name of the test runner you want to use')
+      .option(
+        '--testRunner <name>',
+        'The name of the test runner you want to use',
+      )
       .option(
         '--testRunnerNodeArgs <listOfNodeArgs>',
         'A comma separated list of node args to be passed to test runner child processes.',
         createSplitter(' '),
       )
-      .option('--reporters <name>', 'A comma separated list of the names of the reporter(s) you want to use', list)
-      .option('--plugins <listOfPlugins>', 'A list of plugins you want stryker to load (`require`).', list)
+      .option(
+        '--reporters <name>',
+        'A comma separated list of the names of the reporter(s) you want to use',
+        list,
+      )
+      .option(
+        '--plugins <listOfPlugins>',
+        'A list of plugins you want stryker to load (`require`).',
+        list,
+      )
       .option(
         '--appendPlugins <listOfPlugins>',
         'A list of additional plugins you want Stryker to load (`require`) without overwriting the (default) `plugins`.',
         list,
       )
-      .option('--timeoutMS <number>', 'Tweak the absolute timeout used to wait for a test runner to complete', parseInt)
-      .option('--timeoutFactor <number>', 'Tweak the standard deviation relative to the normal test run of a mutated test', parseFloat)
-      .option('--dryRunTimeoutMinutes <number>', 'Configure an absolute timeout for the initial test run. (It can take a while.)', parseFloat)
-      .option('--maxConcurrentTestRunners <n>', 'Set the number of max concurrent test runner to spawn (default: cpuCount)', parseInt)
+      .option(
+        '--timeoutMS <number>',
+        'Tweak the absolute timeout used to wait for a test runner to complete',
+        parseInt,
+      )
+      .option(
+        '--timeoutFactor <number>',
+        'Tweak the standard deviation relative to the normal test run of a mutated test',
+        parseFloat,
+      )
+      .option(
+        '--dryRunTimeoutMinutes <number>',
+        'Configure an absolute timeout for the initial test run. (It can take a while.)',
+        parseFloat,
+      )
+      .option(
+        '--maxConcurrentTestRunners <n>',
+        'Set the number of max concurrent test runner to spawn (default: cpuCount)',
+        parseInt,
+      )
       .option(
         '-c, --concurrency <n>',
         'Set the concurrency of workers. Stryker will always run checkers and test runners in parallel by creating worker processes (default: cpuCount - 1)',
         parseInt,
       )
-      .option('--disableBail', 'Force the test runner to keep running tests, even when a mutant is already killed.')
+      .option(
+        '--disableBail',
+        'Force the test runner to keep running tests, even when a mutant is already killed.',
+      )
       .option(
         '--maxTestRunnerReuse <n>',
         'Restart each test runner worker process after `n` runs. Not recommended unless you are experiencing memory leaks that you are unable to resolve. Configuring `0` here means infinite reuse.',
@@ -146,9 +203,13 @@ export class StrykerCli {
       )
       .option(
         '--fileLogLevel <level>',
-        `Set the log4js log level for the "stryker.log" file. Possible values: fatal, error, warn, info, debug, trace and off. Default is "${defaultOptions.fileLogLevel}"`,
+        `Set the log level for the "stryker.log" file. Possible values: fatal, error, warn, info, debug, trace and off. Default is "${defaultOptions.fileLogLevel}"`,
       )
-      .option('--allowConsoleColors <true/false>', 'Indicates whether or not Stryker should use colors in console.', parseBoolean)
+      .option(
+        '--allowConsoleColors <true/false>',
+        'Indicates whether or not Stryker should use colors in console.',
+        parseBoolean,
+      )
       .option(
         '--dashboard.project <name>',
         'Indicates which project name to use if the "dashboard" reporter is enabled. Defaults to the git url configured in the environment of your CI server.',
@@ -192,7 +253,6 @@ export class StrykerCli {
 
     // Earliest opportunity to configure the log level based on the logLevel argument
     const options: PartialStrykerOptions = this.program.opts();
-    LogConfigurator.configureMainProcess(options.logLevel);
 
     // Cleanup commander state
     delete options.version;
@@ -208,22 +268,30 @@ export class StrykerCli {
     }
 
     const commands = {
-      init: () => initializerFactory().initialize(),
+      init: async () => (await initializerFactory()).initialize(),
       run: () => this.runMutationTest(options),
+      runServer: () => this.runMutationTestingServer(options),
     };
 
     if (Object.keys(commands).includes(this.command)) {
-      const promise: Promise<MutantResult[] | void> = commands[this.command as keyof typeof commands]();
+      const promise: Promise<MutantResult[] | void> =
+        commands[this.command as keyof typeof commands]();
       promise.catch(() => {
         process.exitCode = 1;
       });
     } else {
-      console.error('Unknown command: "%s", supported commands: [%s], or use `stryker --help`.', this.command, Object.keys(commands));
+      console.error(
+        'Unknown command: "%s", supported commands: [%s], or use `stryker --help`.',
+        this.command,
+        Object.keys(commands),
+      );
     }
   }
 }
 
-export function guardMinimalNodeVersion(processVersion = process.version): void {
+export function guardMinimalNodeVersion(
+  processVersion = process.version,
+): void {
   if (!semver.satisfies(processVersion, strykerEngines.node)) {
     throw new Error(
       `Node.js version ${processVersion} detected. StrykerJS requires version to match ${strykerEngines.node}. Please update your Node.js version or visit https://nodejs.org/ for additional instructions`,

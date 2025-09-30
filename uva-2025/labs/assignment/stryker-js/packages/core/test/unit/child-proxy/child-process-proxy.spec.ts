@@ -3,9 +3,8 @@ import { EventEmitter } from 'events';
 import os from 'os';
 import { fileURLToPath, URL } from 'url';
 
-import { FileDescriptions, LogLevel, StrykerOptions } from '@stryker-mutator/api/core';
-import { Logger } from '@stryker-mutator/api/logging';
-import { factory, tick } from '@stryker-mutator/test-helpers';
+import { FileDescriptions, StrykerOptions } from '@stryker-mutator/api/core';
+import { factory, testInjector, tick } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
@@ -19,19 +18,16 @@ import {
   WorkerMessage,
   WorkerMessageKind,
 } from '../../../src/child-proxy/message-protocol.js';
-import { LoggingClientContext } from '../../../src/logging/index.js';
+import type { LoggingServerAddress } from '../../../src/logging/index.js';
 import * as stringUtils from '../../../src/utils/string-utils.js';
 import { objectUtils } from '../../../src/utils/object-utils.js';
 import { OutOfMemoryError } from '../../../src/child-proxy/out-of-memory-error.js';
-import { currentLogMock } from '../../helpers/log-mock.js';
-import { Mock } from '../../helpers/producers.js';
 
 import { IdGenerator } from '../../../src/child-proxy/id-generator.js';
 
 import { HelloClass } from './hello-class.js';
 
-const LOGGING_CONTEXT: LoggingClientContext = Object.freeze({
-  level: LogLevel.Fatal,
+const LOGGING_ADDRESS: LoggingServerAddress = Object.freeze({
   port: 4200,
 });
 
@@ -49,17 +45,13 @@ describe(ChildProcessProxy.name, () => {
   let forkStub: sinon.SinonStub;
   let childProcessMock: ChildProcessMock;
   let killStub: sinon.SinonStub;
-  let logMock: Mock<Logger>;
-  let clock: sinon.SinonFakeTimers;
   const workerId = 5;
 
   beforeEach(() => {
-    clock = sinon.useFakeTimers();
     childProcessMock = new ChildProcessMock();
     forkStub = sinon.stub(childProcess, 'fork');
     killStub = sinon.stub(objectUtils, 'kill');
     forkStub.returns(childProcessMock);
-    logMock = currentLogMock();
     idGeneratorStub = sinon.createStubInstance(IdGenerator);
     idGeneratorStub.next.returns(workerId);
   });
@@ -73,11 +65,19 @@ describe(ChildProcessProxy.name, () => {
   describe('constructor', () => {
     it('should create child process', () => {
       sut = createSut();
-      expect(forkStub).calledWith(fileURLToPath(new URL('../../../src/child-proxy/child-process-proxy-worker.js', import.meta.url)), {
-        silent: true,
-        execArgv: [],
-        env: { STRYKER_MUTATOR_WORKER: workerId.toString(), ...process.env },
-      });
+      expect(forkStub).calledWith(
+        fileURLToPath(
+          new URL(
+            '../../../src/child-proxy/child-process-proxy-worker.js',
+            import.meta.url,
+          ),
+        ),
+        {
+          silent: true,
+          execArgv: [],
+          env: { STRYKER_MUTATOR_WORKER: workerId.toString(), ...process.env },
+        },
+      );
     });
 
     it('should not directly send the init message', () => {
@@ -89,12 +89,12 @@ describe(ChildProcessProxy.name, () => {
     it('should log the exec arguments and require name', () => {
       // Act
       createSut({
-        loggingContext: LOGGING_CONTEXT,
+        loggingServerAddress: LOGGING_ADDRESS,
         execArgv: ['--cpu-prof', '--inspect'],
         idGenerator: idGeneratorStub,
       });
       // Assert
-      expect(logMock.debug).calledWith(
+      expect(testInjector.logger.debug).calledWith(
         'Started %s in worker process %s with pid %s %s',
         'HelloClass',
         workerId.toString(),
@@ -115,13 +115,16 @@ describe(ChildProcessProxy.name, () => {
 
     it('should set `execArgv`', () => {
       createSut({ execArgv: ['--inspect-brk'] });
-      expect(forkStub).calledWithMatch(sinon.match.string, sinon.match({ execArgv: ['--inspect-brk'] }));
+      expect(forkStub).calledWithMatch(
+        sinon.match.string,
+        sinon.match({ execArgv: ['--inspect-brk'] }),
+      );
     });
 
     it('should send init message to child process when the Ready message is received', () => {
       const expectedMessage: InitMessage = {
         kind: WorkerMessageKind.Init,
-        loggingContext: LOGGING_CONTEXT,
+        loggingServerAddress: LOGGING_ADDRESS,
         options: factory.strykerOptions({ testRunner: 'Hello' }),
         fileDescriptions: { 'foo.js': { mutate: true } },
         pluginModulePaths: ['foo'],
@@ -130,7 +133,7 @@ describe(ChildProcessProxy.name, () => {
         workingDirectory: 'workingDirectory',
       };
       createSut({
-        loggingContext: LOGGING_CONTEXT,
+        loggingServerAddress: LOGGING_ADDRESS,
         options: expectedMessage.options,
         requirePath: expectedMessage.modulePath,
         workingDir: expectedMessage.workingDirectory,
@@ -141,7 +144,9 @@ describe(ChildProcessProxy.name, () => {
       receiveMessage({ kind: ParentMessageKind.Ready });
 
       // Assert
-      expect(childProcessMock.send).calledWith(stringUtils.serialize(expectedMessage));
+      expect(childProcessMock.send).calledWith(
+        stringUtils.serialize(expectedMessage),
+      );
     });
   });
 
@@ -154,14 +159,14 @@ describe(ChildProcessProxy.name, () => {
       childProcessMock.stdout.emit('data', 'bar');
       childProcessMock.stderr.emit('data', 'foo');
       actClose(23, 'SIGTERM');
-      expect(logMock.warn).calledWithMatch(
+      expect(testInjector.logger.warn).calledWithMatch(
         `Child process [pid ${childProcessMock.pid}] exited unexpectedly with exit code 23 (SIGTERM). Last part of stdout and stderr was:${os.EOL}\tfoo${os.EOL}\tbar`,
       );
     });
 
     it('should log that no stdout was available when stdout and stderr are empty', () => {
       actClose(23, 'SIGTERM');
-      expect(logMock.warn).calledWith(
+      expect(testInjector.logger.warn).calledWith(
         `Child process [pid ${childProcessMock.pid}] exited unexpectedly with exit code 23 (SIGTERM). Stdout and stderr were empty.`,
       );
     });
@@ -171,13 +176,14 @@ describe(ChildProcessProxy.name, () => {
       childProcessMock.stderr.emit('data', 'baz');
       childProcessMock.stdout.emit('data', 'bar');
       actClose(23, 'SIGTERM');
-      expect(logMock.warn).calledWith(
+      expect(testInjector.logger.warn).calledWith(
         `Child process [pid ${childProcessMock.pid}] exited unexpectedly with exit code 23 (SIGTERM). Last part of stdout and stderr was:${os.EOL}\tbaz${os.EOL}\tfoobar`,
       );
     });
 
     it('should reject any outstanding worker promises with the error', () => {
-      const expectedError = 'Child process [pid 4648] exited unexpectedly with exit code 646 (SIGINT).';
+      const expectedError =
+        'Child process [pid 4648] exited unexpectedly with exit code 646 (SIGINT).';
       const actualPromise = sut.proxy.say('test');
       actClose(646);
       return expect(actualPromise).rejectedWith(expectedError);
@@ -228,7 +234,10 @@ describe(ChildProcessProxy.name, () => {
       receiveMessage({ kind: ParentMessageKind.Ready });
 
       // Act
-      receiveMessage({ kind: ParentMessageKind.InitError, error: 'some error' });
+      receiveMessage({
+        kind: ParentMessageKind.InitError,
+        error: 'some error',
+      });
 
       // Assert
       await assertDisposedCorrectly();
@@ -240,7 +249,10 @@ describe(ChildProcessProxy.name, () => {
       receiveMessage({ kind: ParentMessageKind.Ready });
 
       // Act
-      receiveMessage({ kind: ParentMessageKind.InitError, error: 'some error' });
+      receiveMessage({
+        kind: ParentMessageKind.InitError,
+        error: 'some error',
+      });
 
       // Assert
       await expect(sut.proxy.sayHello()).rejectedWith('some error');
@@ -248,8 +260,13 @@ describe(ChildProcessProxy.name, () => {
     });
 
     async function assertDisposedCorrectly() {
-      const expectedDispose: WorkerMessage = { kind: WorkerMessageKind.Dispose };
-      sinon.assert.calledWithExactly(childProcessMock.send, JSON.stringify(expectedDispose));
+      const expectedDispose: WorkerMessage = {
+        kind: WorkerMessageKind.Dispose,
+      };
+      sinon.assert.calledWithExactly(
+        childProcessMock.send,
+        JSON.stringify(expectedDispose),
+      );
       receiveMessage({ kind: ParentMessageKind.DisposeCompleted });
       await tick();
       expect(killStub).calledWith(childProcessMock.pid);
@@ -263,6 +280,7 @@ describe(ChildProcessProxy.name, () => {
 
     it('should proxy the message', async () => {
       // Arrange
+      const clock = sinon.useFakeTimers();
       receiveMessage({ kind: ParentMessageKind.Initialized });
       const workerResponse: ParentMessage = {
         correlationId: 0,
@@ -284,26 +302,51 @@ describe(ChildProcessProxy.name, () => {
 
       // Assert
       expect(result).eq('ack');
-      expect(childProcessMock.send).calledWith(stringUtils.serialize(expectedWorkerMessage));
+      expect(childProcessMock.send).calledWith(
+        stringUtils.serialize(expectedWorkerMessage),
+      );
     });
 
     it('should use a unique correlation id for each call', async () => {
       // Arrange
+      const clock = sinon.useFakeTimers();
       receiveMessage({ kind: ParentMessageKind.Initialized });
 
       // Act
-      const promises = [sut.proxy.say('echo'), sut.proxy.say('hello'), sut.proxy.sum(1, 2)];
+      const promises = [
+        sut.proxy.say('echo'),
+        sut.proxy.say('hello'),
+        sut.proxy.sum(1, 2),
+      ];
       clock.tick(0);
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 0, result: 'ack' });
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 1, result: 'ack' });
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 2, result: 'ack' });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 0,
+        result: 'ack',
+      });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 1,
+        result: 'ack',
+      });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 2,
+        result: 'ack',
+      });
       await Promise.all(promises);
 
       // Assert
       sinon.assert.calledThrice(childProcessMock.send);
-      const actualWorkerMessage1: CallMessage = JSON.parse(childProcessMock.send.firstCall.args[0] as string);
-      const actualWorkerMessage2: CallMessage = JSON.parse(childProcessMock.send.secondCall.args[0] as string);
-      const actualWorkerMessage3: CallMessage = JSON.parse(childProcessMock.send.thirdCall.args[0] as string);
+      const actualWorkerMessage1: CallMessage = JSON.parse(
+        childProcessMock.send.firstCall.args[0] as string,
+      );
+      const actualWorkerMessage2: CallMessage = JSON.parse(
+        childProcessMock.send.secondCall.args[0] as string,
+      );
+      const actualWorkerMessage3: CallMessage = JSON.parse(
+        childProcessMock.send.thirdCall.args[0] as string,
+      );
       expect(actualWorkerMessage1.correlationId).eq(0);
       expect(actualWorkerMessage1.methodName).eq('say');
       expect(actualWorkerMessage1.args).deep.eq(['echo']);
@@ -317,12 +360,21 @@ describe(ChildProcessProxy.name, () => {
 
     it('should resolve correct promises when receiving responses', async () => {
       // Arrange
+      const clock = sinon.useFakeTimers();
       receiveMessage({ kind: ParentMessageKind.Initialized });
       const delayedEcho = sut.proxy.say('echo');
       const delayedHello = sut.proxy.sayHello();
       clock.tick(0);
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 0, result: 'ack' });
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 1, result: 'Hello' });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 0,
+        result: 'ack',
+      });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 1,
+        result: 'Hello',
+      });
 
       // Act
       const [echo, hello] = await Promise.all([delayedEcho, delayedHello]);
@@ -334,12 +386,21 @@ describe(ChildProcessProxy.name, () => {
 
     it('should resolve correct promises when receiving responses out-of-order', async () => {
       // Arrange
+      const clock = sinon.useFakeTimers();
       receiveMessage({ kind: ParentMessageKind.Initialized });
       const delayedEcho = sut.proxy.say('echo');
       const delayedHello = sut.proxy.sayHello();
       clock.tick(0);
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 1, result: 'Hello' });
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 0, result: 'ack' });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 1,
+        result: 'Hello',
+      });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 0,
+        result: 'ack',
+      });
 
       // Act
       const [echo, hello] = await Promise.all([delayedEcho, delayedHello]);
@@ -362,21 +423,31 @@ describe(ChildProcessProxy.name, () => {
       receiveMessage({ kind: ParentMessageKind.Initialized });
       await tick();
       expect(childProcessMock.send).calledTwice; // call
-      receiveMessage({ kind: ParentMessageKind.CallResult, correlationId: 0, result: 'Hello' });
+      receiveMessage({
+        kind: ParentMessageKind.CallResult,
+        correlationId: 0,
+        result: 'Hello',
+      });
       expect(await onGoingCall).eq('Hello');
     });
   });
 
   describe('dispose', () => {
+    let clock: sinon.SinonFakeTimers;
     beforeEach(() => {
       sut = createSut();
+      clock = sinon.useFakeTimers();
       receiveMessage({ kind: ParentMessageKind.Ready });
     });
 
     it('should send a dispose message', async () => {
       await actDispose();
-      const expectedWorkerMessage: DisposeMessage = { kind: WorkerMessageKind.Dispose };
-      expect(childProcessMock.send).calledWith(stringUtils.serialize(expectedWorkerMessage));
+      const expectedWorkerMessage: DisposeMessage = {
+        kind: WorkerMessageKind.Dispose,
+      };
+      expect(childProcessMock.send).calledWith(
+        stringUtils.serialize(expectedWorkerMessage),
+      );
     });
 
     it('should kill the child process', async () => {
@@ -425,7 +496,7 @@ describe(ChildProcessProxy.name, () => {
 
 function createSut({
   requirePath = 'foobar',
-  loggingContext = LOGGING_CONTEXT,
+  loggingServerAddress = LOGGING_ADDRESS,
   options = {},
   workingDir = 'workingDir',
   fileDescriptions = { 'foo.js': { mutate: true } },
@@ -434,7 +505,7 @@ function createSut({
   idGenerator = idGeneratorStub,
 }: {
   requirePath?: string;
-  loggingContext?: LoggingClientContext;
+  loggingServerAddress?: LoggingServerAddress;
   options?: Partial<StrykerOptions>;
   workingDir?: string;
   fileDescriptions?: FileDescriptions;
@@ -444,13 +515,14 @@ function createSut({
 } = {}): ChildProcessProxy<HelloClass> {
   return ChildProcessProxy.create(
     requirePath,
-    loggingContext,
+    loggingServerAddress,
     factory.strykerOptions(options),
     fileDescriptions,
     pluginModulePaths,
     workingDir,
     HelloClass,
     execArgv,
+    testInjector.getLogger,
     idGenerator,
   );
 }

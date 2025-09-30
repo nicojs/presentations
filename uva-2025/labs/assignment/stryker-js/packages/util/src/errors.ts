@@ -1,5 +1,10 @@
-export function isErrnoException(error: unknown): error is NodeJS.ErrnoException {
-  return error instanceof Error && typeof (error as NodeJS.ErrnoException).code === 'string';
+export function isErrnoException(
+  error: unknown,
+): error is NodeJS.ErrnoException {
+  return (
+    error instanceof Error &&
+    typeof (error as NodeJS.ErrnoException).code === 'string'
+  );
 }
 
 export function errorToString(error: unknown): string {
@@ -17,6 +22,7 @@ export function errorToString(error: unknown): string {
       return message;
     }
   }
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string -- Ignore as error is most likely a string. Don't use JSON.stringify as circular graphs could cause an error
   return String(error);
 }
 

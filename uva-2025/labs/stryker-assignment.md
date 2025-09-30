@@ -8,7 +8,7 @@
 
 In this laboratory, you will carry out some practical exercises with a state-of-the-art Mutation testing tool: StrykerJS. StrykerJS is the industry leading mutation testing tool for JavaScript and TypeScript, developed in open source and maintained by Info Support.
 
-The code base you will be working on is [numbers.js](../img/labs/https://github.com/numbers/numbers.js), a JavaScript library to perform math operations, it has simple functions like `sum` and `max`, but also an implementation for complex numbers, matrix calculus, etc. Running StrykerJS on the 'basic.js' file yields a mutation score of 76.29%.
+The code base you will be working on is [numbers.js](https://github.com/numbers/numbers.js), a JavaScript library to perform math operations, it has simple functions like `sum` and `max`, but also an implementation for complex numbers, matrix calculus, etc. Running StrykerJS on the 'basic.js' file yields a mutation score of 76.29%.
 
 To become familiar with StrykerJS, you will first do an introductory exercise where we improve the mutation score. This will give you some hands-on experience with unit testing in JavaScript. Afterwards, you will be challenged to enhance StrykerJS with your very own mutator. Good luck!
 
@@ -24,12 +24,12 @@ To get started, be sure you have [vscode](https://code.visualstudio.com/) and [a
 
 ```sh
 $ node -v
-v20.17.0
+v22.18.0
 ```
 
 Also make sure to have bash (linux shell) or git-bash (windows) installed.
 
-Next, unzip the "assignment.zip" file on your hard disk and open visual studio code in the root directory.
+Next, unzip the "assignment.zip" file on your hard disk and open visual studio code in the root directory. THIS IS IMPORTANT, settings are configured and will only be picked up when you open the root directory.
 
 ![open-dir-in-code.png](../img/labs/open-dir-in-code.png)
 
@@ -42,7 +42,7 @@ $ cd ../stryker-js
 $ npm install
 ```
 
-You should be able to start the StrykerJS TypeScript compiler in watch mode by pressing `CTRL+shift+B`. Alternatively, you can use `F1` and select "Tasks: Run Build Task".
+You should be able to start the StrykerJS TypeScript compiler in watch mode by pressing `CTRL+shift+B` (or `CMD+shift+B` on Mac). Alternatively, you can use `F1` and select "Tasks: Run Build Task".
 
 ![run-build-task.png](../img/labs/run-build-task.png)
 
@@ -52,11 +52,18 @@ Now wait for StrykerJS to be compiled for the first time.
 
 The build command task will remain running after the first compilation. Any changes you make will be recompiled on the fly.
 
-After StrykerJS is compiled, it is time for your first StrykerJS run. You
+After StrykerJS is compiled, it is time for your first StrykerJS run. You can do this by executing the "run-stryker.sh" script in the "numbers.js" directory.
 
-Running Stryker this way should take a couple of seconds:
+```sh
+$ cd ../numbers.js
+$ ./run-stryker.sh
+```
+
+Running Stryker this way might take a few minutes:
 
 ![exec-stryker.png](../img/labs/exec-stryker.png)
+
+NOTE: The next time you run StrykerJS, it will be much faster because we've got `incremental` enabled in the config file.
 
 When Stryker is done, you can open up the HTML report in your browser. The file is located here: "numbers.js/reports/mutation/html/index.html".
 
@@ -69,7 +76,7 @@ When Stryker is done, you can open up the HTML report in your browser. The file 
 In this exercise, you will will play around with numbers.js and stryker-js in order to familiarize yourself with the development environment and the code bases.
 
 1. Open up "numbers.js/lib/numbers/basic.js". This is the JavaScript file containing the basic math operations we'll be focussing on. You can find operations like `product`, `max` and `gcd` here.
-1. Open up "numbers.js/test/basic.test.js". This file contains the unit tests for "basic.js". You can see `test` declarations here, like `test('sum should return the sum of items in an array', function (done) {})`. You can run the unit tests using the "Run and Debug" pane and running the "☕ Run Unit tests" task
+1. Open up "numbers.js/test/basic.test.js". This file contains the unit tests for "basic.js". You can see `test` declarations here, like `test('sum should return the sum of items in an array', () => {})`. You can run the unit tests using the "Run and Debug" pane and running the "☕ Run Unit tests" task
 1. Open up the "stryker-js/packages/instrumenter/src/mutators" directory. Here, you'll find all mutators that StrykerJS supports out of the box. Open a few of them to familiarize yourselves with the syntax. One of the simplest is "boolean-literal-mutator.ts".
 1. Notice that each mutator has a `name` (string) and a `*mutate(path)` (method). Each `mutate` implementation follows this pattern:
    1. Test to see if the AST node supports the mutation.

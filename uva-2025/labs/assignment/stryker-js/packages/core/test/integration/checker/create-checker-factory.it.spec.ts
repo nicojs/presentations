@@ -1,22 +1,26 @@
 import fs from 'fs';
 import { URL } from 'url';
 
-import { LogLevel } from '@stryker-mutator/api/core';
-import { factory, LoggingServer, testInjector } from '@stryker-mutator/test-helpers';
+import { factory, testInjector } from '@stryker-mutator/test-helpers';
 import { expect } from 'chai';
 import { CheckResult, CheckStatus } from '@stryker-mutator/api/check';
 
-import { CheckerFacade, createCheckerFactory } from '../../../src/checker/index.js';
+import {
+  CheckerFacade,
+  createCheckerFactory,
+} from '../../../src/checker/index.js';
 import { coreTokens } from '../../../src/di/index.js';
-import { LoggingClientContext } from '../../../src/logging/index.js';
+import type { LoggingServerAddress } from '../../../src/logging/index.js';
+import { LoggingServer } from '../../../src/logging/logging-server.js';
 
 import { IdGenerator } from '../../../src/child-proxy/id-generator.js';
 
 import { TwoTimesTheCharm } from './additional-checkers.js';
+import { loggingSink } from '../../helpers/producers.js';
 
 describe(`${createCheckerFactory.name} integration`, () => {
   let createSut: () => CheckerFacade;
-  let loggingContext: LoggingClientContext;
+  let loggingServerAddress: LoggingServerAddress;
   let sut: CheckerFacade;
   let loggingServer: LoggingServer;
   let pluginModulePaths: string[];
@@ -29,12 +33,13 @@ describe(`${createCheckerFactory.name} integration`, () => {
 
   beforeEach(async () => {
     // Make sure there is a logging server listening
-    pluginModulePaths = [new URL('./additional-checkers.js', import.meta.url).toString()];
-    loggingServer = new LoggingServer();
-    const port = await loggingServer.listen();
-    loggingContext = { port, level: LogLevel.Trace };
+    pluginModulePaths = [
+      new URL('./additional-checkers.js', import.meta.url).toString(),
+    ];
+    loggingServer = new LoggingServer(loggingSink());
+    loggingServerAddress = await loggingServer.listen();
     createSut = testInjector.injector
-      .provideValue(coreTokens.loggingContext, loggingContext)
+      .provideValue(coreTokens.loggingServerAddress, loggingServerAddress)
       .provideValue(coreTokens.pluginModulePaths, pluginModulePaths)
       .provideClass(coreTokens.workerIdGenerator, IdGenerator)
       .injectFunction(createCheckerFactory);
@@ -53,15 +58,21 @@ describe(`${createCheckerFactory.name} integration`, () => {
   }
 
   it('should pass along the check result', async () => {
-    const mutantRunPlan = factory.mutantRunPlan({ mutant: factory.mutant({ id: '1' }) });
+    const mutantRunPlan = factory.mutantRunPlan({
+      mutant: factory.mutant({ id: '1' }),
+    });
     await arrangeSut('healthy');
     const expected: CheckResult = { status: CheckStatus.Passed };
-    expect(await sut.check('healthy', [mutantRunPlan])).deep.eq([[mutantRunPlan, expected]]);
+    expect(await sut.check('healthy', [mutantRunPlan])).deep.eq([
+      [mutantRunPlan, expected],
+    ]);
   });
 
   it('should reject when the checker behind rejects', async () => {
     await arrangeSut('crashing');
-    await expect(sut.check('crashing', [factory.mutantRunPlan()])).rejectedWith('Always crashing');
+    await expect(sut.check('crashing', [factory.mutantRunPlan()])).rejectedWith(
+      'Always crashing',
+    );
   });
 
   it('should recover when the checker behind rejects', async () => {
@@ -75,8 +86,12 @@ describe(`${createCheckerFactory.name} integration`, () => {
 
   it('should provide the nodeArgs', async () => {
     // Arrange
-    const passingMutantRunPlan = factory.mutantRunPlan({ mutant: factory.mutant({ fileName: 'shouldProvideNodeArgs' }) });
-    const failingMutantRunPlan = factory.mutantRunPlan({ mutant: factory.mutant({ fileName: 'somethingElse' }) });
+    const passingMutantRunPlan = factory.mutantRunPlan({
+      mutant: factory.mutant({ fileName: 'shouldProvideNodeArgs' }),
+    });
+    const failingMutantRunPlan = factory.mutantRunPlan({
+      mutant: factory.mutant({ fileName: 'somethingElse' }),
+    });
     testInjector.options.checkerNodeArgs = ['--title=shouldProvideNodeArgs'];
 
     // Act
@@ -85,7 +100,17 @@ describe(`${createCheckerFactory.name} integration`, () => {
     const failed = await sut.check('verify-title', [failingMutantRunPlan]);
 
     // Assert
-    expect(passed).deep.eq([[passingMutantRunPlan, factory.checkResult({ status: CheckStatus.Passed })]]);
-    expect(failed).deep.eq([[failingMutantRunPlan, factory.checkResult({ status: CheckStatus.CompileError })]]);
+    expect(passed).deep.eq([
+      [
+        passingMutantRunPlan,
+        factory.checkResult({ status: CheckStatus.Passed }),
+      ],
+    ]);
+    expect(failed).deep.eq([
+      [
+        failingMutantRunPlan,
+        factory.checkResult({ status: CheckStatus.CompileError }),
+      ],
+    ]);
   });
 });

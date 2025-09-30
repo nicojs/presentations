@@ -11,23 +11,25 @@ import { fileUtils } from '../../../src/utils/file-utils.js';
 
 describe(EventRecorderReporter.name, () => {
   let sut: StrictReporter;
-  let cleanFolderStub: sinon.SinonStub;
+  let cleanDirStub: sinon.SinonStub;
   let writeFileStub: sinon.SinonStub;
 
   beforeEach(() => {
-    cleanFolderStub = sinon.stub(fileUtils, 'cleanFolder');
     writeFileStub = sinon.stub(fs.promises, 'writeFile');
+    cleanDirStub = sinon.stub(fileUtils, 'cleanDir');
   });
 
   describe('when constructed with empty options', () => {
     describe('and cleanFolder resolves correctly', () => {
       beforeEach(() => {
-        cleanFolderStub.returns(Promise.resolve());
+        cleanDirStub.returns(Promise.resolve());
         sut = testInjector.injector.injectClass(EventRecorderReporter);
       });
 
       it('should clean the baseFolder', () => {
-        expect(fileUtils.cleanFolder).to.have.been.calledWith('reports/mutation/events');
+        expect(fileUtils.cleanDir).to.have.been.calledWith(
+          'reports/mutation/events',
+        );
       });
 
       const arrangeActAssertEvent = (eventName: keyof Reporter) => {
@@ -50,25 +52,31 @@ describe(EventRecorderReporter.name, () => {
             beforeEach(() => writeFileStub.rejects(expectedError));
             arrange();
 
-            it('should reject `wrapUp`', () => expect(writeFileRejection).to.be.eq(expectedError));
+            it('should reject `wrapUp`', () =>
+              expect(writeFileRejection).to.be.eq(expectedError));
           });
 
           describe('when writeFile is successful', () => {
             arrange();
             it('should writeFile', () =>
-              expect(fs.promises.writeFile).to.have.been.calledWith(sinon.match(RegExp(`.*0000\\d-${eventName}\\.json`)), JSON.stringify(expected)));
+              expect(fs.promises.writeFile).to.have.been.calledWith(
+                sinon.match(RegExp(`.*0000\\d-${eventName}\\.json`)),
+                JSON.stringify(expected),
+              ));
           });
         });
       };
 
-      factory.ALL_REPORTER_EVENTS.filter((event) => event !== 'wrapUp').forEach(arrangeActAssertEvent);
+      factory.ALL_REPORTER_EVENTS.filter((event) => event !== 'wrapUp').forEach(
+        arrangeActAssertEvent,
+      );
     });
 
     describe('and cleanFolder results in a rejection', () => {
       let expectedError: Error;
       beforeEach(() => {
         expectedError = new Error('Some error 1');
-        cleanFolderStub.rejects(expectedError);
+        cleanDirStub.rejects(expectedError);
         sut = testInjector.injector.injectClass(EventRecorderReporter);
       });
 

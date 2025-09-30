@@ -1,6 +1,11 @@
 import sinon from 'sinon';
-import { Vitest } from 'vitest/node';
-import { File, Suite, Test } from 'vitest';
+import type {
+  RunnerTestCase,
+  RunnerTestFile,
+  RunnerTestSuite,
+  Vitest,
+} from 'vitest/node';
+import { VitestRunnerOptions } from '../../src-generated/vitest-runner-options.js';
 
 type ResolvedConfig = Vitest['config'];
 type ResolvedBrowserOptions = ResolvedConfig['browser'];
@@ -15,14 +20,18 @@ export function createVitestMock(): sinon.SinonStubbedInstance<Vitest> {
     } as ResolvedConfig,
     state: {
       filesMap: new Map(),
-      getFiles: () => [] as File[],
+      getFiles: () => [] as RunnerTestFile[],
+      errorsSet: new Set(),
     },
     projects: [] as Vitest['projects'],
     start: sinon.stub(),
+    provide: sinon.stub(),
   } as sinon.SinonStubbedInstance<Vitest>;
 }
 
-export function createSuite(overrides?: Partial<Suite>): Suite {
+export function createSuite(
+  overrides?: Partial<RunnerTestSuite>,
+): RunnerTestSuite {
   return {
     id: '1',
     meta: {},
@@ -35,7 +44,9 @@ export function createSuite(overrides?: Partial<Suite>): Suite {
   };
 }
 
-export function createVitestFile(overrides?: Partial<Omit<File, 'file'>>): File {
+export function createVitestFile(
+  overrides?: Partial<Omit<RunnerTestFile, 'file'>>,
+): RunnerTestFile {
   const file = {
     projectName: '',
     name: 'file.js',
@@ -46,12 +57,14 @@ export function createVitestFile(overrides?: Partial<Omit<File, 'file'>>): File 
     tasks: [],
     meta: {},
     ...overrides,
-  } as File;
+  } as RunnerTestFile;
   file.file = file;
   return file;
 }
 
-export function createVitestTest(overrides?: Partial<Test>): Test {
+export function createVitestTest(
+  overrides?: Partial<RunnerTestCase>,
+): RunnerTestCase {
   return {
     type: 'test',
     suite: createSuite(),
@@ -59,8 +72,18 @@ export function createVitestTest(overrides?: Partial<Test>): Test {
     name: 'test1',
     meta: {},
     mode: 'run',
+    timeout: 0,
     context: {} as any,
     file: createVitestFile(),
+    ...overrides,
+  };
+}
+
+export function createVitestRunnerOptions(
+  overrides?: Partial<VitestRunnerOptions>,
+): VitestRunnerOptions {
+  return {
+    related: true,
     ...overrides,
   };
 }

@@ -1,13 +1,20 @@
 import { URL } from 'url';
 
 import { FileDescriptions, StrykerOptions } from '@stryker-mutator/api/core';
-import { Logger } from '@stryker-mutator/api/logging';
-import { TestRunner, DryRunOptions, MutantRunOptions, MutantRunResult, DryRunResult, TestRunnerCapabilities } from '@stryker-mutator/api/test-runner';
+import { LoggerFactoryMethod } from '@stryker-mutator/api/logging';
+import {
+  TestRunner,
+  DryRunOptions,
+  MutantRunOptions,
+  MutantRunResult,
+  DryRunResult,
+  TestRunnerCapabilities,
+} from '@stryker-mutator/api/test-runner';
 import { ExpirableTask } from '@stryker-mutator/util';
 
 import { ChildProcessCrashedError } from '../child-proxy/child-process-crashed-error.js';
 import { ChildProcessProxy } from '../child-proxy/child-process-proxy.js';
-import { LoggingClientContext } from '../logging/index.js';
+import { LoggingServerAddress } from '../logging/index.js';
 
 import { IdGenerator } from '../child-proxy/id-generator.js';
 
@@ -20,25 +27,30 @@ const MAX_WAIT_FOR_DISPOSE = 2000;
  */
 export class ChildProcessTestRunnerProxy implements TestRunner {
   private readonly worker: ChildProcessProxy<ChildProcessTestRunnerWorker>;
-
+  private readonly log;
   constructor(
     options: StrykerOptions,
     fileDescriptions: FileDescriptions,
     sandboxWorkingDirectory: string,
-    loggingContext: LoggingClientContext,
+    loggingServerAddress: LoggingServerAddress,
     pluginModulePaths: readonly string[],
-    private readonly log: Logger,
+    getLogger: LoggerFactoryMethod,
     idGenerator: IdGenerator,
   ) {
+    this.log = getLogger(ChildProcessTestRunnerProxy.name);
     this.worker = ChildProcessProxy.create(
-      new URL('./child-process-test-runner-worker.js', import.meta.url).toString(),
-      loggingContext,
+      new URL(
+        './child-process-test-runner-worker.js',
+        import.meta.url,
+      ).toString(),
+      loggingServerAddress,
       options,
       fileDescriptions,
       pluginModulePaths,
       sandboxWorkingDirectory,
       ChildProcessTestRunnerWorker,
       options.testRunnerNodeArgs,
+      getLogger,
       idGenerator,
     );
   }

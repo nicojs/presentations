@@ -3,7 +3,11 @@ import path from 'path';
 import type { execaCommand } from 'execa';
 import { npmRunPathEnv } from 'npm-run-path';
 import { StrykerOptions } from '@stryker-mutator/api/core';
-import { normalizeWhitespaces, I, isErrnoException } from '@stryker-mutator/util';
+import {
+  normalizeWhitespaces,
+  I,
+  isErrnoException,
+} from '@stryker-mutator/util';
 import { Logger } from '@stryker-mutator/api/logging';
 import { tokens, commonTokens, Disposable } from '@stryker-mutator/api/plugin';
 
@@ -23,14 +27,10 @@ export class Sandbox implements Disposable {
    * Either an actual sandbox directory, or the cwd when running in --inPlace mode
    */
   public readonly workingDirectory: string;
-  /**
+  /**11
    * The backup directory when running in --inPlace mode
    */
   private readonly backupDirectory: string = '';
-  /**
-   * The sandbox dir or the backup dir when running in `--inPlace` mode
-   */
-  private readonly tempDirectory: string;
 
   public static readonly inject = tokens(
     commonTokens.options,
@@ -41,32 +41,37 @@ export class Sandbox implements Disposable {
     coreTokens.unexpectedExitRegistry,
   );
 
+  /**
+   * @param temporaryDirectory The sandbox dir or the backup dir when running in `--inPlace` mode
+   */
   constructor(
     private readonly options: StrykerOptions,
     private readonly log: Logger,
-    private readonly temporaryDirectory: I<TemporaryDirectory>,
+    temporaryDirectory: I<TemporaryDirectory>,
     private readonly project: Project,
     private readonly execCommand: typeof execaCommand,
     unexpectedExitHandler: I<UnexpectedExitHandler>,
   ) {
     if (options.inPlace) {
       this.workingDirectory = process.cwd();
-      this.backupDirectory = temporaryDirectory.getRandomDirectory('backup');
-      this.tempDirectory = this.backupDirectory;
+      this.backupDirectory = temporaryDirectory.path;
       this.log.info(
         'In place mode is enabled, Stryker will be overriding YOUR files. Find your backup at: %s',
         path.relative(process.cwd(), this.backupDirectory),
       );
-      unexpectedExitHandler.registerHandler(this.dispose.bind(this, true));
+      unexpectedExitHandler.registerHandler(
+        this.dispose.bind(this, /* unexpected */ true),
+      );
     } else {
-      this.workingDirectory = temporaryDirectory.getRandomDirectory('sandbox');
-      this.tempDirectory = this.workingDirectory;
-      this.log.debug('Creating a sandbox for files in %s', this.workingDirectory);
+      this.workingDirectory = temporaryDirectory.path;
+      this.log.debug(
+        'Creating a sandbox for files in %s',
+        this.workingDirectory,
+      );
     }
   }
 
   public async init(): Promise<void> {
-    await this.temporaryDirectory.createDirectory(this.tempDirectory);
     await this.fillSandbox();
     await this.runBuildCommand();
     await this.symlinkNodeModulesIfNeeded();
@@ -81,19 +86,32 @@ export class Sandbox implements Disposable {
   }
 
   public originalFileFor(sandboxFileName: string): string {
-    return path.resolve(sandboxFileName).replace(this.workingDirectory, process.cwd());
+    return path
+      .resolve(sandboxFileName)
+      .replace(path.resolve(this.workingDirectory), process.cwd());
   }
 
   private async fillSandbox(): Promise<void> {
-    await Promise.all(objectUtils.map(this.project.files, (file, name) => this.sandboxFile(name, file)));
+    await Promise.all(
+      objectUtils.map(this.project.files, (file, name) =>
+        this.sandboxFile(name, file),
+      ),
+    );
   }
 
   private async runBuildCommand() {
     if (this.options.buildCommand) {
       const env = npmRunPathEnv();
-      this.log.info('Running build command "%s" in "%s".', this.options.buildCommand, this.workingDirectory);
+      this.log.info(
+        'Running build command "%s" in "%s".',
+        this.options.buildCommand,
+        this.workingDirectory,
+      );
       this.log.debug('(using PATH: %s)', env.PATH);
-      await this.execCommand(this.options.buildCommand, { cwd: this.workingDirectory, env });
+      await this.execCommand(this.options.buildCommand, {
+        cwd: this.workingDirectory,
+        env,
+      });
     }
   }
 
@@ -102,25 +120,40 @@ export class Sandbox implements Disposable {
     if (this.options.symlinkNodeModules && !this.options.inPlace) {
       // TODO: Change with this.options.basePath when we have it
       const basePath = process.cwd();
-      const nodeModulesList = await fileUtils.findNodeModulesList(basePath, this.options.tempDirName);
+      const nodeModulesList = await fileUtils.findNodeModulesList(
+        basePath,
+        this.options.tempDirName,
+      );
 
       if (nodeModulesList.length > 0) {
         for (const nodeModules of nodeModulesList) {
-          this.log.debug(`Create symlink from ${path.resolve(nodeModules)} to ${path.join(this.workingDirectory, nodeModules)}`);
-          await fileUtils.symlinkJunction(path.resolve(nodeModules), path.join(this.workingDirectory, nodeModules)).catch((error: unknown) => {
-            if (isErrnoException(error) && error.code === 'EEXIST') {
-              this.log.warn(
-                normalizeWhitespaces(`Could not symlink "${nodeModules}" in sandbox directory,
+          this.log.debug(
+            `Create symlink from ${path.resolve(nodeModules)} to ${path.join(this.workingDirectory, nodeModules)}`,
+          );
+          await fileUtils
+            .symlinkJunction(
+              path.resolve(nodeModules),
+              path.join(this.workingDirectory, nodeModules),
+            )
+            .catch((error: unknown) => {
+              if (isErrnoException(error) && error.code === 'EEXIST') {
+                this.log.warn(
+                  normalizeWhitespaces(`Could not symlink "${nodeModules}" in sandbox directory,
               it is already created in the sandbox. Please remove the node_modules from your sandbox files.
               Alternatively, set \`symlinkNodeModules\` to \`false\` to disable this warning.`),
-              );
-            } else {
-              this.log.warn(`Unexpected error while trying to symlink "${nodeModules}" in sandbox directory.`, error);
-            }
-          });
+                );
+              } else {
+                this.log.warn(
+                  `Unexpected error while trying to symlink "${nodeModules}" in sandbox directory.`,
+                  error,
+                );
+              }
+            });
         }
       } else {
-        this.log.debug(`Could not find a node_modules folder to symlink into the sandbox directory. Search "${basePath}" and its parent directories`);
+        this.log.debug(
+          `Could not find a node_modules folder to symlink into the sandbox directory. Search "${basePath}" and its parent directories`,
+        );
       }
     }
   }
@@ -148,11 +181,18 @@ export class Sandbox implements Disposable {
   public dispose(unexpected = false): void {
     if (this.backupDirectory) {
       if (unexpected) {
-        console.error(`Detecting unexpected exit, recovering original files from ${path.relative(process.cwd(), this.backupDirectory)}`);
+        console.error(
+          `Detecting unexpected exit, recovering original files from ${path.relative(process.cwd(), this.backupDirectory)}`,
+        );
       } else {
-        this.log.info(`Resetting your original files from ${path.relative(process.cwd(), this.backupDirectory)}.`);
+        this.log.info(
+          `Resetting your original files from ${path.relative(process.cwd(), this.backupDirectory)}.`,
+        );
       }
-      fileUtils.moveDirectoryRecursiveSync(this.backupDirectory, this.workingDirectory);
+      fileUtils.moveDirectoryRecursiveSync(
+        this.backupDirectory,
+        this.workingDirectory,
+      );
     }
   }
 }

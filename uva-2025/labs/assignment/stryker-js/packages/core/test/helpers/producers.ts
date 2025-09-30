@@ -1,8 +1,12 @@
 import { CpuInfo } from 'os';
 import type { Dirent } from 'fs';
 
-import { ClearTextReporterOptions, Location, Mutant, schema } from '@stryker-mutator/api/core';
-import { Logger } from 'log4js';
+import {
+  ClearTextReporterOptions,
+  Location,
+  Mutant,
+  schema,
+} from '@stryker-mutator/api/core';
 import sinon from 'sinon';
 import { ReplaySubject } from 'rxjs';
 import { TestRunner } from '@stryker-mutator/api/test-runner';
@@ -12,6 +16,8 @@ import { Pool, ConcurrencyTokenProvider } from '../../src/concurrent/index.js';
 import { CheckerFacade } from '../../src/checker/index.js';
 import { FileSystem } from '../../src/fs/file-system.js';
 import { TSConfig } from '../../src/sandbox/ts-config-preprocessor.js';
+import { LoggingSink } from '../../src/logging/logging-sink.js';
+import { Logger } from '@stryker-mutator/api/logging';
 
 export type Mutable<T> = {
   -readonly [K in keyof T]: T[K];
@@ -38,21 +44,25 @@ export function createFileSystemMock(): sinon.SinonStubbedInstance<FileSystem> {
  * Use this factory method to create deep test data
  * */
 function factoryMethod<T>(defaultsFactory: () => T) {
-  return (overrides?: Partial<T>) => Object.assign({}, defaultsFactory(), overrides);
+  return (overrides?: Partial<T>) =>
+    Object.assign({}, defaultsFactory(), overrides);
 }
 
-export const createClearTextReporterOptions = factoryMethod<ClearTextReporterOptions>(() => ({
-  allowColor: true,
-  allowEmojis: false,
-  logTests: true,
-  maxTestsToLog: 3,
-  reportTests: true,
-  reportMutants: true,
-  reportScoreTable: true,
-  skipFull: false,
-}));
+export const createClearTextReporterOptions =
+  factoryMethod<ClearTextReporterOptions>(() => ({
+    allowColor: true,
+    allowEmojis: false,
+    logTests: true,
+    maxTestsToLog: 3,
+    reportTests: true,
+    reportMutants: true,
+    reportScoreTable: true,
+    skipFull: false,
+  }));
 
-export type ConcurrencyTokenProviderMock = sinon.SinonStubbedInstance<I<ConcurrencyTokenProvider>> & {
+export type ConcurrencyTokenProviderMock = sinon.SinonStubbedInstance<
+  I<ConcurrencyTokenProvider>
+> & {
   testRunnerToken$: ReplaySubject<number>;
   checkerToken$: ReplaySubject<number>;
 };
@@ -66,7 +76,9 @@ export function createConcurrencyTokenProviderMock(): ConcurrencyTokenProviderMo
   };
 }
 
-export function createTestRunnerPoolMock(): sinon.SinonStubbedInstance<I<Pool<TestRunner>>> {
+export function createTestRunnerPoolMock(): sinon.SinonStubbedInstance<
+  I<Pool<TestRunner>>
+> {
   return {
     dispose: sinon.stub(),
     init: sinon.stub(),
@@ -111,6 +123,13 @@ export const logger = (): sinon.SinonStubbedInstance<Logger> => {
   } as sinon.SinonStubbedInstance<Logger>;
 };
 
+export const loggingSink = (): sinon.SinonStubbedInstance<LoggingSink> => {
+  return {
+    log: sinon.stub(),
+    isEnabled: sinon.stub(),
+  };
+};
+
 export function createCpuInfo(overrides?: Partial<CpuInfo>): CpuInfo {
   return {
     model: 'x86',
@@ -134,7 +153,9 @@ interface CreateDirentOptions {
   name: string;
   isDirectory: boolean;
 }
-export function createDirent(overrides?: Partial<CreateDirentOptions>): Dirent {
+export function createDirent(
+  overrides?: Partial<CreateDirentOptions>,
+): Dirent<string> {
   const { name, isDirectory } = {
     name: 'foo',
     isDirectory: true,
@@ -166,10 +187,26 @@ export function createMutant(overrides?: Partial<Mutant>): Mutant {
   };
 }
 
-export function loc(startLine: number, startColumn: number): schema.OpenEndLocation;
-export function loc(startLine: number, startColumn: number, endLine: number, endColumn: number): Location;
-export function loc(startLine: number, startColumn: number, endLine?: number, endColumn?: number): schema.OpenEndLocation {
-  return { start: pos(startLine, startColumn), end: endLine === undefined ? undefined : pos(endLine, endColumn ?? 0) };
+export function loc(
+  startLine: number,
+  startColumn: number,
+): schema.OpenEndLocation;
+export function loc(
+  startLine: number,
+  startColumn: number,
+  endLine: number,
+  endColumn: number,
+): Location;
+export function loc(
+  startLine: number,
+  startColumn: number,
+  endLine?: number,
+  endColumn?: number,
+): schema.OpenEndLocation {
+  return {
+    start: pos(startLine, startColumn),
+    end: endLine === undefined ? undefined : pos(endLine, endColumn ?? 0),
+  };
 }
 
 export function pos(line: number, column: number): schema.Position {
