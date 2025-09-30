@@ -41,8 +41,8 @@ Mutation testing guest lecture
 
 ##### Nico Jansen
 
-![Nico](/img/nico.jpg) <!-- .element class="img-round" style="height: 200px" -->
-
+![Nico](/img/nico.png) <!-- .element class="img-round" style="height: 200px" -->
+![alt text](image.png)
 * 👪 A ... dad?
 * 💼 Manager & Trainer KC
 * 🧙‍♂️ Open sourcerer

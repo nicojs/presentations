@@ -5,7 +5,6 @@
 - StrykerJS is the mutation testing framework for JavaScript
   - Main goal: mutation testing for every JS developer
   - It uses mutant schemata for performance
-  - It uses a plugin system with test runners
 
 ---
 
