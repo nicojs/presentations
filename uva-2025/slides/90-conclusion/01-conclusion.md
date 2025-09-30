@@ -9,7 +9,11 @@
 
 ---
 
-<!-- .slide: data-background-color="#6bbe4c" data-background-image="../../img/slides/01-intro_image.png" data-background-size="contain" -->
+<!-- .slide: data-background-color="black" data-background-image="../../img/slides/01-intro_image.png" data-background-size="contain" -->
+
+---
+
+<!-- .slide: data-background-color="black" data-background-image="../../img/slides/90-thesis-fair.png" data-background-size="contain" -->
 
 ---
 
