@@ -35,7 +35,12 @@
 
 Is the code tested adequately?
 
-![mutation score](/img/mutationscore.png)
+$$
+\begin{align*}
+M &= \text{ set of mutants } \{m_1, ..., m_n\} \\\\
+mutationScore(M) &= { M_✅ + M_⏳ \over M_✅ + M_⏳ + M_👽 + M_🙈 } \times 100\%
+\end{align*}
+$$
 
 ---
 
@@ -47,14 +52,17 @@ Is the code _that is tested_ being tested adequately?
 
 &nbsp;
 
-![covered mutation score](/img/coveredmutationscore.png)
+$$
+\begin{align*}
+M &= \text{ set of mutants } \{m_1, ..., m_n\} \\\\
+coveredMutationScore(M) &= { M_✅ + M_⏳ \over M_✅ + M_⏳ + M_👽 } \times 100\%
+\end{align*}
+$$
 
 ---
 
-<!-- .slide: data-corporate-style="fancy2" -->
+<!-- .slide: class="is-fancy2" -->
 
 ### Not all mutants can be killed
 
-While it is easy to _reach_ all your code, it is not possible to write a test case for every possible internal change of your program. A general rule of thumb is to aim for 80% mutation score.
-
-
+While it is easy to _reach_ all your code, it is not possible to write a test case for every possible internal change of your program

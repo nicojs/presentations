@@ -1,3 +1,3 @@
-<!-- .slide: data-corporate-style="module" -->
+<!-- .slide: class="is-module" -->
 
 ## A false sense of security

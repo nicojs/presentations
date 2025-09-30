@@ -32,7 +32,7 @@ We have production-ready tooling
 | Go                      | Gremlins     |
 | Swift                   | Muter        |
 
-<!-- .element class="text-sm" -->
+<!-- .element class="small" -->
 
 More options available: https://github.com/theofidry/awesome-mutation-testing (or search `${lang} mutation testing`)
-<!-- .element class="text-sm" -->
+<!-- .element class="small" -->

@@ -1,4 +1,4 @@
-### Mutation levels 🦥 (Constrained mutation / Selective mutation)
+### Mutation levels 🦥
 
 Selective mutation approach by Info Support's Jan Smits
 
@@ -27,25 +27,25 @@ Note: **Before fragment**: What could be a downside? 🧦
 
 </div>
 
-Smits, J. P. G. (2022). Callisto-Selecting Effective Mutation Operators for Mutation Testing (Master's thesis, University of Twente).
+Smits, J. P. G. (2022). Callisto: Selecting Effective Mutation Operators for Mutation Testing (Master's thesis). University of Twente, Enschede.
 [Summary @ research.infosupport.com](https://research.infosupport.com/publications/callisto-selecting-effective-mutation-operators-for-mutation-testing/),
-[Thesis @ utwente.nl](https://essay.utwente.nl/89294/).
+[Thesis @ utwente.nl](https://purl.utwente.nl/essays/89294).
 <!-- .element: class="attribution" -->
 
 Note: Only executing block statement mutations results in 86% less executions with an effectiveness of 63%
 
 ---
 
-### Mutation levels: project Xavier
+### Simultaneous testing 🧐
 
-Mutation levels implementation in Stryker JS
+Reduction of test runs by Info Support's Mart de Roos
 
-- **Hot off the press**: implementation done, [pull request #4686](https://github.com/stryker-mutator/stryker-js/pull/4686) open
+- Applying multiple mutants per test run
+- Benefits languages/tools with relatively high test startup time
+- Retained quality (> 99.9%)
+- High overhead in StrykerJS due to live communication
 
-Implemented by a project group of CS master students from the University of Twente
-<!-- .element: class="fragment" -->
-
-- Documentation to follow...
-<!-- .element: class="fragment" -->
-
-
+Roos, M.C. de (2024). Faster Mutation Testing through Simultaneous Mutation Testing (Master's thesis). University of Twente, Enschede.
+[Summary @ research.infosupport.com](https://research.infosupport.com/publications/faster-mutation-testing-through-simultaneous-mutation-testing/)
+[Thesis @ utwente.nl]( https://purl.utwente.nl/essays/98905).
+<!-- .element: class="attribution" -->

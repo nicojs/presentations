@@ -40,19 +40,21 @@ expect(calculateInLoop).to.equal(45); /* ✅ Passes */
 
 ### Equivalent mutants
 
-> The detection of equivalent mutants is in general impossible as determining whether two programs are the equivalent is undicidable. 
+> The detection of equivalent mutants is in general impossible as determining whether two programs are the equivalent is undecidable.
 
-Automatically detecting equivalent mutants and infeasible paths. A.J Offut & J. Pan. 1997
+Offutt, A.J. and Pan, J. (1997), Automatically detecting equivalent mutants and infeasible paths. Softw. Test. Verif. Reliab., 7: 165-192.
+<!-- .element: class="attribution" -->
 
-> The proportion of equivalent mutants is hard to determine but is estimate to be around 8,6% of generated mutants on average. This is close to the 9,1% reported by A.J. Offut & J. Pan. 
+> The proportion of equivalent mutants is hard to determine but is estimate to be around 8,6% of generated mutants on average. This is close to the 9,1% reported by A.J. Offut & J. Pan.
 
-(un-)covering equivalent mutants. D. Schuler & A. Zeller. 2010
+D. Schuler and A. Zeller, "(Un-)Covering Equivalent Mutants," 2010 Third International Conference on Software Testing, Verification and Validation, Paris, France, 2010, pp. 45-54.
+<!-- .element: class="attribution" -->
 
 ---
 
 ### Redundant mutants
 
-Redundant mutants are semantically equivalent to other mutants, but not the orignal program. If two mutants are considered to be redundant with respect to each other, then it is sufficient to only kill one of them.
+_Semantically_ equivalent, _syntactically_ different
 
 ```js [3-6]
 function isAdult(customer) {
@@ -69,29 +71,16 @@ expect(isAdult(customer)).to.equal(true);
 ```
 
 ---
+<!-- .slide: class="is-fancy2" -->
 
-### Mutants that time out
+### Equivalent and redundant mutants
 
-```js []
-function calculateInLoop() {
-    var value = 0;
-    for (i = 0; i < 10; i-- /* 👽 */) { 
-        value += 1;
-    }
-    return value
-}
-```
+What is the impact on the mutation score?
 
-```js []
-expect(calculateInLoop).to.equal(45); /* ⏳ Timeout */
-```
+$$
+\begin{align*}
+mutationScore(M) &= { M_✅ + M_⏳ \over M_✅ + M_⏳ + M_👽 + M_🙈 } \times 100\%
+\end{align*}
+$$
 
----
-
-<!-- .slide: data-auto-animate -->
-
-### Mutation score
-
-Comming back to the mutation score, what is the impact of equivalent mutants and the other challenges?
-
-![mutation score](/img/mutationscore.png)
+<!-- .element: class="small" -->

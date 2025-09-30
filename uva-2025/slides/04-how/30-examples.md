@@ -1,37 +1,69 @@
-#### 🦥 Smart bail / fail Fast
+### Coverage analysis 🧐
 
-> Stop the execution of the tests when a mutant is killed. Since there is only a single mutation active per test run. We can savely stop the test when a mutant is killed without los of precission.
+**Test coverage**: which code is hit by which tests
 
----
-
-
-#### 🏎️ Parallel execution
-
-> This technique executes mutants in parallel processors, reducing the total time needed to perform mutation analysis.
+- Only run tests that cover a mutation instead of the whole test suite
 
 ---
 
-#### 🦥 Control-flow analysis
+### Incremental analysis 🦥
 
-> This technique uses program control flow-related information, focusing on execution characteristics to identify branches and commands that help determine which structures are most relevant to the generation and execution of mutants.
+Re-use results from a previous run
 
-&nbsp;
-![Mutant schemata](/img/mutant-schemata-mutation.svg)
-![dry run](/img/dryrun.png)
+- Only analyze changes from previous run
 
 ---
 
-#### 🦥 Control-flow analysis - reachability matrix
+### Smart bail / fail fast 🦥
 
+Stop when a mutant is killed
 
-
-![dry run](/img/matrix.png)
+- One failing test is sufficient to detect the fault
 
 ---
 
-#### 🧐 Higher order mutation
+### Parallel execution 🏎
 
-> This technique combines two or more simple mutations to create a single complex mutant.
+Activate multiple mutants in a single test run
+
+- Reduces number of test suite executions
+- Are mutants independent?
+
+Note: Not always, complicated to determine.
+
+---
+
+### Control flow analysis 🧐
+
+<div class="r-hstack items-gap">
+<div>
+
+Analyze runtime behaviour
+
+- Remove equivalent mutants
+
+</div>
+
+$$
+\begin{bmatrix}
+    & t_0 & t_1 & t_2 & \cdots & t_i \\\\
+m_0 & 1 & 0 & 1 && 1 \\\\
+m_1 & 0 & 1 & 0 && 0 \\\\
+m_2 & 1 & 0 & 0 && 0 \\\\
+\vdots \\\\
+m_j & 0 & 1 & 0 && 1
+\end{bmatrix}
+$$
+
+</div>
+
+Note: Matrix shows a perfect example where all mutants can be combined in a single run. This is not realistic!
+
+---
+
+### Higher order mutation 🧐
+
+Combine multiple simple mutants into a single complex one
 
 ```js []
 function calculateInLoop() {
@@ -43,22 +75,4 @@ function calculateInLoop() {
 }
 ```
 
-```js []
-expect(calculateInLoop).to.equal(45); 
-```
-
----
-#### 🧐 Simultanious testing
-
-> Find the optimal set of sets with mutants that can be enabled at te same time. Current research by master student Mart de Roos.
-
-![dry run](/img/simultanioustesting.png)
-
-
-
----
-#### 🧐 Minimization and prioritization of test sets
-
-> This technique analyzes the test suite to score test cases based on their effectiveness at killing mutants, then either eliminates test cases that are ineffective or runs the most effective test cases before the less effective test cases.
-
-> Possibility for improvement based on reachability matrix and controll flow. Find which tests can reach the most mutations in differente code paths without hurting precision. Allow those mutations the be active at the same time (a form of higher order mutation). Prioritize these tests with the correct higher order mutation active.
+Note: Amount of possibilities high, difficult to determine what is valuable
