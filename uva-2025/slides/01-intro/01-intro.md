@@ -8,22 +8,29 @@ Mutation testing guest lecture
 
 ### Agenda
 
+<div class="kc-columns">
+<div>
+
 1. Mutation testing
    1. What is it
-   1. History
-   1. Challenges
-   1. Strategies
-1. Current research
+   2. History
+   3. Challenges
+   4. Strategies
+2. Current research
    1. Simultaneous testing
-   1. Mutation levels
-1. Short break
-1. Stryker
-1. StrykerJS 
-    1. Mutators
-    1. Internals
-    1. Instrumenting code
+   2. Mutation levels
 
-<!-- .element class="kc-agenda" -->
+</div>
+<div>
+
+3. Stryker
+4. StrykerJS 
+    1. Mutators
+    2. Internals
+    3. Instrumenting code
+
+</div>
+</div>
 
 ---
 
@@ -47,14 +54,14 @@ Mutation testing guest lecture
 </div>
 <div>
 
-##### Rinse van Hees
+##### Jan-Jelle Kester
 
-![Rinse van Hees](/img/rinseh.png) <!-- .element class="img-round" style="width: 200px" -->
+![Jan-Jelle](/img/jan-jelle.jpg) <!-- .element class="img-round" style="width: 200px" -->
 
-* 💼 Software architect & consultant
-* 🦸 Research center
-* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;hesnir
-* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;rinse-van-hees
+* 💼 Software engineer & architect
+* 🎓 Teacher & research supervisor
+* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;jjkester
+* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;jjkester
 
 <!-- .element class="no-list" -->
 
@@ -91,20 +98,6 @@ Mutation testing guest lecture
 
 ---
 
-
-
-![](/img/masterclass.png)
-
-Masterclass @ Online, April 10
-
-
-
-[carriere.infosupport.com/masterclass-coding-beyond-large-language-models/](https://carriere.infosupport.com/masterclass-coding-beyond-large-language-models/) <!-- .element target="_blank" -->
-
-<!-- .element class="hacktoberfest" -->
-
----
-
 <!-- .slide: data-background-color="#1a0306" -->
 
 <div class="kc-columns">
@@ -115,4 +108,4 @@ Masterclass @ Online, April 10
 
 ---
 
-<!-- .slide: data-background-color="#6bbe4c" data-background-image="../../img/slides/01-intro_image.png" data-background-size="contain" -->
+<!-- .slide: data-background-color="#1c1c40" data-background-image="../../img/slides/01-intro_image.png" data-background-size="contain" -->
