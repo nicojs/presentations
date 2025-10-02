@@ -36,7 +36,7 @@ suite("numbers", () =>  {
 
   // basic.substraction
   test("subtraction should return the difference of items in an array", () => {
-    assert.equal(basic.subtraction([5, 3, 1, -9]), 0);
+    assert.equal(basic.subtraction([5, 3, 1, -9]), 10);
   });
 
   test("subtraction should throw an exception when given anything but an array", () => {
