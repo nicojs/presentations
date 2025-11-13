@@ -1,0 +1,7 @@
+.reveal .no-list li {
+  list-style-type: none;
+
+  &::marker {
+    content: "";
+  }
+}
