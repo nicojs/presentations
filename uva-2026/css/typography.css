@@ -1,0 +1,87 @@
+.text-sm, .text-sm code {
+  font-size: 0.7em;
+}
+.text-xs, .text-xs code {
+  font-size: 0.6em;
+}
+
+.reveal .citation {
+  text-align: left;
+  font-size: .4em;
+  border: 1px #444 solid;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.text-xl p {
+  font-size: 1.2em;
+}
+
+body.is-lab img {
+  float: none;
+}
+
+blockquote.text-sm {
+  /* padding-top: 0; */
+  padding-bottom: 0;
+}
+
+.reveal h1 {
+  font-size: 2.5em;
+}
+
+.reveal blockquote p {
+  text-align: left;
+}
+
+blockquote cite::before {
+   content: '— ';
+   color: #444;
+   font-style: italic;
+}
+
+blockquote cite {
+   font-style: italic;
+   /* font-size: .8em; */
+   text-align: right;
+   display: block;
+   color: #444;
+}
+
+.reveal blockquote p:first-child {
+    display: block;
+}
+.reveal blockquote p:last-child {
+    display: block;
+}
+
+.reveal .no-list {
+  list-style-type: none;
+}
+
+.reveal .pull-right {
+  display: inline;
+  text-align: right;
+  width: 100%;
+}
+
+.reveal img.list-style-icon,
+.reveal .list-style-icon > img {
+  height: 1em;
+  vertical-align: bottom;
+  margin: 0;
+}
+
+.reveal ul .list-style-icon, .reveal ol .list-style-icon {
+  width: 70px;
+  display: inline-block;
+  text-align: center;
+  font-style: normal;
+}
+.reveal ul ul .list-style-icon {
+  width: 70px;
+}
+
+.reveal .hacktoberfest, .reveal .hacktoberfest a {
+  color: #e6e1e7;
+}

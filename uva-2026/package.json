@@ -1,0 +1,39 @@
+{
+  "name": "uva-2021",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean": "rimraf img/*:Zone.Identifier .parcel-cache",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build",
+    "prestart": "npm run build",
+    "start": "kc serve"
+  },
+  "stryker-instrumenter-explainer": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.js",
+  "keywords": [],
+  "targets": {
+    "stryker-instrumenter-explainer": {
+      "context": "browser",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule",
+      "source": "web-components/stryker-instrumenter-explainer/stryker-instrumenter-explainer.src.js",
+      "sourceMap": false
+    }
+  },
+  "author": "",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/generator": "^7.25.6",
+    "bootstrap-icons": "^1.11.3",
+    "prettier": "^3.3.3"
+  },
+  "devDependencies": {
+    "assert": "^2.1.0",
+    "buffer": "^6.0.3",
+    "parcel": "^2.12.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10"
+  }
+}
