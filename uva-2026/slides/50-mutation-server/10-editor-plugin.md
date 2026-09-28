@@ -31,3 +31,10 @@ Question: How to create a plugin to help with mutation testing in our editor.
 
  <!-- .element class="fragment" data-fragment-index="2" -->
  
+notes:
+
+We had a question: (see slide)
+
+But, for which editors? And, for which frameworks?
+
+Just in this small list alone, there's already 9 possible combinations.

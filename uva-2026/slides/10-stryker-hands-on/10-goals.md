@@ -10,4 +10,10 @@
 
 </emoji-list>
 
+notes:
+
+- First we make it work
+- Then we make it easy
+- Then we make it fast
+
 <!--.element class="no-list"-->

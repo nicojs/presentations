@@ -17,10 +17,19 @@ Mutation testing
 
 <!-- .element class="text-sm" -->
 
+notes:
+Why Stryker?
+
+Because:
+
+- William Stryker used the mutants for the good of humanity
+- And so do we, code quality improvement = better experiences for everyone
+  including healthcare, public transport, you name it!
+
 ---
 
 <div class="row">
   <figure class="text--center"><img class="languageImage_2PKB" src="/img/JavascriptLogo.svg" alt="JavaScript and friends" height="200"><figcaption>JavaScript and friends</figcaption></figure>
   <figure class="text--center"><img class="languageImage_2PKB" src="/img/CSharpLogo.svg" alt="C#" height="200"><figcaption>C#</figcaption></figure>
-  <figure class="text--center"><img class="languageImage_2PKB" src="/img/ScalaLogo.webp" alt="JavaScript and friends" height="200"><figcaption>Scala</figcaption></figure>
+  <figure class="text--center"><img class="languageImage_2PKB" src="/img/ScalaLogo.webp" alt="Scala" height="200"><figcaption>Scala</figcaption></figure>
 </div>

@@ -16,7 +16,7 @@
 		"body": [
 			"<!-- .element class=\"fragment\" data-fragment-index=\"$1\" -->",
 			"$2"
-		],a
+		],
 	},
 	"target": {
 		"prefix": "target",

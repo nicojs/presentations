@@ -4,6 +4,10 @@
 
 ![placing-mutants.jpg](/img/placing-mutants.jpg)
 
+notes:
+
+From medical comedy-drama tv-series Scrubs (2001)
+
 ---
 
 ### Process
@@ -79,6 +83,8 @@ function add(a, b) {
 
 ### Helper functions (simplified)
 
+<div class="kc-columns kc-gap3">
+
 <div class="text-sm">
 
 ```js
@@ -89,6 +95,16 @@ function stryMutAct_9fa48(id) {
 
 </div>
 
+![sleeper agent](../../img/slides/01-opening_image.png)
+
+<!-- .element class="fragment" -->
+
+</div>
+
+notes:
+
+Sleeper agent activated. (maybe say a funny activation phrase)
+
 ---
 
 ### The placing algorithm
@@ -96,6 +112,14 @@ function stryMutAct_9fa48(id) {
 [![placing-algorithm](/img/placing-algorithm.svg)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZmxvd2NoYXJ0IFRCXG4gICAgXG4gICAgc3ViZ3JhcGggZmlsZXMgW0ZvciBlYWNoIGZpbGVdXG4gICAgZGlyZWN0aW9uIExSXG5cbiAgICBBKChzdGFydCkpLS0-QihQYXJzZSlcbiAgICBCIC0tIEFTVCBOb2RlIC0tPiBUcmFuc2Zvcm1cbiAgICBUcmFuc2Zvcm0gLS0-IEQoUHJpbnQgdG8gZmlsZSlcblxuICAgICAgICBzdWJncmFwaCBUcmFuc2Zvcm0gW0ZvciBlYWNoIEFTVCBub2RlXVxuXG4gICAgICAgIEMxKE5vZGUpIC0tIEdlbmVyYXRlIG11dGFudHMgLS0-IEMyKE11dGFudHMpXG4gICAgICAgIEMyIC0tRmluZCBwbGFjZW1lbnQgbm9kZSAtLT4gQzMoUGxhY2VtZW50IG5vZGUpXG4gICAgICAgIEMzIC0tQXBwbHkgbXV0YW50cy0tPkM0KEFwcGxpZWQgbXV0YW50cylcbiAgICAgICAgQzQgLS1QbGFjZSBtdXRhbnRzLS0-QzUoTXV0YXRlZCBub2RlKVxuXG4gICAgICAgIGVuZFxuXG4gICAgZW5kXG5cbiAgICBZKChzdGFydCkpIC0tIEZpbGVzIC0tPiBmaWxlc1xuICAgIGZpbGVzIC0tIEZpbGVzIC0tPiBaKChlbmQpKSIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9)
 
 <!-- .element target="_blank" -->
+
+notes:
+
+Order:
+
+- Start at top
+- For each file go from left => right
+- Finish on the bottom
 
 ---
 
@@ -538,8 +562,16 @@ function add(a, b) {
 
 </stryker-instrumenter-explainer>
 
----
+notes:
 
+Click through the buttons.
+
+Mutable AST, so in StrykerJS we collect mutants when going down the tree
+and place them when we go back up.
+
+Here, the identified mutant can be placed on the same node, but this isn't always the case.
+
+---
 
 ### Algorithm another example
 
@@ -788,6 +820,13 @@ console.log(person?.address.street);
 
 </stryker-instrumenter-explainer>
 
+notes:
+
+Click through the buttons.
+
+- q: Here, the identified mutant can ***not*** be placed on the same node. Why?
+- a: Otherwise it would break the chain (? = optional chaining operator)
+
 ---
 
 ### Abstractions
@@ -811,13 +850,17 @@ interface MutantPlacer<TNode extends types.Node = types.Node> {
 
 <!-- .element class="fragment" -->
 
+notes:
+
+The two main abstractions for a mutator and a placer in StrykerJS
+
 ---
 
 ### Remarks on placing algorithm
 
 <emoji-list class="sm">
 
-- 🐠 The Babel AST is a _mutatable_ AST
+- 🐠 The Babel AST is a _mutable_ AST
 - 🧳 Visitor design pattern
   - `OnEnter`
   - `OnLeave`
@@ -826,3 +869,7 @@ interface MutantPlacer<TNode extends types.Node = types.Node> {
   - Node placement can be done higher up the AST.
 
 </emoji-list>
+
+notes:
+
+- Since mutable ASTs are hard to work with, we use the visitor design pattern.

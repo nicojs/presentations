@@ -116,6 +116,12 @@
 </div>
 </div>
 
+notes:
+
+- q: why do we need these additional metrics?
+- a: for performance improvements
+- example: without hitcount it would time out in seconds, with hitcount in ms.
+
 ---
 
 #### 4. Mutation testing
@@ -132,7 +138,7 @@
   - `Survived`
   - `Killed`
   - `RuntimeError`
-- Determin `statusReason`/`killedBy`
+- Determine `statusReason`/`killedBy`
 - Report each mutant.
 
 </div>
@@ -190,15 +196,14 @@ To finish up, the HTML report is generated.
 
 ![](https://raw.githubusercontent.com/stryker-mutator/mutation-testing-elements/master/packages/elements/docs/directory-result-example.png) <!-- .element style="height: 300px" -->
 
-* Single page application using native web components
-* Using [mutation testing elements](https://github.com/stryker-mutator/mutation-testing-elements/tree/master/packages/elements#mutation-testing-elements) <!-- .element target="_blank" -->
- (by the Stryker team)
-
+- Single page application using native web components
+- Using [mutation testing elements](https://github.com/stryker-mutator/mutation-testing-elements/tree/master/packages/elements#mutation-testing-elements) <!-- .element target="_blank" -->
+  (by the Stryker team)
 
 ---
 
 ### Conclusion
 
-* StrykerJS's global process consists of 4 steps.
-* Each step enriches the internal structure that represents a mutant
-* After the final step, the report is written and StrykerJS is done.
+- StrykerJS's global process consists of 4 steps.
+- Each step enriches the internal structure that represents a mutant
+- After the final step, the report is written and StrykerJS is done.

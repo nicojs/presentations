@@ -2,3 +2,6 @@
 
 ### Lab
 
+notes:
+
+Implement a new mutator for StrykerJS

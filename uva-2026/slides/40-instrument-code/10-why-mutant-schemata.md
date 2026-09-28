@@ -1,23 +1,9 @@
-
-### Why mutant schemata for JS?
-
-Let's zoom in on how to run mutants.
-
-[![](img/mutation-testing-process-focus-4.svg)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZ3JhcGggTFJcbiAgICBBKChTdGFydCkpIC0tPiBCKDEuIFByZXBhcmUpXG4gICAgQiAtLT4gQygyLiBDb2RlIGluc3RydW1lbnRhdGlvbilcbiAgICBDIC0tPiBEKDMuIERyeSBydW4pXG4gICAgRCAtLT4gRXtTdWNjZXNzP31cbiAgICBFIC0tPnxZZXN8IEYoNC4gTXV0YXRpb24gdGVzdGluZylcbiAgICBFIC0tPnxOb3wgSCgoZW5kKSlcbiAgICBGIC0tPiBIXG4gICAgc3R5bGUgRiBmaWxsOiNmZjBcblxuIiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0) <!-- .element target="_blank" -->
-
----
-
-[![](img/run-mutants-process-focus-execute.svg) <!--element style="max-height: 650px" -->](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZmxvd2NoYXJ0IFREXG4gICAgQShzdGFydCktLT5Ee0lnbm9yZWQ_fVxuICAgIHN1YmdyYXBoIHBlciBtdXRhbnRcbiAgICBELS0gTm8gLS0-IEV7Q292ZXJlZD99XG4gICAgRS0tIFllcyAtLT4gRihFeGVjdXRlIGluIHRlc3QgcnVubmVyKVxuICAgIEYtLSB0aW1lb3V0IGV4cGlyZWQgLS0-RyhSZXN0YXJ0IHRlc3QgcnVubmVyKVxuICAgIEctLSBSZXBvcnQgVGltZW91dCAtLT5ZKFJlcG9ydCBtdXRhbnQpXG4gICAgRi0tIFJlcG9ydCBLaWxsZWQvU3VyaXZlZCAtLT5ZXG4gICAgRS0tIE5vIFxcbiBSZXBvcnQgTm9Db3ZlcmFnZSAtLT4gWVxuICAgIEQtLSBZZXMgXFxuIFJlcG9ydCBJZ25vcmVkIC0tPiBZXG4gICAgZW5kXG4gICAgWS0tPlooKGVuZCkpXG5cbiAgICBzdHlsZSBGIGZpbGw6I0ZGMCIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9) <!-- .element target="_blank" -->
-
----
-
-<!-- .slide: data-auto-animate -->
 ### Why mutant schemata for JS?
 
 <div class="row">
 <div>
 
-Without mutant schemata
+Source code mutation
 
 [![](img/without-mutant-schemata.svg)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZmxvd2NoYXJ0IFREXG4gICAgXG4gICAgc3ViZ3JhcGggbXV0YW50cyBbRm9yIGVhY2ggbXV0YW50XVxuXG4gICAgQihQbGFjZSlcbiAgICBCIC0tPiBEKFJ1biB0ZXN0cylcbiAgICBEIC0tS2lsbGVkL1N1cnZpdmVkLS0-IEUoUmVwb3J0IG11dGFudClcblxuICAgIGVuZFxuXG4gICAgQSgoc3RhcnQpKSAtLT4gbXV0YW50c1xuICAgIG11dGFudHMgLS0-IFooKGVuZCkpIiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0) <!-- .element target="_blank" -->
 
@@ -34,6 +20,13 @@ But with a build step
 
 </div>
 </div>
+
+notes:
+
+Since JS is an interpreted language, we could use source code mutations.
+
+However:
+- Most JS projects nowadays have build steps, the most well-known one being tsc transpiling TS to JS.
 
 ---
 
@@ -52,11 +45,15 @@ But with a build step
 ![grunt](/img/grunt.png) <!-- .element class="img-width-15" title="grunt" -->
 ![gulp](/img/gulp.png) <!-- .element class="img-width-15" title="gulp" -->
 
+- Combinations possible <!-- .element class="fragment" -->
+- Even more than these <!-- .element class="fragment" -->
 
-* Combinations possible <!-- .element class="fragment" -->
-* Even more than these <!-- .element class="fragment" -->
-* High turnover rate <!-- .element class="fragment" -->
-* A StrykerJS plugin per build tool for performance <!-- .element class="fragment" -->
+notes:
+
+Small list of some well-known JS build tools
+
+- You can combine build tools
+- There's a lot more build-tools
 
 ---
 
@@ -70,3 +67,11 @@ _(rough estimate of a JS project)_
 
 ![cheater](/img/strykerjs-cheater.jpg)
 
+notes:
+
+Thankfully, we can use mutant schemata to solve this!
+
+Stryker.NET & Stryker4S already used mutant schemata,
+so we asked them if we could copy their homework,
+and they said it was fine if we just changed it a bit so it
+doesn't look obvious that we copied, so we changed it to TS.

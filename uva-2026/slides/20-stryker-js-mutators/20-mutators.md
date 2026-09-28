@@ -14,6 +14,8 @@
 
 ### String literal
 
+<div class="kc-columns kc-gap3">
+
 | Original       | Mutated              |
 | -------------- | :------------------- |
 | `'foo'`        | `''`                 |
@@ -21,6 +23,12 @@
 | `Hi ${person}` | <code>``</code>      |
 
 <!-- .element class="text-sm" -->
+
+![](../../img/slides/20-mutators_image.png)
+
+<!-- .element class="fragment" -->
+
+</div>
 
 ---
 
@@ -33,6 +41,11 @@
 | `!foo`   | `foo`   |
 
 <!-- .element class="text-sm" -->
+
+notes:
+
+- q: why don't we mutate `foo` to `!foo`?
+- a: since we don't do type-aware mutations
 
 ---
 
@@ -50,6 +63,10 @@
 | `var x = a > b ? 1 : 2;`           | `var x = false ? 1 : 2;`          |
 
 <!-- .element class="text-sm" -->
+
+notes:
+
+- effectively, skip the for statement since we don't want to cause an infinite loop
 
 ---
 
@@ -72,6 +89,10 @@
 | `foo?.()`  | `foo()`   |
 
 <!-- .element class="text-sm" -->
+
+notes:
+
+- effectively forcing you to add a test for when the value is undefined
 
 ---
 
@@ -118,3 +139,8 @@ Regular expressions are mutated using the awesome [Weapon rege⚔](https://stryk
 | `a?` / `a*` / `a+` / `a{1,3}` | `a`      |
 
 <!-- .element class="text-sm" -->
+
+notes:
+
+- regular expressions are the root cause of a lot of security incidents
+- bring up the weapon regex frontend, with `^\d{4}[A-Z]{2}$`

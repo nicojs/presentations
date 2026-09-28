@@ -2,4 +2,10 @@
 
 ## Instrument code
 
-![philosoraptor-mutation-testing.jpg](/img/philosoraptor-mutation-testing.jpg)
+![sleeper agent](../../img/slides/01-opening_image.png)
+
+<!-- .element class="fragment" -->
+
+notes:
+
+So, now that we know a little more about the StrykerJS internals, let's zoom in on the instrumentation phase.

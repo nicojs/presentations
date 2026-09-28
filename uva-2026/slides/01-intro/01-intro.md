@@ -1,6 +1,6 @@
 <!-- .slide: class="is-welcome text-xl" -->
 
-# Kill all mutants with Stryker 
+# Kill all mutants with Stryker
 
 Mutation testing guest lecture
 
@@ -24,10 +24,10 @@ Mutation testing guest lecture
 <div>
 
 3. Stryker
-4. StrykerJS 
-    1. Mutators
-    2. Internals
-    3. Instrumenting code
+4. StrykerJS
+   1. Mutators
+   2. Internals
+   3. Instrumenting code
 
 </div>
 </div>
@@ -39,14 +39,14 @@ Mutation testing guest lecture
 <div style="justify-content: center" class="kc-flex kc-gap4">
 <div>
 
-##### Nico Jansen
+##### Andreas Hoornstra
 
-![Nico](/img/nico.png) <!-- .element class="img-round" style="height: 200px" -->
-* 👪 A ... dad?
-* 💼 Manager & Trainer KC
-* 🧙‍♂️ Open sourcerer
-* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;nicojs
-* <i class="bi bi-twitter" style="color: #1d9bf0"></i> &nbsp;_nicojs
+![Andreas](/img/andreas.jpg) <!-- .element class="img-round" style="height: 200px" -->
+
+- 💼 IT Consultant & Software engineer
+- 👽 StrykerJS co-maintainer
+- <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;andreas02-dev
+- <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;andreashoornstra
 
 <!-- .element class="no-list" -->
 
@@ -57,10 +57,10 @@ Mutation testing guest lecture
 
 ![Jan-Jelle](/img/jan-jelle.jpg) <!-- .element class="img-round" style="width: 200px" -->
 
-* 💼 Software engineer & architect
-* 🎓 Teacher & research supervisor
-* <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;jjkester
-* <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;jjkester
+- 💼 Software engineer & architect
+- 🎓 Teacher & research supervisor
+- <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;jjkester
+- <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;jjkester
 
 <!-- .element class="no-list" -->
 
