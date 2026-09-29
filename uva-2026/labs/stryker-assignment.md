@@ -38,7 +38,7 @@ $ pnpm -v
 
 Also make sure to have bash (linux shell) or git-bash (windows) installed.
 
-Next, unzip the "assignment.zip" file on your hard disk and open the `assignment.code-workspace` file from the root directory. THIS IS IMPORTANT, the workspace is configured so the nested `numbers.js` and `stryker-js` folders are picked up correctly.
+Next, unzip the "assignment.zip" file on your hard disk and open the `assignment.code-workspace` file from the labs/assignment directory. THIS IS IMPORTANT, the workspace is configured so the nested `numbers.js` and `stryker-js` folders are picked up correctly.
 
 ![open-dir-in-code.png](../img/labs/open-dir-in-code.png)
 

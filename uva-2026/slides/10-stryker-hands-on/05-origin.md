@@ -1,6 +1,6 @@
 ## The story of Stryker
 
-<kc-timeline events='[{"year":2015,"caption":"Internship","description":"Mutation testing for JS"},{"year":2016,"caption":"0.1 Release","description":"First release of a bare-bones mutation testing framework"},{"year":2017,"caption":"Open source community","description":"Start of Info Support open source community; sponsorship for Stryker."},{"year":2018,"caption":"Scala &amp; C#","description":"Internships for Scala and C# mutation testing; use of mutant schemata"},{"year":2019,"caption":"StrykerJS 1.0","description":"1.0 Release of StrykerJS"},{"year":"2021","caption":"Stryker.NET 1.0","description":"1.0 Release of Stryker.NET is slated for later this year"},{"year":"2025","caption":"Editor Plugin"},{"year":"2026","caption":"Stryker4S 1.0"}]'>
+<kc-timeline events='[{"year":2015,"caption":"Internship","description":"Mutation testing for JS"},{"year":2016,"caption":"0.1 Release","description":"First release of a bare-bones mutation testing framework"},{"year":2017,"caption":"Open source policy","description":"Start of Info Support open source community; sponsorship for Stryker."},{"year":2018,"caption":"Scala &amp; C`#","description":"Internships for Scala and C# mutation testing; use of mutant schemata"},{"year":2019,"caption":"StrykerJS 1.0","description":"1.0 Release of StrykerJS"},{"year":"2021","caption":"Stryker.NET 1.0","description":"1.0 Release of Stryker.NET is slated for later this year"},{"year":"2025","caption":"Editor Plugin"},{"year":"2026","caption":"Stryker4S 1.0"}]'>
 </kc-timeline>
 
 notes:

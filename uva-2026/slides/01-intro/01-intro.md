@@ -1,6 +1,6 @@
 <!-- .slide: class="is-welcome text-xl" -->
 
-# Kill all mutants with Stryker
+# Control the mutants
 
 Mutation testing guest lecture
 
@@ -39,14 +39,14 @@ Mutation testing guest lecture
 <div style="justify-content: center" class="kc-flex kc-gap4">
 <div>
 
-##### Andreas Hoornstra
+##### Nico Jansen
 
-![Andreas](/img/andreas.jpg) <!-- .element class="img-round" style="height: 200px" -->
+![Nico](../../img/slides/nico.png) <!-- .element class="img-round" style="height: 200px" -->
 
-- 💼 IT Consultant & Software engineer
-- 👽 StrykerJS co-maintainer
-- <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;andreas02-dev
-- <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;andreashoornstra
+- 💼 Manager IT Academy
+- 👽 StrykerJS Author
+- <i class="bi bi-github" style="color: #1a1d21"></i> &nbsp;nicojs
+- <i class="bi bi-linkedin" style="color: #1d9bf0"></i> &nbsp;nico-jansen
 
 <!-- .element class="no-list" -->
 
