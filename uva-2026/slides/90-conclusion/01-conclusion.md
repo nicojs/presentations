@@ -26,6 +26,10 @@ notes:
 
 ---
 
+<!-- .slide: data-background-color="black" data-background-image="../../img/slides/90-open-source-training.png" data-background-size="contain" -->
+
+---
+
 <!-- .slide: data-background-color="#1a0306" -->
 
 <div class="kc-columns">
