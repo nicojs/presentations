@@ -9,16 +9,19 @@
 **Mutation testing framework**\
 for JS/TS, C#, Scala, ~~Kotlin~~
 
-stryker-mutator.io
+[stryker-mutator.io](https://stryker-mutator.io)
 
 </div>
 <div>
 
 ![Info Support](../../img/logo-white.png) <!-- .element: width="70%" -->
 
-> Interested in doing your Master Thesis on mutation testing? Talk to us afterwards!
+**Master Thesis on mutation testing?** \
+<small>(Other subjects are available)</small>
 
-research.infosupport.com
+
+[research.infosupport.com](https://research.infosupport.com)\
+[carriere.infosupport.com](https://carriere.infosupport.com)
 
 </div>
 </div>

@@ -4,7 +4,7 @@
 
 ### 1979: A new type of software test
 
-Acree, Allen & Budd, Timothy & Demillo, Richard & Lipton, Richard & Sayward, Fred. (1979). Mutation Analysis.
+Acree, A. T., Budd, T. A., DeMillo, R. A., Lipton, R. J., & Sayward, F. G. (1979). Mutation Analysis (No. GITICS7908).
 <!-- .element: class="attribution" -->
 
 </div>
@@ -15,7 +15,7 @@ Acree, Allen & Budd, Timothy & Demillo, Richard & Lipton, Richard & Sayward, Fre
 
 ![Theoretical publications vs. practical publications](/img/early-history.png)
 
-Y. Jia and M. Harman, "An Analysis and Survey of the Development of Mutation Testing," in IEEE Transactions on Software Engineering, vol. 37, no. 5, pp. 649-678, Sept.-Oct. 2011, DOI: 10.1109/TSE.2010.62.
+Jia, Y., & Harman, M. (2010). An analysis and survey of the development of mutation testing. IEEE transactions on software engineering, 37(5), 649-678.
 <!-- .element: class="attribution" -->
 
 Note: Mainly theoretical until the 90s, large peak from the second half of the 00s

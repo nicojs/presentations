@@ -47,5 +47,20 @@ Reduction of test runs by Info Support's Mart de Roos
 
 Roos, M.C. de (2024). Faster Mutation Testing through Simultaneous Mutation Testing (Master's thesis). University of Twente, Enschede.
 [Summary @ research.infosupport.com](https://research.infosupport.com/publications/faster-mutation-testing-through-simultaneous-mutation-testing/)
-[Thesis @ utwente.nl]( https://purl.utwente.nl/essays/98905).
+[Thesis @ utwente.nl](https://purl.utwente.nl/essays/98905).
+<!-- .element: class="attribution" -->
+
+---
+
+### Memoization 🧐
+
+Reduction of redundant computation by remembering results across runs
+
+- Memoization not suitable for all parts of a program
+- Implementation is feasible
+- Not faster... (yet?)
+
+Leeflang, J. (2025). Investigating the Utilizability of Memoization for Mutation Testing. Utrecht University, Utrecht.
+[Summary @ research.infosupport.com](https://research.infosupport.com/publications/investigating-the-utilizability-of-memoization-for-mutation-testing/)
+[Thesis @ uu.nl](https://studenttheses.uu.nl/handle/20.500.12932/50706).
 <!-- .element: class="attribution" -->

@@ -42,12 +42,12 @@ expect(calculateInLoop).to.equal(45); /* ✅ Passes */
 
 > The detection of equivalent mutants is in general impossible as determining whether two programs are the equivalent is undecidable.
 
-Offutt, A.J. and Pan, J. (1997), Automatically detecting equivalent mutants and infeasible paths. Softw. Test. Verif. Reliab., 7: 165-192.
+Offutt, A. J., & Pan, J. (1997). Automatically detecting equivalent mutants and infeasible paths. Software testing, verification and reliability, 7(3), 165-192.
 <!-- .element: class="attribution" -->
 
 > The proportion of equivalent mutants is hard to determine but is estimate to be around 8,6% of generated mutants on average. This is close to the 9,1% reported by A.J. Offut & J. Pan.
 
-D. Schuler and A. Zeller, "(Un-)Covering Equivalent Mutants," 2010 Third International Conference on Software Testing, Verification and Validation, Paris, France, 2010, pp. 45-54.
+Schuler, D., & Zeller, A. (2010, April). (Un-) covering equivalent mutants. In 2010 Third International Conference on Software Testing, Verification and Validation (pp. 45-54). IEEE.
 <!-- .element: class="attribution" -->
 
 ---
@@ -73,7 +73,7 @@ expect(isAdult(customer)).to.equal(true);
 ---
 <!-- .slide: class="is-fancy2" -->
 
-### Equivalent and redundant mutants
+### Consequences of equivalent and redundant mutants
 
 What is the impact on the mutation score?
 

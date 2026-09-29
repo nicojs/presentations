@@ -6,8 +6,10 @@ Transform operations in source code to one or more mutated versions of that sour
 
 ![](/img/popular-operators.png)
 
-Papadakis, M; Kintis, M; Zhang, J; Jia, Y; Traon, YL; Harman, M; (2018) Mutation Testing Advances: An Analysis and Survey. Advances in Computers 112 (2019), 75-378.\
-\[34\] A. Jefferson Offutt, Ammei Lee, Gregg Rothermel, Roland H. Untch, and Christian Zapf. 1996. An experimental determination of sufficient mutant operators. ACM Trans. Softw. Eng. Methodol. 5, 2 (April 1996), 99–118.
+Papadakis, M., Kintis, M., Zhang, J., Jia, Y., Le Traon, Y., & Harman, M. (2019). Mutation testing advances: an analysis and survey. In Advances in computers (Vol. 112, pp. 275-378). Elsevier.
+<!-- .element: class="attribution" -->
+
+\[34\] Offutt, A. J., Lee, A., Rothermel, G., Untch, R. H., & Zapf, C. (1996). An experimental determination of sufficient mutant operators. ACM Transactions on Software Engineering and Methodology (TOSEM), 5(2), 99-118.
 <!-- .element: class="attribution" -->
 
 ---

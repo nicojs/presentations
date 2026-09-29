@@ -45,7 +45,7 @@ Generate mutants based on source code, but compile once
 * ✅ Fast
 * 🟡 Complicated (but manageable)
 
-Roland H. Untch, A. Jefferson Offutt, and Mary Jean Harrold. 1993. Mutation analysis using mutant schemata. SIGSOFT Softw. Eng. Notes 18, 3 (July 1993), 139–148. DOI: 10.1145/174146.154265.
+Untch, R. H., Offutt, A. J., & Harrold, M. J. (1993, July). Mutation analysis using mutant schemata. In Proceedings of the 1993 ACM SIGSOFT international symposium on Software testing and analysis (pp. 139-148).
 <!-- .element: class="attribution" -->
 
 Note: Relatively new!

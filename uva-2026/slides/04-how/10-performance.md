@@ -32,10 +32,7 @@ Three approaches to improving performance
 * 🦥 Do **fewer**<span class="fragment" data-fragment-index="1">: 118 studies</span>
 * 🧐 Do **smarter**<span class="fragment" data-fragment-index="1">: 75 studies</span>
 
-A. Pizzoleto, F. Ferrari, J. Offutt, L. Fernandes, and M. Ribeiro, “A systematic literature
-review of techniques and metrics to reduce the cost of mutation testing,” Journal of Systems
-and Software, vol. 157, Jul. 2019. DOI: 10.1016/j.jss.2019.07.100.
-
+Pizzoleto, A. V., Ferrari, F. C., Offutt, J., Fernandes, L., & Ribeiro, M. (2019). A systematic literature review of techniques and metrics to reduce the cost of mutation testing. Journal of Systems and Software, 157, 110388.
 <!-- .element class="attribution" -->
 
 ---

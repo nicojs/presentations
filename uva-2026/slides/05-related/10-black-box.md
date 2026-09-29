@@ -77,11 +77,35 @@ How well does the model represent the running program?
 
 ### Fuzzing
 
+<div class="fragment custom semi-fade-out" data-fragment-index="1">
+
 Testing random input
 
 - Programs that are expected to deal with bad inputs
   - User input
   - Specific requirements
 
+</div>
+
 Effective when inputs are _valid enough_ to hit relevant logic
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+<!-- .slide: data-corporate-style="fancy2" -->
+
+### Let's discuss
+
+- <!-- .element: class="fragment custom semi-fade-out" data-fragment-index="1" -->
+  What does this mean for the test method you choose?
+- <!-- .element: class="fragment custom fade-in-then-semi-out" data-fragment-index="1" -->
+  To what extent does mutation testing address these challenges?
+- <!-- .element: class="fragment custom fade-in-then-semi-out" -->
+  Which questions remain with mutation testing?
+
+**It depends** which testing approach(es) is/are the right one(s)!
 <!-- .element: class="fragment" -->
+
+Note: Gaps everywhere!
+
+Mutation testing guarantees the model (same program) and can help find relevant input values without trying too many.
+However, it is limited by the mutation operators so gaps can remain!
