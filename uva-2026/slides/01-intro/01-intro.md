@@ -50,6 +50,18 @@ Mutation testing guest lecture
 
 <!-- .element class="no-list" -->
 
+<div class="kc-flex fragment">
+
+
+You're stuck with Nico, since Andreas is sick
+
+<!-- .element style="font-size: .5em" -->
+
+![andreas](../../img/andreas.jpg) <!-- .element class="img-round" style="height: 100px; width: 80px; margin: 0;" -->
+
+<!-- .element style="margin: 0" -->
+
+</div>
 </div>
 <div>
 
