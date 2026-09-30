@@ -33,7 +33,7 @@ function calculateInLoop() {
 ```
 
 ```js []
-expect(calculateInLoop).to.equal(45); /* ✅ Passes */
+expect(calculateInLoop).to.equal(10); /* ✅ Passes */
 ```
 
 ---

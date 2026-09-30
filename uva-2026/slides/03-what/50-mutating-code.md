@@ -13,6 +13,8 @@ const customer = { name: 'Professor X', age: 96 };
 expect(isAdult(customer)).to.equal(true);
 ```
 
+Note: Which changes could we put in this code? 🧦
+
 ---
 
 <!-- .slide: data-auto-animate -->
